@@ -266,6 +266,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // 11. 当前导航高亮
+  function setActiveNav() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav a').forEach(function (link) {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
   setActiveNav();
 });
+
 
