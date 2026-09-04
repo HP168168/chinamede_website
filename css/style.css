@@ -506,11 +506,29 @@ button {
   overflow: hidden;
 }
 
+.course-image .course-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.course-card:hover .course-thumb-img {
+  transform: scale(1.08);
+}
+
 .course-image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 31, 68, 0.2) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .course-card:nth-child(2) .course-image { background: linear-gradient(135deg, #7B2FF7, #B07CFF); }
@@ -665,7 +683,8 @@ button {
   position: relative;
 }
 
-.teacher-team-img {
+.teacher-team-img,
+.industry-coop-img {
   width: 100%;
   height: auto;
   display: block;
@@ -674,7 +693,12 @@ button {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.photo-card:hover .teacher-team-img {
+.industry-coop-img {
+  border: 1px solid rgba(0, 32, 96, 0.08);
+}
+
+.photo-card:hover .teacher-team-img,
+.photo-card:hover .industry-coop-img {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(10, 31, 68, 0.16);
 }
@@ -1108,6 +1132,20 @@ button {
   font-size: 1rem;
 }
 
+.story-card h3 .icon.icon-logo {
+  background: #ffffff;
+  border: 1px solid rgba(0, 32, 96, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 4px;
+}
+
+.story-card h3 .icon.icon-logo img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
 .story-card p {
   color: var(--text-gray);
   font-size: 0.95rem;
@@ -1263,6 +1301,494 @@ button {
   color: var(--primary-blue);
   border-radius: 20px;
   font-size: 0.8rem;
+}
+
+/* ============================================================
+   精品就业班增强排版 (Featured Course Card)
+   ============================================================ */
+.featured-course-card {
+  padding: 36px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 32, 96, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 32, 96, 0.06);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.featured-course-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1890ff 0%, #e60012 50%, #722ed1 100%);
+}
+
+.course-hero-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.course-cover-box {
+  flex-shrink: 0;
+  width: 340px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0, 32, 96, 0.12);
+  position: relative;
+  border: 1px solid rgba(0, 32, 96, 0.08);
+  background: #f8faff;
+}
+
+.course-cover-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.course-cover-box:hover .course-cover-img {
+  transform: scale(1.04);
+}
+
+.cover-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(230, 0, 18, 0.9);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(230, 0, 18, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.course-hero-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.course-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.course-meta-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tag-blue {
+  background: rgba(0, 102, 255, 0.1);
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.tag-gold {
+  background: #fff7e6;
+  color: #d46b08;
+  border: 1px solid #ffd591;
+  font-weight: 600;
+}
+
+.tag-purple {
+  background: #f9f0ff;
+  color: #722ed1;
+  border: 1px solid #d3adf7;
+  font-weight: 600;
+}
+
+.course-price-wrap {
+  text-align: right;
+}
+
+.course-price-wrap .price-main {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--accent-red);
+  line-height: 1.1;
+}
+
+.course-price-wrap .price-main .currency {
+  font-size: 1.2rem;
+  margin-right: 2px;
+}
+
+.course-price-wrap .price-origin {
+  font-size: 0.82rem;
+  color: #8c8c8c;
+  text-decoration: line-through;
+  margin-top: 4px;
+}
+
+.course-main-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--deep-blue);
+  margin: 6px 0 10px;
+  line-height: 1.35;
+}
+
+.course-stat-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: #f4f6fa;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--deep-blue);
+  border: 1px solid rgba(0, 32, 96, 0.05);
+}
+
+.stat-pill.highlight {
+  background: #fff1f0;
+  color: #cf1322;
+  border-color: #ffa39e;
+}
+
+.course-desc-highlight {
+  font-size: 0.94rem;
+  color: #4a5568;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.course-desc-highlight strong {
+  color: var(--deep-blue);
+}
+
+.course-action-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(0, 32, 96, 0.2);
+  color: var(--deep-blue);
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline:hover {
+  background: #f0f4fa;
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+/* 课程结构大纲 */
+.curriculum-section {
+  margin-top: 10px;
+  margin-bottom: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(0, 32, 96, 0.1);
+}
+
+.curriculum-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.curriculum-section-title h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.curriculum-section-title .section-sub {
+  font-size: 0.85rem;
+  color: #8c8c8c;
+}
+
+.curriculum-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.curriculum-stages-grid.stages-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.curriculum-stages-grid.stages-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .curriculum-stages-grid.stages-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stage-card {
+  background: #f8faff;
+  border: 1px solid rgba(0, 32, 96, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.stage-card:hover {
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 32, 96, 0.08);
+  border-color: rgba(0, 102, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed rgba(0, 32, 96, 0.1);
+}
+
+.stage-badge {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.stage-card-1 .stage-badge {
+  background: linear-gradient(135deg, #1890ff, #096dd9);
+}
+
+.stage-card-2 .stage-badge {
+  background: linear-gradient(135deg, #13c2c2, #08979c);
+}
+
+.stage-card-3 .stage-badge {
+  background: linear-gradient(135deg, #722ed1, #531dab);
+}
+
+.stage-card-4 .stage-badge {
+  background: linear-gradient(135deg, #fa8c16, #d46b08);
+}
+
+.stage-card-5 .stage-badge {
+  background: linear-gradient(135deg, #eb2f96, #c41d7f);
+}
+
+.stage-card-6 .stage-badge {
+  background: linear-gradient(135deg, #e60012, #cf1322);
+}
+
+.stage-title-wrap h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  margin: 0;
+}
+
+.stage-title-wrap span {
+  font-size: 0.76rem;
+  color: #8c8c8c;
+  display: block;
+  margin-top: 2px;
+}
+
+.stage-module-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+}
+
+.stage-module-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  background: #ffffff;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  border: 1px solid rgba(0, 32, 96, 0.05);
+}
+
+.stage-module-list .mod-name {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.stage-module-list .mod-hour {
+  color: #666;
+  font-size: 0.78rem;
+  background: #f0f4fa;
+  padding: 2px 7px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.stage-module-list .mod-hour.highlight {
+  background: #fff1f0;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* 重实战横幅 */
+.course-practice-banner {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #f0f7ff 0%, #f6faff 100%);
+  border-left: 4px solid var(--primary-blue);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.practice-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.practice-text h5 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  margin: 0 0 6px 0;
+}
+
+.practice-text p {
+  font-size: 0.88rem;
+  color: #4a5568;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* 就业方向与适合人群 */
+.course-outcome-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.outcome-box {
+  background: #fafcff;
+  border: 1px solid rgba(0, 32, 96, 0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.outcome-box h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.job-chip {
+  font-size: 0.8rem;
+  background: #ffffff;
+  color: var(--deep-blue);
+  border: 1px solid rgba(0, 32, 96, 0.12);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.target-chip {
+  font-size: 0.8rem;
+  background: #e6f7ff;
+  color: #0050b3;
+  border: 1px solid #91d5ff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.target-chip .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #1890ff;
+}
+
+@media (max-width: 992px) {
+  .course-hero-layout {
+    flex-direction: column;
+  }
+  .course-cover-box {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .curriculum-stages-grid {
+    grid-template-columns: 1fr;
+  }
+  .course-outcome-grid {
+    grid-template-columns: 1fr;
+  }
+  .featured-course-card {
+    padding: 24px;
+  }
 }
 
 /* 产教融合页 */
