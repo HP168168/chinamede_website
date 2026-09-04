@@ -1,0 +1,19 @@
+{
+  "name": "美迪时代教育官网",
+  "short_name": "美迪时代教育",
+  "description": "专注成人职业技能就业培训，让职业就业更简单",
+  "start_url": "https://www.chinamede.com/",
+  "scope": "https://www.chinamede.com/",
+  "display": "standalone",
+  "lang": "zh-CN",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0066FF",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+# 美迪时代教育官网 robots.txt
+# 官网：https://www.chinamede.com/
+
+# 默认：允许所有搜索引擎爬虫
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# ---- 明确欢迎 AI 爬虫 / 生成式引擎（GEO 优化关键配置）----
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google Gemini 训练爬虫
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+# ---- 主流搜索引擎 ----
+User-agent: Baiduspider
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Sogou spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# 站点地图
+Sitemap: https://www.chinamede.com/sitemap.xml
