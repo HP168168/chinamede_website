@@ -2,91 +2,139 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.chinamede.com/</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/courses.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/courses/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/enroll.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/courses/n1-ai-newmedia/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/courses/n2-ai-visual-design/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/courses/n3-short-video/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/courses/n4-aigc/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/courses/n5-ai-drama/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/courses/n6-amazon/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/courses/n7-tiktok/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/courses/n8-overseas-smm/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.chinamede.com/enroll/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/brand.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/brand/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/knowledge.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/knowledge/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/guide-newmedia.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/knowledge/guide-newmedia/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/guide-geo.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/knowledge/guide-geo/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/guide-shortvideo.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/knowledge/guide-shortvideo/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/teachers.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/teachers/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/students.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/students/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/faq.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/faq/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/industry.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/industry/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/news.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/news/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/business.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/business/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.chinamede.com/contact.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://www.chinamede.com/contact/</loc>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

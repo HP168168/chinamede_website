@@ -37,13 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 2. 移动端菜单切换与当前页高亮
   if (nav) {
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    nav.querySelectorAll('a').forEach(function (link) {
-      const linkHref = link.getAttribute('href');
-      if (linkHref === currentPath || (currentPath === '' && linkHref === 'index.html')) {
-        link.classList.add('active');
-      }
-    });
+    setActiveNav();
   }
 
   if (mobileMenuBtn && nav) {
@@ -123,6 +117,50 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       });
     });
+  }
+
+  // 5.1 校区城市筛选（联系我们页）
+  const campusTabs = document.querySelectorAll('.campus-tabs .campus-tab');
+  const campusCards = document.querySelectorAll('.campus-card');
+
+  if (campusTabs.length && campusCards.length) {
+    campusTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        const city = tab.getAttribute('data-city');
+
+        campusTabs.forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        campusCards.forEach(function (card) {
+          const matched = city === 'all' || card.getAttribute('data-city') === city;
+          card.style.display = matched ? 'flex' : 'none';
+        });
+      });
+    });
+
+    // 支持首页「全国直营校区布局」跳转：/contact/#city-gz
+    function applyCityFromHash() {
+      const match = /^#city-([a-z]+)$/.exec(window.location.hash);
+      if (!match) return;
+
+      const tab = document.querySelector('.campus-tabs .campus-tab[data-city="' + match[1] + '"]');
+      if (!tab) return;
+
+      tab.click();
+
+      const section = document.querySelector('.campus-section');
+      if (section) {
+        const top = section.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    }
+
+    applyCityFromHash();
+    window.addEventListener('hashchange', applyCityFromHash);
   }
 
   // 6. 数字滚动动画
@@ -266,20 +304,45 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 11. 当前导航高亮
-  function setActiveNav() {
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav a').forEach(function (link) {
-      const href = link.getAttribute('href');
-      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  }
-
   setActiveNav();
 });
+
+/**
+ * 当前导航高亮：按路径前缀匹配，支持任意层级子页面
+ * /courses/ /courses/n1-ai-newmedia/ -> 培训课程
+ * /knowledge/guide-geo/              -> 知识百科
+ */
+function setActiveNav() {
+  const path = window.location.pathname.replace(/\/index\.html$/, '/');
+  let best = null;
+
+  document.querySelectorAll('.nav a').forEach(function (link) {
+    const href = link.getAttribute('href') || '';
+    if (href.charAt(0) !== '/') return;
+
+    const target = href.split('#')[0].replace(/\/index\.html$/, '/');
+    let matched = false;
+
+    if (target === '/') {
+      matched = (path === '/');
+    } else if (path === target) {
+      matched = true;
+    } else if (path.indexOf(target) === 0) {
+      matched = true;
+    }
+
+    if (matched && (!best || target.length > best.target.length)) {
+      best = { link: link, target: target };
+    }
+  });
+
+  document.querySelectorAll('.nav a').forEach(function (link) {
+    link.classList.remove('active');
+  });
+
+  if (best) {
+    best.link.classList.add('active');
+  }
+}
 
 

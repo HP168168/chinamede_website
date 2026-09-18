@@ -494,6 +494,22 @@ button {
   box-shadow: var(--shadow-lg);
 }
 
+/* 首页课程卡片为可点击链接（跳转到培训课程页对应课程） */
+a.course-card {
+  display: block;
+  cursor: pointer;
+}
+
+a.course-card:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 3px;
+}
+
+/* 跨页面跳转到课程锚点时，给固定导航栏预留空间 */
+.course-detail-card[id] {
+  scroll-margin-top: 96px;
+}
+
 .course-image {
   height: 180px;
   background: linear-gradient(135deg, var(--primary-blue), #5B9AFF);
@@ -1431,8 +1447,19 @@ button {
 .course-price-wrap .price-origin {
   font-size: 0.82rem;
   color: #8c8c8c;
-  text-decoration: line-through;
   margin-top: 4px;
+}
+
+/* 仅原价划线，促销文案保持正常显示 */
+.course-price-wrap .price-origin .price-origin-old {
+  text-decoration: line-through;
+}
+
+.course-price-wrap .price-save {
+  display: block;
+  margin-top: 2px;
+  color: var(--accent-red);
+  font-weight: 700;
 }
 
 .course-main-title {
@@ -1506,6 +1533,26 @@ button {
   background: #f0f4fa;
   border-color: var(--primary-blue);
   color: var(--primary-blue);
+}
+
+/* 课程详情跳转：封面图 / 标题两处入口 */
+.course-cover-link {
+  display: block;
+  position: relative;
+  color: inherit;
+}
+
+.course-cover-link:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: -3px;
+}
+
+.course-main-title a {
+  color: inherit;
+}
+
+.course-main-title a:hover {
+  color: var(--accent-red);
 }
 
 /* 课程结构大纲 */
@@ -2178,9 +2225,24 @@ button {
   border-radius: var(--radius-lg);
   padding: 40px;
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
 }
 
-.contact-info-card h2 {
+/* 条目区撑满卡片剩余高度，使左右两栏内容底边对齐 */
+.contact-info-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-info-list .contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-info-card h2,
+.contact-info-card h3 {
   font-size: 1.6rem;
   color: var(--deep-blue);
   margin-bottom: 12px;
@@ -2232,8 +2294,8 @@ button {
   background: #fff;
   border-radius: var(--radius-lg);
   padding: 40px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
+  /* 用内描边替代 border：视觉一致，但不占布局，内容不会比左卡低 1px */
+  box-shadow: var(--shadow-md), inset 0 0 0 1px var(--border-color);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -2252,7 +2314,7 @@ button {
   font-weight: 700;
   font-size: 0.82rem;
   border-radius: 20px;
-  margin-bottom: 12px;
+  margin: 12px 0 0;
   letter-spacing: 0.5px;
 }
 
@@ -2274,6 +2336,10 @@ button {
   align-items: center;
   gap: 20px;
   margin: 8px 0 20px;
+}
+
+.wechat-qr-wrapper:last-child {
+  margin-bottom: 0;
 }
 
 .qr-img-box {
@@ -2568,6 +2634,18 @@ button {
   padding-left: 4px;
 }
 
+.footer-contact a.footer-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+  transition: var(--transition);
+}
+
+.footer-contact a.footer-link:hover {
+  color: #fff;
+  border-bottom-color: var(--accent-red);
+}
+
 .footer-contact p {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
@@ -2590,6 +2668,17 @@ button {
 .footer-bottom p {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-bottom a.beian {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-bottom a.beian:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 /* 回到顶部 */
@@ -2828,7 +2917,7 @@ button {
    SEO/GEO 新增栏目样式（知识百科 / 指南文章 / 报名 / 404）
    ===================================================== */
 
-/* 头部免费报名按钮 */
+/* 头部免费试听按钮 */
 .header-enroll {
   display: inline-flex;
   align-items: center;
@@ -3136,4 +3225,243 @@ button {
     padding: 6px 12px;
     font-size: 0.8rem;
   }
+}
+
+/* ========== 全国校区展示：城市切换 + 校区卡片（联系我们页） ========== */
+.campus-section .section-title {
+  margin-bottom: 32px;
+}
+
+.campus-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.campus-tab {
+  padding: 10px 24px;
+  border-radius: 50px;
+  background: #fff;
+  color: var(--text-gray);
+  border: 1px solid var(--border-color);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.campus-tab:hover,
+.campus-tab.active {
+  background: var(--primary-blue);
+  color: #fff;
+  border-color: var(--primary-blue);
+}
+
+.campus-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campus-card {
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.campus-card:hover {
+  border-color: rgba(0, 102, 255, 0.35);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.campus-card-media {
+  flex: 0 0 300px;
+  min-height: 200px;
+}
+
+.campus-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--bg-light);
+}
+
+.campus-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.campus-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.campus-card-meta {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campus-card-meta li {
+  display: flex;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: var(--text-gray);
+  line-height: 1.65;
+}
+
+.campus-card-meta .meta-icon {
+  flex: 0 0 auto;
+}
+
+.campus-card-meta strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.campus-card-meta a {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.campus-card-meta a:hover {
+  color: var(--accent-red);
+}
+
+.campus-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.campus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.campus-btn-ghost {
+  background: #fff;
+  border: 2px solid var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.campus-btn-ghost:hover {
+  background: var(--primary-blue);
+  color: #fff;
+}
+
+.campus-btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue), #3385FF);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.25);
+}
+
+.campus-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.35);
+}
+
+.campus-btn-call {
+  background: linear-gradient(135deg, var(--accent-red), var(--light-red));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(230, 0, 18, 0.25);
+}
+
+.campus-btn-call:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(230, 0, 18, 0.35);
+}
+
+/* 「在线咨询」锚点滚动时避开固定导航 */
+.contact-wechat-card {
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 900px) {
+  .campus-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .campus-card-media {
+    flex: none;
+    min-height: 0;
+  }
+
+  .campus-card-media img {
+    height: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .campus-tabs {
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .campus-tab {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .campus-card {
+    padding: 16px;
+  }
+
+  .campus-card-title {
+    font-size: 1.05rem;
+  }
+
+  .campus-card-meta li {
+    font-size: 0.9rem;
+  }
+
+  .campus-card-actions {
+    gap: 10px;
+  }
+
+  .campus-btn {
+    flex: 1 1 100%;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========== 首页「全国直营校区布局」入口卡片（点击跳转对应城市校区列表） ========== */
+a.campus-item {
+  display: block;
+  color: inherit;
+}
+
+.campus-item .campus-count {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-gray);
+}
+
+.campus-item:hover .campus-count {
+  color: var(--primary-blue);
 }
