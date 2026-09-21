@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
 //   compressHTML: true      Astro 7 默认改为 'jsx'，会吃掉中文与行内元素之间的空格，
 //                           这里显式回到旧行为，保证中文排版与旧站一致
 export default defineConfig({
-  site: 'https://www.chinamede.com',
+  site: 'http://chinamede.l.cd',
   output: 'static',
   build: { format: 'directory' },
   trailingSlash: 'always',
