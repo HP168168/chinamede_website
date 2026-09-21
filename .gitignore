@@ -8,3 +8,6 @@ pnpm-debug.log*
 Thumbs.db
 .env
 .env.production
+.astro-dev.log
+.astro-dev.err
+.codebuddy/
