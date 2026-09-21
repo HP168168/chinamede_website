@@ -1,0 +1,59 @@
+---
+// 全站统一 SEO 元信息组件
+// 字段与旧站 head 保持一致：canonical / favicon / manifest / OG / Twitter / robots
+import { site, absoluteUrl } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  robots?: string;
+  /** 页面路由（以 / 开头、以 / 结尾），默认取当前路径 */
+  route?: string;
+  ogImage?: string;
+}
+
+const { title, description, keywords, route, ogImage } = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/index\.html$/, '');
+const currentRoute = route ?? (pathname.endsWith('/') ? pathname : pathname + '/');
+const canonical = absoluteUrl(currentRoute);
+const robots =
+  Astro.props.robots ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const image = absoluteUrl(ogImage ?? site.ogImage);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<meta name="author" content={site.author} />
+<meta name="robots" content={robots} />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="generator" content={site.generator} />
+<link rel="canonical" href={canonical} />
+
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content={String(site.ogImageWidth)} />
+<meta property="og:image:height" content={String(site.ogImageHeight)} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />

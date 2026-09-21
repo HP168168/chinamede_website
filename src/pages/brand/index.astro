@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageSeo } from '../../data/pageSeo';
+
+const seo = pageSeo['/brand/'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/brand/">
+  <section class="page-banner">
+      <div class="container">
+        <h1>品牌介绍</h1>
+        <p>了解美迪时代教育的品牌故事、企业使命与核心价值观</p>
+        <div class="breadcrumb">
+          <a href="/">首页</a> / 品牌介绍
+        </div>
+      </div>
+    </section>
+
+    <section class="section brand-story">
+      <div class="container">
+        <div class="section-title">
+          <h2>品牌故事</h2>
+          <p>从2011年出发，美迪时代教育始终专注成人职业技能就业培训</p>
+        </div>
+        <div class="story-grid">
+          <div class="story-column">
+            <div class="story-card">
+              <h3><span class="icon icon-logo"><img width="100" height="100" src="/images/logo_original.png" alt="美迪时代教育LOGO" loading="lazy" decoding="async" /></span>品牌背景</h3>
+              <p>
+                美迪时代教育隶属于广州美迪教育科技有限公司，是集团旗下专注成人职业技能就业培训的核心品牌，集团同时运营电商创业培训品牌美迪电商教育。自2011年成立以来，始终致力于成为广大成人学习者与用人企业可信赖的职业成长伙伴。
+              </p>
+            </div>
+            <div class="story-card">
+              <h3><span class="icon">🎯</span>品牌定位</h3>
+              <p>
+                作为国内少数具备全链路数字化职业人才培养能力的综合服务商，我们依托自主研发岗位实战课程体系与300余人专业服务团队，构建涵盖职业教育、在线教育、职业考证、学历提升、人才对接、项目实训、就业帮扶的一站式职业人才培养解决方案。
+              </p>
+            </div>
+            <div class="story-card">
+              <h3><span class="icon">🌟</span>品牌使命</h3>
+              <p>美迪时代教育致力于帮助职场人、转行求职者打通技能学习到上岗就业的完整路径，同时为企业输送适配岗位需求的实战型技能人才。我们坚持"让职业就业更简单"的品牌使命，让每位学员都能学有所成、学以致用、顺利上岗。</p>
+            </div>
+          </div>
+          <div class="story-column">
+            <div class="story-card">
+              <h3><span class="icon">🗺️</span>全国布局</h3>
+              <p>
+                深耕线下，线上辅助，布局全国。现已在广州、深圳、佛山、东莞、中山、江门等粤港澳大湾区核心城市开设6城13个直营校区，凭借本地化教学与属地企业就业资源，就近服务学员，打通学习-实训-本地就业全链路。
+              </p>
+            </div>
+            <div class="story-card">
+              <h3><span class="icon">📚</span>课程体系</h3>
+              <p>
+                紧跟当下职场发展趋势与行业就业风口，我们深耕热门高薪就业赛道，打造多领域系统化就业课程体系，涵盖AIGC应用、AI新媒体运营、AI设计师、商业短视频、短剧漫剧、亚马逊、TikTok、海外社媒运营等数十门精品就业课程。
+              </p>
+            </div>
+            <div class="story-card">
+              <h3><span class="icon">💪</span>我们的承诺</h3>
+              <p>我们拒绝空洞的理论教学，摒弃纸上谈兵的授课模式，坚持以职场真实岗位逻辑、落地实战项目案例为核心，为广大学员提供专业、高效的职业技能培训与就业帮扶服务，真正践行"让职业就业更简单"的品牌使命。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-light);">
+      <div class="container">
+        <div class="section-title">
+          <h2>品牌文化</h2>
+          <p>蓝色代表科技驱动教学，红色代表热忱教育初心</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-content">
+            <h2>LOGO含义</h2>
+            <p>创意源自"MD"造型，是"美迪"中文拼音字母开头缩写，简洁大气。蓝色代表科技驱动教学，寓意以岗位实战技术为内核，打造实用型职业人才；红色代表热忱教育初心，象征积极进取、赋能学员职业突围的奋斗精神。</p>
+            <ul class="about-features">
+              <li>企业使命：让职业就业更简单</li>
+              <li>企业愿景：成为国内值得信赖的数字化职业人才培养服务商</li>
+              <li>企业理念：技术为根，用户为本</li>
+              <li>企业责任：培养实战型职业技能人才</li>
+            </ul>
+          </div>
+          <div class="about-image">
+            <div class="about-image-main logo-meaning-card">
+              <img width="600" height="600" src="/images/logo.png" alt="美迪时代教育LOGO" class="brand-meaning-logo" loading="lazy" decoding="async" />
+            </div>
+            <div class="about-badge">
+              <div class="num">使命</div>
+              <div class="text">让职业就业更简单</div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-values" style="margin-top: 64px;">
+          <div class="value-item">
+            <h4>技术为根</h4>
+            <p>以岗位实战技术为核心竞争力</p>
+          </div>
+          <div class="value-item">
+            <h4>用户为本</h4>
+            <p>以学员就业结果为导向</p>
+          </div>
+          <div class="value-item">
+            <h4>诚实守信</h4>
+            <p>明码标价，拒绝虚假承诺</p>
+          </div>
+          <div class="value-item">
+            <h4>公平公正</h4>
+            <p>规范服务，统一教学标准</p>
+          </div>
+          <div class="value-item">
+            <h4>成人达己</h4>
+            <p>帮助学员成功即成就自我</p>
+          </div>
+          <div class="value-item">
+            <h4>共创共赢</h4>
+            <p>校企协同，多方价值共享</p>
+          </div>
+          <div class="value-item">
+            <h4>拥抱变化</h4>
+            <p>紧跟AI与行业趋势迭代课程</p>
+          </div>
+          <div class="value-item">
+            <h4>学习奋斗</h4>
+            <p>终身学习，持续精进</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section advantages">
+      <div class="container">
+        <div class="section-title">
+          <h2>品牌实力</h2>
+          <p>硬实力与软服务并重，打造可信赖的职业教育品牌</p>
+        </div>
+        <div class="advantage-grid">
+          <div class="advantage-card">
+            <div class="advantage-icon">🏫</div>
+            <h3>全国直营校区布局</h3>
+            <p>6城13个直营校区覆盖粤港澳大湾区核心城市，本地化服务网络就近为学员提供线下实训与就业对接。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">👥</div>
+            <h3>300+专业团队规模</h3>
+            <p>教研师资团队均来自一线企业，覆盖课程研发、面授教学、项目实训、人才对接、就业指导全岗位。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">📖</div>
+            <h3>体系化就业课程</h3>
+            <p>横跨AI应用、新媒体、短视频、视觉设计、跨境电商、短剧漫剧等领域数十门就业班课程。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">💼</div>
+            <h3>特色商业项目实训</h3>
+            <p>承接企业正规商业外包项目，学员岗前实训阶段即可参与真实商业项目，边学习边赚钱。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🔄</div>
+            <h3>完善闭环业务体系</h3>
+            <p>七大一体化业务板块，从技能学习、能力加持、项目实训创收到人才对接、就业落地形成完整闭环。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🛡️</div>
+            <h3>明码标价无隐形消费</h3>
+            <p>官网价格公开透明，杜绝隐形消费与虚假承诺，让学员安心学习、放心就业。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-light);">
+      <div class="container">
+        <div class="section-title">
+          <h2>美迪时代优势</h2>
+          <p>六大核心优势，为你的职业转型保驾护航</p>
+        </div>
+        <div class="course-grid">
+          <div class="course-card">
+            <div class="course-image" style="background: linear-gradient(135deg, #0066FF, #3385FF);">战</div>
+            <div class="course-info">
+              <h3>实战项目</h3>
+              <p>全程以企业真实商业项目驱动教学，从需求对接、方案执行到成果交付完整跑通，结课即产出可直接用于求职的作品集。</p>
+            </div>
+          </div>
+          <div class="course-card">
+            <div class="course-image" style="background: linear-gradient(135deg, #E60012, #FF4D5A);">实</div>
+            <div class="course-info">
+              <h3>实战项目教学</h3>
+              <p>拒绝空洞理论，大量引入真实商业项目，课堂即是岗位实训，学完即拥有商业项目作品集。</p>
+            </div>
+          </div>
+          <div class="course-card">
+            <div class="course-image" style="background: linear-gradient(135deg, #7B2FF7, #B07CFF);">精</div>
+            <div class="course-info">
+              <h3>小班面授教学</h3>
+              <p>小班制线下实景实训，导师手把手实操指导，兼顾线上回放、课后答疑巩固学习效果。</p>
+            </div>
+          </div>
+          <div class="course-card">
+            <div class="course-image" style="background: linear-gradient(135deg, #00B4D8, #48CAE4);">赚</div>
+            <div class="course-info">
+              <h3>项目实训创收</h3>
+              <p>岗前实训阶段可参与机构承接的商业外包项目，实操同时获取实训报酬，降低学习成本。</p>
+            </div>
+          </div>
+          <div class="course-card">
+            <div class="course-image" style="background: linear-gradient(135deg, #F77F00, #FCBF49);">推</div>
+            <div class="course-info">
+              <h3>人才对接内推</h3>
+              <p>对接全国合作企业资源，提供简历优化、模拟面试、专场招聘、企业内推服务。</p>
+            </div>
+          </div>
+          <div class="course-card">
+            <div class="course-image" style="background: linear-gradient(135deg, #006D77, #83C5BE);">保</div>
+            <div class="course-info">
+              <h3>五年就业帮扶</h3>
+              <p>贯穿入学、学习、实训、毕业、职场回访，结业后五年内持续提供职场问题答疑支持。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: #fff;">
+      <div class="container">
+        <div class="section-title">
+          <h2>发展规划</h2>
+          <p>持续深耕成人数字化职业技能就业赛道</p>
+        </div>
+        <div class="partner-grid">
+          <div class="partner-card">
+            <div class="icon">🔄</div>
+            <h3>课程持续迭代</h3>
+            <p>持续迭代更新AI、短剧漫剧、海外社媒等新兴热门赛道课程，紧跟市场岗位变化，保持课程实战性。</p>
+          </div>
+          <div class="partner-card">
+            <div class="icon">🏫</div>
+            <h3>校区持续拓展</h3>
+            <p>持续拓展全国直营校区布局，深化本地化实训与本地企业岗位资源对接。</p>
+          </div>
+          <div class="partner-card">
+            <div class="icon">💼</div>
+            <h3>放大实训特色</h3>
+            <p>放大商业外包项目实训特色，扩充实训项目池，让更多学员获得真实项目实操与实训收益。</p>
+          </div>
+          <div class="partner-card">
+            <div class="icon">🤝</div>
+            <h3>深化产教融合</h3>
+            <p>深化产教融合校企合作，完善人才输送体系，为企业持续输出高质量实战技能人才。</p>
+          </div>
+          <div class="partner-card">
+            <div class="icon">🎯</div>
+            <h3>优化一体化服务</h3>
+            <p>优化「技能+证书+学历+项目+就业」一体化服务，帮助更多零基础、转行人群实现高质量就业。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>五大体系化服务，打造完整职业成长闭环</h2>
+        <p>教学赋能 + 实战创收 + 资质提升 + 人才对接 + 精准就业，一站式解决转行、技能提升、就业落地难题</p>
+        <a href="/contact/" class="btn btn-red">预约咨询</a>
+      </div>
+    </section>
+</BaseLayout>
+
+<script>
+  // 官方宣传片播放器控制（原 js/main.js 第 10 段）
+  const brandVideo = document.getElementById('brandVideo') as HTMLVideoElement | null;
+  const videoPlayOverlay = document.getElementById('videoPlayOverlay');
+  const videoHeaderOverlay = document.getElementById('videoHeaderOverlay');
+
+  if (brandVideo && videoPlayOverlay) {
+    const startVideoPlay = () => {
+      brandVideo.setAttribute('controls', 'true');
+      brandVideo
+        .play()
+        .then(() => {
+          videoPlayOverlay.classList.add('hidden');
+          videoHeaderOverlay?.classList.add('hidden');
+        })
+        .catch((err) => {
+          console.warn('Video autoplay/play blocked or error:', err);
+        });
+    };
+
+    videoPlayOverlay.addEventListener('click', (e) => {
+      e.preventDefault();
+      startVideoPlay();
+    });
+
+    brandVideo.addEventListener('play', () => {
+      brandVideo.setAttribute('controls', 'true');
+      videoPlayOverlay.classList.add('hidden');
+      videoHeaderOverlay?.classList.add('hidden');
+    });
+
+    brandVideo.addEventListener('pause', () => {
+      if (brandVideo.currentTime === 0) {
+        videoPlayOverlay.classList.remove('hidden');
+        videoHeaderOverlay?.classList.remove('hidden');
+      }
+    });
+
+    brandVideo.addEventListener('ended', () => {
+      brandVideo.currentTime = 0;
+      brandVideo.removeAttribute('controls');
+      videoPlayOverlay.classList.remove('hidden');
+      videoHeaderOverlay?.classList.remove('hidden');
+    });
+  }
+</script>

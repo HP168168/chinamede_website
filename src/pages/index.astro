@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageSeo } from '../data/pageSeo';
+
+const seo = pageSeo['/'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/">
+  <section class="hero">
+      <div class="hero-shape"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span></span>
+            15年数字化职业人才培养经验
+          </div>
+          <h1>
+            让职业就业<br>
+            <span class="highlight">更简单</span>
+          </h1>
+          <p class="hero-desc">
+            美迪时代教育隶属于广州美迪教育科技有限公司，是国内少数具备全链路数字化职业人才培养能力的综合服务商。6城13个直营校区、300余人专业团队、22天带薪岗位实习，助力零基础学员快速上岗。
+          </p>
+          <div class="hero-buttons">
+            <a href="/courses/" class="btn btn-primary">查看就业课程</a>
+            <a href="/contact/" class="btn btn-outline"
+              style="border-color: rgba(255,255,255,0.4); color: #fff;">免费试听预约</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="number" data-count="6" data-suffix="大">0</div>
+              <div class="label">直营校区</div>
+            </div>
+            <div class="hero-stat">
+              <div class="number" data-count="300" data-suffix="+">0</div>
+              <div class="label">专业服务团队</div>
+            </div>
+            <div class="hero-stat">
+              <div class="number" data-count="22" data-suffix="天">0</div>
+              <div class="label">带薪岗位实习</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section courses-preview">
+      <div class="container">
+        <div class="section-title">
+          <h2>热门就业课程</h2>
+          <p>紧跟AI时代岗位需求，覆盖新媒体、设计、视频、短剧、跨境电商等高薪赛道，理论+项目实操+就业实训闭环培养</p>
+        </div>
+        <div class="course-grid">
+          <a class="course-card" href="/courses/n1-ai-newmedia/">
+            <div class="course-image">
+              <img width="805" height="604" src="/images/courses/xmtyysjyb.webp" alt="AI新媒体运营师" class="course-thumb-img" loading="lazy" decoding="async" />
+            </div>
+            <div class="course-info">
+              <h3>AI新媒体运营师</h3>
+              <p>AI工具应用、手机拍摄剪辑、抖音/小红书/视频号运营、企业AI获客GEO实战，50天+22天实习。</p>
+              <div class="course-meta">
+                <span>📅 50天+实习</span>
+                <span>🎓 288课时</span>
+                <span>💼 带薪实习</span>
+              </div>
+            </div>
+          </a>
+          <a class="course-card" href="/courses/n2-ai-visual-design/">
+            <div class="course-image">
+              <img width="803" height="602" src="/images/courses/sjsjsjyb.webp" alt="AI视觉设计师" class="course-thumb-img" loading="lazy" decoding="async" />
+            </div>
+            <div class="course-info">
+              <h3>AI视觉设计师</h3>
+              <p>电商美工、商业精修、C4D电商运用、AI电商设计师、AI视频创作，打造AI时代视觉设计人才。</p>
+              <div class="course-meta">
+                <span>📅 50天+实习</span>
+                <span>🎓 294课时</span>
+                <span>💼 带薪实习</span>
+              </div>
+            </div>
+          </a>
+          <a class="course-card" href="/courses/n3-short-video/">
+            <div class="course-image">
+              <img width="805" height="605" src="/images/courses/sydspjyb.webp" alt="商业短视频创作师" class="course-thumb-img" loading="lazy" decoding="async" />
+            </div>
+            <div class="course-info">
+              <h3>商业短视频创作师</h3>
+              <p>手机拍剪、短视频高级剪辑、电商AI视频、特效合成、抖音运营与获客，72课时岗前实战。</p>
+              <div class="course-meta">
+                <span>📅 48天+实习</span>
+                <span>🎓 318课时</span>
+                <span>💼 带薪实习</span>
+              </div>
+            </div>
+          </a>
+          <a class="course-card" href="/courses/n6-amazon/">
+            <div class="course-image">
+              <img width="800" height="602" src="/images/courses/ymxjyb.webp" alt="跨境电商实战班" class="course-thumb-img" loading="lazy" decoding="async" />
+            </div>
+            <div class="course-info">
+              <h3>跨境电商实战班</h3>
+              <p>亚马逊高阶运营、TikTok营销、海外社媒运营、Facebook投流、独立站搭建，N6 27天+22天实习、N7 7天、N8 18天。</p>
+              <div class="course-meta">
+                <span>📅 7-27天+实习</span>
+                <span>🎓 78-90课时</span>
+                <span>💼 企业直聘</span>
+              </div>
+            </div>
+          </a>
+          <a class="course-card" href="/courses/n5-ai-drama/">
+            <div class="course-image">
+              <img width="806" height="605" src="/images/courses/djmjjyb.webp" alt="AI短剧漫剧创作师" class="course-thumb-img" loading="lazy" decoding="async" />
+            </div>
+            <div class="course-info">
+              <h3>AI短剧漫剧创作师</h3>
+              <p>AI工具、AI漫剧训练营、AI真人剧训练营、短剧备案合规、投流分账运营，标配带薪实习。</p>
+              <div class="course-meta">
+                <span>📅 27天+实习</span>
+                <span>🎓 144课时</span>
+                <span>💼 带薪实习</span>
+              </div>
+            </div>
+          </a>
+          <a class="course-card" href="/courses/n4-aigc/">
+            <div class="course-image">
+              <img width="804" height="602" src="/images/courses/aigcqnszb.webp" alt="AIGC全能就业班" class="course-thumb-img" loading="lazy" decoding="async" />
+            </div>
+            <div class="course-info">
+              <h3>AIGC全能就业班</h3>
+              <p>AI新媒体+AI设计+AI视频+智能体开发+GEO获客五线交叉，89天522课时全市场最深全能班。</p>
+              <div class="course-meta">
+                <span>📅 89天+实习</span>
+                <span>🎓 522课时</span>
+                <span>💼 一价三证</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="/courses/" class="btn btn-primary">查看全部课程</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section advantages">
+      <div class="container">
+        <div class="section-title">
+          <h2>选择美迪的6大理由</h2>
+          <p>从技能学习到上岗就业，我们用真实项目、真实实习、真实数据，陪你走完职业转型每一步</p>
+        </div>
+        <div class="advantage-grid">
+          <div class="advantage-card">
+            <div class="advantage-icon">🏫</div>
+            <h3>6城13个直营校区</h3>
+            <p>广州、深圳、佛山、东莞、中山、江门核心城市布局，本地化教学与就业。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">💼</div>
+            <h3>22天带薪实习</h3>
+            <p>长期班标配岗位实习，1000元基础补贴+绩效提成，实习期间即可参与真实商业项目。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🛠️</div>
+            <h3>真实项目实训</h3>
+            <p>机构承接企业正规商业外包项目，学员边学习边接单，积累作品集与实战经验。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">👨‍🏫</div>
+            <h3>三师制教学</h3>
+            <p>班主任+授课老师+就业老师全程陪伴，小班面授手把手实操指导，兼顾线上回放复习。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">📜</div>
+            <h3>技能+证书+学历</h3>
+            <p>职业技能证书辅导、正规学历提升服务，补齐职场求职与晋升短板，双向赋能。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🔄</div>
+            <h3>五年就业推荐</h3>
+            <p>结业后五年内持续推荐，简历优化、模拟面试、企业内推、岗位变动再推荐。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-preview">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content">
+            <span class="tag">关于美迪</span>
+            <h2>15年深耕成人职业技能就业培训</h2>
+            <p>
+              美迪时代教育自2011年成立以来，始终致力于成为广大成人学习者与用人企业可信赖的职业成长伙伴。我们依托自主研发的岗位实战课程体系与300余人专业服务团队，构建涵盖职业教育、在线教育、职业考证、学历提升、人才对接、项目实训、就业帮扶的一站式职业人才培养解决方案。
+            </p>
+            <p>以"技能为根，用户为本"为理念，我们拒绝空洞理论，坚持以职场真实岗位逻辑、落地实战项目案例为核心，真正践行"让职业就业更简单"的品牌使命。</p>
+            <ul class="about-features">
+              <li>15年数字化职业培训经验</li>
+              <li>自主研发实战课程体系</li>
+              <li>企业真实项目接单平台</li>
+              <li>五年就业推荐兜底服务</li>
+            </ul>
+            <a href="/brand/" class="btn btn-outline">了解更多品牌故事</a>
+          </div>
+          <div class="about-image">
+            <div class="about-video-card" id="aboutVideoContainer">
+              <div class="video-header-overlay" id="videoHeaderOverlay">
+                <span class="video-tag"><i class="play-dot"></i> 官方宣传片</span>
+                <span class="video-title">美迪时代教育让职业就业更简单</span>
+              </div>
+              <video id="brandVideo" playsinline preload="metadata" poster="/images/video-poster.jpg"
+                title="美迪时代教育让职业就业更简单" aria-label="美迪时代教育让职业就业更简单 官方宣传片">
+                <source src="/images/mdsd.mp4" type="video/mp4">
+                <p>您的浏览器暂不支持 HTML5 视频播放，请<a href="/images/mdsd.mp4" download>点击此处下载观看</a>。</p>
+              </video>
+              <button type="button" class="video-play-overlay" id="videoPlayOverlay" aria-label="播放官方宣传片：美迪时代教育让职业就业更简单">
+                <div class="play-btn-circle">
+                  <svg class="play-icon" viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  <span class="play-pulse"></span>
+                </div>
+                <div class="play-text-group">
+                  <div class="play-main-text">美迪时代教育</div>
+                  <div class="play-sub-text">让职业就业更简单 · 点击播放宣传片</div>
+                </div>
+              </button>
+            </div>
+            <div class="about-badge">
+              <div class="num">2011</div>
+              <div class="text">品牌创立至今</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section campuses">
+      <div class="container">
+        <div class="section-title">
+          <h2>全国直营校区布局</h2>
+          <p>深耕线下实景实训，线上精品课程辅助，就近为学员提供学习与就业服务</p>
+        </div>
+        <div class="campus-grid">
+          <a class="campus-item" href="/contact/#city-gz">
+            <i>📍</i><span>广州校区</span><span class="campus-count">4 个校区</span>
+          </a>
+          <a class="campus-item" href="/contact/#city-sz">
+            <i>📍</i><span>深圳校区</span><span class="campus-count">3 个校区</span>
+          </a>
+          <a class="campus-item" href="/contact/#city-fs">
+            <i>📍</i><span>佛山校区</span><span class="campus-count">2 个校区</span>
+          </a>
+          <a class="campus-item" href="/contact/#city-dg">
+            <i>📍</i><span>东莞校区</span><span class="campus-count">2 个校区</span>
+          </a>
+          <a class="campus-item" href="/contact/#city-zs">
+            <i>📍</i><span>中山校区</span><span class="campus-count">1 个校区</span>
+          </a>
+          <a class="campus-item" href="/contact/#city-jm">
+            <i>📍</i><span>江门校区</span><span class="campus-count">1 个校区</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>开启你的职业转型之旅</h2>
+        <p>立即预约免费试听，获取专属职业学习规划书，让课程顾问为你匹配最适合的就业班型。</p>
+        <a href="/contact/" class="btn btn-red">立即预约免费试听</a>
+      </div>
+    </section>
+</BaseLayout>

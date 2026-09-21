@@ -1,0 +1,26 @@
+---
+// 404 页面：沿用旧站精简头尾（导航更少、页脚仅备案信息）
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="页面未找到 (404) - 美迪时代教育"
+  description="页面不存在或已被移动，返回美迪时代教育官网首页，或浏览热门就业课程、知识百科。"
+  robots="noindex, follow"
+  route="/404"
+  headerVariant="simple"
+  footerVariant="simple"
+>
+  <section class="error-section">
+    <div class="container">
+      <div class="error-code">404</div>
+      <h1>页面走丢了</h1>
+      <p>你访问的页面不存在或已被移动，别担心，下面的入口能帮你回到正轨。</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="/" class="btn btn-primary">返回首页</a>
+        <a href="/courses/" class="btn btn-outline">查看就业课程</a>
+        <a href="/knowledge/" class="btn btn-outline">逛逛知识百科</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

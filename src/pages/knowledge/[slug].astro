@@ -1,0 +1,37 @@
+---
+// 知识百科指南动态路由：/knowledge/<slug>/
+// 正文以 HTML 片段存放在 src/content/knowledge/<slug>.html，构建时按 raw 读取
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { guides } from '../../data/guides';
+
+const bodies = import.meta.glob<string>('../../content/knowledge/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+export function getStaticPaths() {
+  return guides.map((guide) => ({
+    params: { slug: guide.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const route = `/knowledge/${guide.slug}/`;
+const body = bodies[`../../content/knowledge/${guide.slug}.html`] ?? '';
+---
+
+<BaseLayout title={guide.seo.title} description={guide.seo.description} keywords={guide.seo.keywords} route={route}>
+  <section class="page-banner">
+    <div class="container">
+      <h1>{guide.title}</h1>
+      <p>{guide.subtitle}</p>
+      <div class="breadcrumb">
+        <a href="/">首页</a>{' / '}<a href="/knowledge/">知识百科</a>{' / '}{guide.title}
+      </div>
+    </div>
+  </section>
+
+  <Fragment set:html={body} />
+</BaseLayout>

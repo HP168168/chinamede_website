@@ -1,0 +1,64 @@
+---
+// 培训课程列表页 /courses/
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseDetailCard from '../../components/CourseDetailCard.astro';
+import CourseFilter from '../../components/CourseFilter.astro';
+import { courses } from '../../data/courses';
+import { pageSeo } from '../../data/pageSeo';
+
+const seo = pageSeo['/courses/'];
+
+const features = [
+  { icon: '🎯', title: '对标企业岗位', desc: '全程对标企业真实岗位工作场景与用人标准，帮助学员从零起步系统掌握岗位必备实操能力。' },
+  { icon: '🛠️', title: '真实商业项目', desc: '引入机构承接的企业正规商业外包项目，学员在真实项目中打磨技能、积累作品集。' },
+  { icon: '🤖', title: 'AI能力内嵌', desc: 'GEO获客、AI数字人、智能体开发、AIGC设计、AI视频创作等前沿模块全面融入课程。' },
+  { icon: '📜', title: '认证内嵌', desc: '人社部教培中心、工信部AIGC、巨量学岗位认证、电子学会等权威证书一站式辅导报考。' },
+  { icon: '💼', title: '带薪实习闭环', desc: `长期班标配22天岗位实习，1000元基础补贴+绩效提成，实习期间参与真实商业项目。` },
+  { icon: '🔄', title: '五年就业推荐', desc: '结业后五年内持续推荐，简历优化、模拟面试、企业内推、岗位变动再推荐。' },
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/courses/">
+  <section class="page-banner">
+    <div class="container">
+      <h1>培训课程</h1>
+      <p>七大体系就业班型，覆盖AI时代热门高薪岗位</p>
+      <div class="breadcrumb">
+        <a href="/">首页</a>{' / '}培训课程
+      </div>
+    </div>
+  </section>
+
+  <section class="section course-detail-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>就业班课程体系</h2>
+        <p>长期班标配22天带薪实习，短期集训聚焦快上岗，满足不同学员的职业转型需求</p>
+      </div>
+
+      <CourseFilter />
+
+      {courses.map((course) => <CourseDetailCard course={course} linked />)}
+    </div>
+  </section>
+
+  <section class="section" style="background: #fff;">
+    <div class="container">
+      <div class="section-title">
+        <h2>课程特色</h2>
+        <p>理论夯实 + 项目实操 + 就业实训，双向教学体系对标企业真实岗位</p>
+      </div>
+      <div class="advantage-grid">
+        {
+          features.map((item) => (
+            <div class="advantage-card">
+              <div class="advantage-icon">{item.icon}</div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

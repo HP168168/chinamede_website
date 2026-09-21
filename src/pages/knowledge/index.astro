@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageSeo } from '../../data/pageSeo';
+
+const seo = pageSeo['/knowledge/'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/knowledge/">
+  <section class="page-banner">
+      <div class="container">
+        <h1>知识百科</h1>
+        <p>职业技能学习指南 · 零基础转行攻略 · 行业术语百科</p>
+        <div class="breadcrumb">
+          <a href="/">首页</a> / 知识百科
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>热门学习指南</h2>
+          <p>由美迪教研团队整理的实操型干货，帮你少走弯路、快速入行</p>
+        </div>
+        <div class="knowledge-categories">
+          <span class="knowledge-cat active">全部</span>
+          <span class="knowledge-cat">转行攻略</span>
+          <span class="knowledge-cat">新媒体运营</span>
+          <span class="knowledge-cat">短视频</span>
+          <span class="knowledge-cat">跨境电商</span>
+          <span class="knowledge-cat">AI与AIGC</span>
+        </div>
+        <div class="news-grid">
+          <article class="news-card">
+            <div class="news-image">📱</div>
+            <div class="news-content">
+              <div class="news-date">转行攻略 · 新媒体运营</div>
+              <h3><a href="/knowledge/guide-newmedia/">零基础转行新媒体运营全攻略</a></h3>
+              <p>从月薪3千到月薪过万的完整路径：岗位认知、技能清单、作品集准备、求职面试、入职后前90天怎么干，一篇讲透。</p>
+              <a href="/knowledge/guide-newmedia/" class="read-more">阅读全文 →</a>
+            </div>
+          </article>
+          <article class="news-card">
+            <div class="news-image">🤖</div>
+            <div class="news-content">
+              <div class="news-date">AI 与 AIGC · 获客</div>
+              <h3><a href="/knowledge/guide-geo/">什么是GEO？AI搜索时代的获客新打法</a></h3>
+              <p>当用户开始在豆包、DeepSeek、ChatGPT里问"哪家培训机构好"，SEO正在被GEO取代。企业如何让AI推荐你？个人如何抓住GEO岗位红利？</p>
+              <a href="/knowledge/guide-geo/" class="read-more">阅读全文 →</a>
+            </div>
+          </article>
+          <article class="news-card">
+            <div class="news-image">🎬</div>
+            <div class="news-content">
+              <div class="news-date">短视频 · 短剧 · 就业前景</div>
+              <h3><a href="/knowledge/guide-shortvideo/">2026短视频与短剧行业就业前景分析</a></h3>
+              <p>短视频用户超10亿、短剧市场规模破500亿，剪辑、运营、投流、编剧岗位缺口持续扩大。普通人入行还有机会吗？薪资多少？</p>
+              <a href="/knowledge/guide-shortvideo/" class="read-more">阅读全文 →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section advantages">
+      <div class="container">
+        <div class="section-title">
+          <h2>行业术语百科</h2>
+          <p>用大白话讲清楚行业黑话，转行前先把这些概念搞明白</p>
+        </div>
+        <div class="advantage-grid">
+          <div class="advantage-card">
+            <div class="advantage-icon">📱</div>
+            <h3>什么是新媒体运营？</h3>
+            <p>围绕抖音、小红书、视频号、公众号等平台，负责内容策划、账号运营、粉丝增长与流量转化为企业客户的岗位，是近年需求量最大的互联网岗位之一。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🤖</div>
+            <h3>什么是 AIGC？</h3>
+            <p>AI Generated Content，人工智能生成内容。用AI工具生成文案、图片、视频、代码等，已成为新媒体、设计、视频岗位的标配技能，会AIGC的求职者平均薪资溢价明显。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🔍</div>
+            <h3>什么是 GEO？</h3>
+            <p>Generative Engine Optimization，生成式引擎优化。让品牌信息更容易被AI大模型（如DeepSeek、豆包、ChatGPT）检索并推荐给用户的优化技术，被称为"AI时代的SEO"。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🌍</div>
+            <h3>什么是跨境电商？</h3>
+            <p>通过亚马逊、TikTok Shop、独立站等渠道把商品卖到海外的商业模式，岗位包括运营、选品、投流、社媒营销等，一线城市成熟运营薪资普遍过万。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🎭</div>
+            <h3>什么是短剧/漫剧？</h3>
+            <p>单集1-2分钟的竖屏付费剧集，是2023年以来增长最快的内容形态之一。围绕短剧衍生出剪辑、投流、编剧、分账运营等大量新岗位。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">💼</div>
+            <h3>什么是带薪实习？</h3>
+            <p>学员在完成课程学习后进入真实企业岗位实训，期间获得补贴与提成。美迪长期班标配22天带薪实习，1000元基础补贴+绩效提成，写入实习协议。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>还有疑问？</h2>
+          <p>关于课程、学费、就业、校区的常见问题，官方统一回答</p>
+        </div>
+        <div style="text-align: center; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="/faq/" class="btn btn-primary">查看美迪问答</a>
+          <a href="/contact/" class="btn btn-outline">在线咨询顾问</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>系统学习，比碎片化自学快10倍</h2>
+        <p>知识百科帮你建立认知，系统课程帮你真正上岗。预约免费试听，让课程顾问为你定制学习路径。</p>
+        <a href="/enroll/" class="btn btn-red">免费预约试听</a>
+      </div>
+    </section>
+</BaseLayout>

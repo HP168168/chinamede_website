@@ -1,0 +1,67 @@
+---
+// 8 门课程详情页动态路由：/courses/<slug>/
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CourseDetailCard from '../../components/CourseDetailCard.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { courses } from '../../data/courses';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return courses.map((course) => ({
+    params: { slug: course.slug },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+const route = `/courses/${course.slug}/`;
+const others = courses.filter((item) => item.slug !== course.slug);
+---
+
+<BaseLayout
+  title={course.seo.title}
+  description={course.seo.description}
+  keywords={course.seo.keywords}
+  route={route}
+>
+  <section class="page-banner">
+    <div class="container">
+      <h1>{course.title}</h1>
+      <p>{course.subtitle}</p>
+      <div class="breadcrumb">
+        <a href="/">首页</a>{' / '}<a href="/courses/">培训课程</a>{' / '}{course.title}
+      </div>
+    </div>
+  </section>
+
+  <section class="section course-detail-section">
+    <div class="container">
+      <CourseDetailCard course={course} />
+    </div>
+  </section>
+
+  <FaqAccordion
+    items={course.faq}
+    title={`${course.title}常见问题`}
+    subtitle="关于学费、学习周期、上课形式与就业服务的官方回答"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>其它就业班型</h2>
+        <p>同体系下可横向选修或组合报读的班型</p>
+      </div>
+      <div style="text-align: center; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        {others.map((item) => <a class="btn btn-outline" href={`/courses/${item.slug}/`}>{item.title}</a>)}
+        <a class="btn btn-primary" href="/courses/">返回课程总览</a>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection
+    title={`${course.title}正在招生`}
+    text={`预约免费试听，由课程顾问为你做职业能力诊断与学习路径规划。咨询热线${site.telephone}（每天${site.serviceHours}）。`}
+  />
+</BaseLayout>

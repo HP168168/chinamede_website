@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageSeo } from '../../data/pageSeo';
+
+const seo = pageSeo['/business/'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/business/">
+  <section class="page-banner">
+      <div class="container">
+        <h1>商业资讯</h1>
+        <p>行业洞察、就业趋势与职业技能培训前沿观察</p>
+        <div class="breadcrumb">
+          <a href="/">首页</a> / 商业资讯
+        </div>
+      </div>
+    </section>
+
+    <section class="section news-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>精选资讯</h2>
+          <p>解读AI时代职业技能培训趋势，为你的职业决策提供参考</p>
+        </div>
+        <div class="news-grid">
+          <article class="news-card">
+            <div class="news-image">🤖</div>
+            <div class="news-content">
+              <div class="news-date">行业趋势</div>
+              <h3>AI搜索优化（GEO）成为企业营销新战场</h3>
+              <p>随着豆包、百度AI、DeepSeek等AI搜索工具普及，企业营销获客逻辑正在重塑。美迪将GEO获客模块内嵌至N1/N4课程，培养学员掌握AI时代的获客能力。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">🎭</div>
+            <div class="news-content">
+              <div class="news-date">政策解读</div>
+              <h3>2026微短剧分级备案新规正式施行</h3>
+              <p>2026年9月1日起，AI剧按30/80万分级备案。美迪N5班率先内嵌短剧备案与内容合规、版权授权、AIGC标注等稀缺教学内容，培养合规正规军。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">🌐</div>
+            <div class="news-content">
+              <div class="news-date">市场洞察</div>
+              <h3>跨境电商智能化趋势加速</h3>
+              <p>AI工具正在渗透到跨境选品、Listing优化、广告投放、客户服务等全流程。美迪N6-N8课程强化AI高阶运营模块，帮助学员快人一步适应行业变化。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">💼</div>
+            <div class="news-content">
+              <div class="news-date">就业观察</div>
+              <h3>企业新媒体岗位JD技能词频变化</h3>
+              <p>数据复盘、投放数据分析、AI工具应用、GEO获客等技能词在BOSS/猎聘岗位JD中出现频率持续上升，传统纯内容运营已难以满足企业需求。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">🎨</div>
+            <div class="news-content">
+              <div class="news-date">岗位分析</div>
+              <h3>AI视觉设计师成为电商企业标配</h3>
+              <p>从主图详情页到AI商单、AI动效视频，企业对"传统设计+AI出图+AI视频"复合能力的设计师需求快速增长，薪资水平较传统美工提升30%以上。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">⚖️</div>
+            <div class="news-content">
+              <div class="news-date">合规提醒</div>
+              <h3>职业培训行业合规经营指南</h3>
+              <p>职业培训机构应避免"包就业""保底月薪""月入过万"等违规话术，明码标价、合同化服务清单、透明退费流程是建立长期信任的必由之路。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">📱</div>
+            <div class="news-content">
+              <div class="news-date">平台动态</div>
+              <h3>抖音/视频号/小红书运营能力边界融合</h3>
+              <p>企业越来越需要能够跨平台操盘的内容运营人才。美迪N1课程覆盖抖音、小红书、视频号三端运营，并强化数据复盘与增长实验能力。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">🎓</div>
+            <div class="news-content">
+              <div class="news-date">教育观察</div>
+              <h3>职业培训从"工具教学"转向"岗位能力"</h3>
+              <p>剪映、ChatGPT等免费工具降低了入门门槛，职业培训机构的价值须锚定在岗位全流程能力、真实项目经验与就业服务交付上。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image">🚀</div>
+            <div class="news-content">
+              <div class="news-date">技术前沿</div>
+              <h3>智能体开发岗位需求激增</h3>
+              <p>Coze、Dify等低代码智能体平台降低了开发门槛，企业对能将AI智能体落地到客服、营销、运营等场景的人才需求快速增长。</p>
+              <a href="#" class="read-more">阅读更多 →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-light);">
+      <div class="container">
+        <div class="section-title">
+          <h2>行业数据参考</h2>
+          <p>基于公开数据与岗位调研，为你的职业选择提供客观参考</p>
+        </div>
+        <div class="advantage-grid">
+          <div class="advantage-card">
+            <div class="advantage-icon">📈</div>
+            <h3>AI培训市场持续扩大</h3>
+            <p>AI相关岗位需求年增长率超过40%，掌握AI工具与岗位结合能力的求职者更具竞争力。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🎭</div>
+            <h3>短剧市场规模超200亿</h3>
+            <p>2026年微短剧市场规模预计达220亿，AI漫剧、AI真人剧等新型内容生产岗位需求快速增长。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🌐</div>
+            <h3>跨境电商人才缺口大</h3>
+            <p>跨境电商企业普遍面临运营人才短缺，具备AI运营能力与真实店铺经验的求职者更受青睐。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">🎬</div>
+            <h3>短视频岗位需求旺盛</h3>
+            <p>短视频剪辑、运营、信息流广告等岗位需求持续旺盛，优秀作品集是求职核心竞争力。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>把握行业趋势，提升岗位竞争力</h2>
+        <p>预约1对1职业规划，获取最新岗位数据与学习方案</p>
+        <a href="/contact/" class="btn btn-red">获取职业学习规划</a>
+      </div>
+    </section>
+</BaseLayout>

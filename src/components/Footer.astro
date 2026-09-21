@@ -1,0 +1,67 @@
+---
+// 页脚
+// variant:
+//   default - 品牌区 + 链接组 + 联系方式 + 备案信息（普通页面）
+//   simple  - 仅备案信息（404 页面沿用旧站结构）
+import { site } from '../data/site';
+import { footerGroups } from '../data/navigation';
+
+interface Props {
+  variant?: 'default' | 'simple';
+}
+
+const { variant = 'default' } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="container">
+    {
+      variant === 'default' ? (
+        <>
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <a href="/" class="logo">
+                <img width="2125" height="505" src={site.logo} alt={site.logoAlt} class="logo-img" />
+              </a>
+              <p>美迪时代教育隶属于广州美迪教育科技有限公司，专注成人职业技能就业培训，让职业就业更简单。</p>
+            </div>
+            {footerGroups.map((group) => (
+              <div class="footer-links">
+                <h4 class="footer-title">{group.title}</h4>
+                <ul>
+                  {group.links.map((link) => (
+                    <li>
+                      <a href={link.href}>{link.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <div class="footer-contact">
+              <h4 class="footer-title">联系我们</h4>
+              <p>📞 {site.telephone}</p>
+              <p>🌐 <a href="https://www.chinamede.com/" class="footer-link">www.chinamede.com</a></p>
+              <p>📧 {site.legalName}</p>
+              <p>🏢 {site.campusDisplay}就近服务</p>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>
+              {site.copyright} | {site.legalName} |{' '}
+              <a href={site.icpUrl} class="beian" target="_blank" rel="noopener">{site.icp}</a>
+            </p>
+            <p>{site.slogan}</p>
+          </div>
+        </>
+      ) : (
+        <div class="footer-bottom" style="border:none;padding-top:0;">
+          <p>
+            {site.copyright} | {site.legalName} |{' '}
+            <a href={site.icpUrl} class="beian" target="_blank" rel="noopener">{site.icp}</a>
+          </p>
+          <p>{site.slogan}</p>
+        </div>
+      )
+    }
+  </div>
+</footer>

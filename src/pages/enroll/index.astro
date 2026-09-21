@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageSeo } from '../../data/pageSeo';
+
+const seo = pageSeo['/enroll/'];
+---
+
+<BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/enroll/">
+  <section class="page-banner">
+      <div class="container">
+        <h1>免费试听</h1>
+        <p>预约免费试听 · 获取职业学习规划书 · 课程顾问一对一服务</p>
+        <div class="breadcrumb">
+          <a href="/">首页</a> / 免费试听
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>四步完成报名</h2>
+          <p>全程有课程顾问跟进，试听满意再决定，绝无强制消费</p>
+        </div>
+        <div class="flow-list">
+          <div class="flow-item">
+            <div class="flow-num">01</div>
+            <h3>提交意向</h3>
+            <p>填写右侧表单或拨打400-800-4459，说明你的学习目标与所在城市。</p>
+          </div>
+          <div class="flow-item">
+            <div class="flow-num">02</div>
+            <h3>免费试听</h3>
+            <p>到就近校区免费试听正式课程，与授课老师面对面交流。</p>
+          </div>
+          <div class="flow-item">
+            <div class="flow-num">03</div>
+            <h3>定制规划</h3>
+            <p>课程顾问根据基础与目标，出具专属职业学习规划书与班型建议。</p>
+          </div>
+          <div class="flow-item">
+            <div class="flow-num">04</div>
+            <h3>入学开班</h3>
+            <p>确认班型后办理入学，班主任对接排课，即可开始学习之旅。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section advantages">
+      <div class="container">
+        <div class="section-title">
+          <h2>热门班型速览</h2>
+          <p>不知道选哪个？提交意向后顾问会帮你匹配最适合的班型</p>
+        </div>
+        <div class="enroll-plans">
+          <div class="enroll-plan hot">
+            <span class="plan-badge">报名最热</span>
+            <h3>AI新媒体运营师就业班</h3>
+            <div class="plan-duration">50天 · 288课时 + 22天带薪实习</div>
+            <ul>
+              <li>AI工具 + 手机拍剪 + 全平台运营</li>
+              <li>企业AI获客GEO实战</li>
+              <li>面向新媒体运营岗位</li>
+            </ul>
+            <a href="/courses/" class="btn btn-primary" style="width:100%;">查看详情</a>
+          </div>
+          <div class="enroll-plan">
+            <h3>AI视觉设计师就业班</h3>
+            <div class="plan-duration">50天 · 294课时 + 22天带薪实习</div>
+            <ul>
+              <li>电商美工 + 商业精修 + C4D</li>
+              <li>AI电商设计 + AI视频创作</li>
+              <li>面向视觉设计岗位</li>
+            </ul>
+            <a href="/courses/" class="btn btn-outline" style="width:100%;">查看详情</a>
+          </div>
+          <div class="enroll-plan">
+            <h3>商业短视频创作师就业班</h3>
+            <div class="plan-duration">48天 · 318课时 + 22天带薪实习</div>
+            <ul>
+              <li>手机拍剪 + 高级剪辑 + 特效合成</li>
+              <li>抖音运营与获客</li>
+              <li>面向短视频创作岗位</li>
+            </ul>
+            <a href="/courses/" class="btn btn-outline" style="width:100%;">查看详情</a>
+          </div>
+          <div class="enroll-plan">
+            <h3>AIGC全能就业班</h3>
+            <div class="plan-duration">89天 · 522课时 · 一价三证</div>
+            <ul>
+              <li>AI新媒体 + 设计 + 视频全能</li>
+              <li>智能体开发 + GEO获客</li>
+              <li>面向AIGC复合岗位</li>
+            </ul>
+            <a href="/courses/" class="btn btn-outline" style="width:100%;">查看详情</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="enroll-form">
+      <div class="container">
+        <div class="section-title">
+          <h2>报名与试听预约通道</h2>
+          <p>微信扫一扫添加课程顾问，获取最新学费优惠、班型课表与免费试听名额</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-wechat-card">
+            <div class="wechat-card-header">
+              <h2>扫码添加课程顾问</h2>
+              <p>微信扫一扫二维码，一对一专属顾问在线对接报名</p>
+              <span class="wechat-badge">官方微信 · 顾问直通</span>
+            </div>
+            <div class="wechat-qr-wrapper">
+              <div class="qr-img-box">
+                <img width="357" height="355" src="/images/wechat_qrcode.png" alt="美迪时代教育课程顾问微信二维码" class="wechat-qr-img" loading="lazy" decoding="async" />
+              </div>
+
+              <div class="wechat-phone-action">
+                <div class="phone-action-label">
+                  <span class="pulse-dot"></span>
+                  <span>手机 / 微信同号（支持一键拨打与微信搜索）</span>
+                </div>
+                <a href="tel:18922386984" class="phone-action-btn" title="点击呼叫 18922386984 或微信搜索添加">
+                  <span class="action-icon">📞</span>
+                  <span class="action-num">18922386984</span>
+                  <span class="action-tag">点击拨打 / 加微信</span>
+                </a>
+              </div>
+
+              <div class="qr-scan-tips">
+                <div class="scan-tip-item">
+                  <span class="tip-icon">💬</span>
+                  <span>微信搜索手机号 <strong>18922386984</strong> 添加好友</span>
+                </div>
+                <div class="scan-tip-item">
+                  <span class="tip-icon">🎁</span>
+                  <span>预约免费试听课与线下参观体验</span>
+                </div>
+                <div class="scan-tip-item">
+                  <span class="tip-icon">⚡</span>
+                  <span>领取最新学费立减优惠与分期政策</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <h3>其他报名方式</h3>
+            <div class="contact-info-list">
+              <div class="contact-item">
+                <div class="icon">📞</div>
+                <div><strong>报名热线</strong>
+                  <p>400-800-4459（周一至周日 8:00-21:00）</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="icon">🏢</div>
+                <div><strong>到校咨询</strong>
+                  <p>广州、深圳、佛山、东莞、中山、江门6城13个直营校区</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="icon">💬</div>
+                <div><strong>在线咨询</strong>
+                  <p>工作时间内顾问在线，随时解答课程问题</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="icon">🎁</div>
+                <div><strong>报名福利</strong>
+                  <p>免费试听课 + 职业学习规划书 + 课程资料包</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>拿不准学什么？让顾问帮你分析</h2>
+        <p>一个电话，免费获得一对一职业方向分析与学习规划建议</p>
+        <a href="tel:4008004459" class="btn btn-red">拨打 400-800-4459</a>
+      </div>
+    </section>
+</BaseLayout>

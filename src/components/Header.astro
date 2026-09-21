@@ -1,0 +1,112 @@
+---
+// 顶部导航
+// variant:
+//   default - 全量导航 + 电话区 + 移动端菜单按钮（普通页面）
+//   simple  - 精简导航，无电话区（404 页面沿用旧站结构）
+import { site } from '../data/site';
+import { nav } from '../data/navigation';
+
+interface Props {
+  variant?: 'default' | 'simple';
+}
+
+const { variant = 'default' } = Astro.props;
+
+const simpleNav = [
+  { label: '品牌介绍', href: '/brand/' },
+  { label: '培训课程', href: '/courses/' },
+  { label: '知识百科', href: '/knowledge/' },
+  { label: '美迪问答', href: '/faq/' },
+  { label: '联系我们', href: '/contact/' },
+];
+
+const links = variant === 'simple' ? simpleNav : nav;
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <img width="2125" height="505" src={site.logo} alt={site.logoAlt} class="logo-img" />
+    </a>
+    <nav class="nav">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <div class="header-cta">
+      <a href="/enroll/" class="header-enroll">免费试听</a>
+      {
+        variant === 'default' && (
+          <>
+            <div class="header-phone">
+              <div class="phone-top">
+                <div class="header-phone-icon">
+                  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="14.5" stroke="#E60012" stroke-width="2" />
+                    <path
+                      d="M10.8 17.5c1.6 2.6 3.7 4.3 6.3 5.3.5.2 1 0 1.2-.4l1.4-1.6c.3-.4.3-.9 0-1.3l-2.1-1.6c-.4-.3-.8-.3-1.2.1l-.7.7c-.9-.5-1.9-1.2-2.6-2.1-.9-.9-1.6-1.9-2.1-2.6l.7-.7c.4-.4.4-.8.1-1.2l-1.6-2.1c-.4-.3-.9-.3-1.3 0l-1.6 1.4c-.4.3-.6.7-.4 1.2 1 2.6 2.7 4.7 5.3 6.3z"
+                      fill="#E60012"
+                    />
+                    <path d="M17.5 10.5c1 .6 1.8 1.4 2.4 2.4" stroke="#E60012" stroke-width="1.8" stroke-linecap="round" />
+                    <path d="M19.5 8c1.6 1.1 3 2.5 4.1 4.1" stroke="#E60012" stroke-width="1.8" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <span class="phone-number">{site.telephone}</span>
+              </div>
+              <span class="phone-time">全国统一官方热线: {site.serviceHours}</span>
+            </div>
+            <button class="mobile-menu-btn" aria-label="打开菜单" aria-expanded="false">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </>
+        )
+      }
+    </div>
+  </div>
+</header>
+
+<script>
+  // 当前导航高亮：按路径前缀匹配，支持任意层级子页面
+  function setActiveNav() {
+    const path = window.location.pathname.replace(/\/index\.html$/, '/');
+    let best: { link: HTMLAnchorElement; target: string } | null = null;
+
+    document.querySelectorAll<HTMLAnchorElement>('.nav a').forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      if (href.charAt(0) !== '/') return;
+
+      const target = href.split('#')[0].replace(/\/index\.html$/, '/');
+      const matched = target === '/' ? path === '/' : path === target || path.indexOf(target) === 0;
+
+      if (matched && (!best || target.length > best.target.length)) {
+        best = { link, target };
+      }
+    });
+
+    document.querySelectorAll<HTMLAnchorElement>('.nav a').forEach((link) => link.classList.remove('active'));
+    if (best) best.link.classList.add('active');
+  }
+
+  function initHeader() {
+    const nav = document.querySelector<HTMLElement>('.nav');
+    const mobileMenuBtn = document.querySelector<HTMLElement>('.mobile-menu-btn');
+    if (!nav) return;
+
+    setActiveNav();
+
+    if (!mobileMenuBtn) return;
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  initHeader();
+</script>

@@ -1,0 +1,138 @@
+---
+// 课程详情主卡片
+// linked=true 时封面图与标题带详情页链接（课程列表页），false 时为纯展示（课程详情页）
+import type { Course } from '../data/courses';
+
+interface Props {
+  course: Course;
+  linked?: boolean;
+}
+
+const { course, linked = false } = Astro.props;
+const href = `/courses/${course.slug}/`;
+const cardId = course.code.toLowerCase();
+---
+
+<div class="course-detail-card featured-course-card" id={cardId} data-category={course.category}>
+  <div class="course-hero-layout">
+    <div class="course-cover-box">
+      {
+        linked ? (
+          <a class="course-cover-link" href={href} aria-label={`查看 ${course.mainTitle} 课程详情`}>
+            <img
+              width={course.cover.width}
+              height={course.cover.height}
+              src={course.cover.src}
+              alt={course.cover.alt}
+              class="course-cover-img"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        ) : (
+          <img
+            width={course.cover.width}
+            height={course.cover.height}
+            src={course.cover.src}
+            alt={course.cover.alt}
+            class="course-cover-img"
+            loading="lazy"
+            decoding="async"
+          />
+        )
+      }
+      <span class="cover-badge">{course.badge}</span>
+    </div>
+
+    <div class="course-hero-content">
+      <div class="course-hero-header">
+        <div class="course-meta-tags">
+          {course.metaTags.map((tag) => <span class={`tag ${tag.cls}`}>{tag.text}</span>)}
+        </div>
+        <div class="course-price-wrap">
+          <div class="price-main">
+            <span class="currency">{course.price.currency}</span><span class="amount">{course.price.amount}</span>
+          </div>
+          <div class="price-origin">
+            <span class="price-origin-old">{course.price.origin}</span>{' '}
+            <span class="price-save">{course.price.save}</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="course-main-title">
+        {linked ? <a href={href}>{course.mainTitle}</a> : course.mainTitle}
+      </h3>
+
+      <div class="course-stat-bar">
+        {course.stats.map((stat) => <span class={stat.highlight ? 'stat-pill highlight' : 'stat-pill'}>{stat.text}</span>)}
+      </div>
+
+      <p class="course-desc-highlight" set:html={course.descHighlight}></p>
+
+      <div class="course-action-row">
+        <a href="/enroll/" class="btn btn-red btn-sm">免费预约试听 / 领课表</a>
+        <a href="tel:4008004459" class="btn btn-outline btn-sm">📞 咨询课程顾问</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="curriculum-section">
+    <div class="curriculum-section-title">
+      <h4>📚 课程结构体系</h4>
+      <span class="section-sub">全阶段阶梯递进 · 系统化培养</span>
+    </div>
+
+    <div class="curriculum-stages-grid">
+      {
+        course.curriculum.map((stage, index) => (
+          <div class={`stage-card stage-card-${index + 1}`}>
+            <div class="stage-header">
+              <div class="stage-badge">{stage.badge}</div>
+              <div class="stage-title-wrap">
+                <h5>{stage.title}</h5>
+                <span>{stage.subtitle}</span>
+              </div>
+            </div>
+            <ul class="stage-module-list">
+              {stage.modules.map((mod) => (
+                <li>
+                  <span class="mod-name">{mod.name}</span>
+                  <span class={mod.highlight ? 'mod-hour highlight' : 'mod-hour'}>{mod.hour}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="course-practice-banner">
+    <div class="practice-icon">🎯</div>
+    <div class="practice-text">
+      <h5>{course.practice.title}</h5>
+      <p>{course.practice.text}</p>
+    </div>
+  </div>
+
+  <div class="course-outcome-grid">
+    <div class="outcome-box">
+      <h5>💼 就业岗位方向广</h5>
+      <div class="tag-cloud">
+        {course.outcomes.jobs.map((job) => <span class="job-chip">{job}</span>)}
+      </div>
+    </div>
+
+    <div class="outcome-box">
+      <h5>👥 适合人群</h5>
+      <div class="tag-cloud">
+        {course.outcomes.targets.map((target) => <span class="target-chip"><i class="dot"></i> {target}</span>)}
+      </div>
+    </div>
+  </div>
+
+  <div class="course-tags">
+    {course.tags.map((tag) => <span>{tag}</span>)}
+  </div>
+</div>

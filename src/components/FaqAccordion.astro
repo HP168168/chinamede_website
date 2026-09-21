@@ -1,0 +1,77 @@
+---
+// FAQ 折叠面板（原 js/main.js 第 3 段交互，迁移到组件内按需加载）
+interface FaqEntry {
+  id: string;
+  question: string;
+  answer: string;
+  /** 是否默认展开（旧站第一条 FAQ 带 inline max-height） */
+  defaultOpen?: boolean;
+}
+
+interface Props {
+  items: FaqEntry[];
+  title?: string;
+  subtitle?: string;
+}
+
+const { items, title, subtitle } = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    {
+      title && (
+        <div class="section-title">
+          <h2>{title}</h2>
+          {subtitle && <p>{subtitle}</p>}
+        </div>
+      )
+    }
+    <div class="faq-list">
+      {
+        items.map((item) => (
+          <div class="faq-item" id={item.id}>
+            <button class="faq-question">
+              <span>{item.question}</span>
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer" style={item.defaultOpen ? 'max-height: 200px;' : undefined}>
+              <div class="faq-answer-inner">{item.answer}</div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll<HTMLElement>('.faq-item');
+
+  faqItems.forEach((item) => {
+    const question = item.querySelector<HTMLElement>('.faq-question');
+    const answer = item.querySelector<HTMLElement>('.faq-answer');
+    if (!question || !answer) return;
+
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // 手风琴效果：先关闭其他已展开项
+      faqItems.forEach((other) => {
+        if (other !== item && other.classList.contains('active')) {
+          other.classList.remove('active');
+          const otherAnswer = other.querySelector<HTMLElement>('.faq-answer');
+          if (otherAnswer) otherAnswer.style.maxHeight = '';
+        }
+      });
+
+      if (isActive) {
+        item.classList.remove('active');
+        answer.style.maxHeight = '';
+      } else {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>

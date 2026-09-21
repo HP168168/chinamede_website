@@ -1,0 +1,41 @@
+---
+// 全站 JSON-LD 结构化数据组件
+// 输出结构：Organization（含校区引用） + WebSite + 当前页独有的节点（pageSchema）+ 额外节点
+import { organizationSchema, websiteSchema } from '../data/siteSchema';
+import { pageSchema } from '../data/pageSchema';
+import { campuses } from '../data/campuses';
+
+interface Props {
+  /** 页面路由，如 /courses/n1-ai-newmedia/ */
+  route: string;
+  /** 需要追加的自定义节点（动态生成的内容用） */
+  extra?: unknown[];
+}
+
+const { route, extra = [] } = Astro.props;
+
+// 校区节点：与旧站一致，作为 EducationalOrganization + LocalBusiness 挂到 @graph
+const campusNodes = campuses.map((c) => ({
+  '@type': ['EducationalOrganization', 'LocalBusiness'],
+  '@id': `https://www.chinamede.com/#${c.id}`,
+  name: c.name,
+  telephone: c.telephone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: c.streetAddress,
+    addressLocality: c.locality,
+    addressRegion: c.region,
+    addressCountry: 'CN',
+  },
+  areaServed: c.city,
+  parentOrganization: { '@id': 'https://www.chinamede.com/#organization' },
+  additionalProperty: c.traffic
+    ? [{ '@type': 'PropertyValue', name: '交通指引', value: c.traffic }]
+    : [],
+}));
+
+const graph = [organizationSchema, websiteSchema, ...(pageSchema[route] ?? []), ...campusNodes, ...extra];
+const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+
+<script type="application/ld+json" set:html={json} />

@@ -1,0 +1,48 @@
+---
+// 课程分类筛选（原 js/main.js 第 5 段交互，迁移到组件内按需加载）
+interface FilterOption {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  options?: FilterOption[];
+}
+
+const { options = [
+  { value: 'all', label: '全部课程' },
+  { value: 'ai', label: 'AI长期班' },
+  { value: 'crossborder', label: '跨境电商' },
+  { value: 'short', label: '短期集训' },
+] } = Astro.props;
+---
+
+<div class="course-filter">
+  {options.map((opt, index) => <button class={index === 0 ? 'filter-btn active' : 'filter-btn'} data-filter={opt.value}>{opt.label}</button>)}
+</div>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLElement>('.filter-btn');
+  const courseCards = document.querySelectorAll<HTMLElement>('.course-detail-card');
+
+  if (filterBtns.length && courseCards.length) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-filter');
+
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        courseCards.forEach((card) => {
+          const cardCategory = card.getAttribute('data-category');
+          if (category === 'all' || cardCategory === category) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeInUp 0.4s ease forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+</script>

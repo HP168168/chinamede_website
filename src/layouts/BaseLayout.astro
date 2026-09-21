@@ -1,0 +1,108 @@
+---
+// 全站基础布局：head（SEO + JSON-LD + 全局样式）+ body（Header + 页面内容 + Footer + 回到顶部）
+import '../styles/global.css';
+import SEO from '../components/SEO.astro';
+import Schema from '../components/Schema.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  robots?: string;
+  /** 页面路由（用于 canonical 与页面级 JSON-LD 匹配），默认取当前路径 */
+  route?: string;
+  /** 追加到 JSON-LD @graph 的自定义节点 */
+  schemaExtra?: unknown[];
+  headerVariant?: 'default' | 'simple';
+  footerVariant?: 'default' | 'simple';
+}
+
+const { title, description, keywords, robots, route, schemaExtra, headerVariant, footerVariant } = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/index\.html$/, '');
+const currentRoute = route ?? (pathname.endsWith('/') ? pathname : pathname + '/');
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEO title={title} description={description} keywords={keywords} robots={robots} route={currentRoute} />
+    <Schema route={currentRoute} extra={schemaExtra} />
+  </head>
+  <body>
+    <Header variant={headerVariant} />
+    <slot />
+    <Footer variant={footerVariant} />
+    <BackToTop />
+
+    <script>
+      // 数字滚动动画（原 js/main.js 第 6 段）
+      const animatedNumbers = document.querySelectorAll<HTMLElement>('[data-count]');
+
+      if (animatedNumbers.length && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const target = entry.target as HTMLElement;
+              if (entry.isIntersecting && !target.classList.contains('counted')) {
+                target.classList.add('counted');
+                const count = parseInt(target.getAttribute('data-count') || '0', 10);
+                const suffix = target.getAttribute('data-suffix') || '';
+                const duration = 2000;
+                const startTime = performance.now();
+
+                const updateNumber = (currentTime: number) => {
+                  const progress = Math.min((currentTime - startTime) / duration, 1);
+                  const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                  const current = Math.floor(easeOutQuart * count);
+                  target.textContent = current + suffix;
+
+                  if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                  } else {
+                    target.textContent = count + suffix;
+                  }
+                };
+
+                requestAnimationFrame(updateNumber);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        animatedNumbers.forEach((num) => observer.observe(num));
+      }
+
+      // 卡片淡入动画（原 js/main.js 第 7 段）
+      const revealElements = document.querySelectorAll<HTMLElement>(
+        '.course-card, .advantage-card, .teacher-card, .news-card, .partner-card, .showcase-card'
+      );
+
+      if (revealElements.length && 'IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        revealElements.forEach((el, index) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(24px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          el.style.transitionDelay = (index % 4) * 0.08 + 's';
+          revealObserver.observe(el);
+        });
+      }
+    </script>
+  </body>
+</html>
