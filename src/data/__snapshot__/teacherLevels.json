@@ -1,0 +1,58 @@
+{
+  "exportedAt": "2026-09-23T04:32:40.381Z",
+  "source": "http://localhost:1337/api/teacher-levels?status=published&sort%5B0%5D=order%3Aasc&pagination%5BpageSize%5D=200",
+  "data": [
+    {
+      "id": 49,
+      "documentId": "ze2mursw4g2svh6hukca1mbz",
+      "name": "L1 助理讲师",
+      "gradient": "background: linear-gradient(135deg, #0066FF, #5B9AFF);",
+      "desc": "通过模块知识笔试与助教实习，承担答疑、批改、助教课等基础教学工作。",
+      "meta": "[\"📝 模块笔试\",\"👨‍🏫 助教实习\"]",
+      "order": 1,
+      "createdAt": "2026-09-22T04:53:34.199Z",
+      "updatedAt": "2026-09-23T03:49:12.603Z",
+      "publishedAt": "2026-09-23T03:49:12.609Z",
+      "levelCode": "L1"
+    },
+    {
+      "id": 52,
+      "documentId": "eiu19j49bskbicfyt56asand",
+      "name": "L2 认证讲师",
+      "gradient": "background: linear-gradient(135deg, #7B2FF7, #B07CFF);",
+      "desc": "试讲双评≥80分，项目实操考核通过，可独立承担单模块授课与标准课时。",
+      "meta": "[\"🎤 试讲考核\",\"🛠️ 项目实操\"]",
+      "order": 2,
+      "createdAt": "2026-09-22T04:53:34.238Z",
+      "updatedAt": "2026-09-23T03:49:53.061Z",
+      "publishedAt": "2026-09-23T03:49:53.065Z",
+      "levelCode": "L2"
+    },
+    {
+      "id": 51,
+      "documentId": "hmw9ap7bh63vfsvqfiaooilq",
+      "name": "L3 资深讲师",
+      "gradient": "background: linear-gradient(135deg, #E60012, #FF4D5A);",
+      "desc": "满两年且学员期评≥4.5，主导课纲迭代，享受学科分红与讲师带教职责。",
+      "meta": "[\"⭐ 期评≥4.5\",\"📚 课纲迭代\"]",
+      "order": 3,
+      "createdAt": "2026-09-22T04:53:34.279Z",
+      "updatedAt": "2026-09-23T03:49:46.131Z",
+      "publishedAt": "2026-09-23T03:49:46.140Z",
+      "levelCode": "L3"
+    },
+    {
+      "id": 50,
+      "documentId": "j2h2s19p8mof63w26g52zbm5",
+      "name": "M 企业导师",
+      "gradient": "background: linear-gradient(135deg, #006D77, #83C5BE);",
+      "desc": "行业在职专家，参与商业项目点评、前沿模块教学与岗位标准输入。",
+      "meta": "[\"💼 一线在职\",\"🎯 项目点评\"]",
+      "order": 4,
+      "createdAt": "2026-09-22T04:53:34.325Z",
+      "updatedAt": "2026-09-23T03:49:32.736Z",
+      "publishedAt": "2026-09-23T03:49:32.742Z",
+      "levelCode": "M"
+    }
+  ]
+}

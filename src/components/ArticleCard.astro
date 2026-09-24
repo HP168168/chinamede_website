@@ -1,0 +1,30 @@
+---
+// 文章卡片：复用机构动态/知识百科的 news-card 样式，保持品牌一致
+import type { Article } from '../types/content';
+
+interface Props {
+  article: Article;
+}
+
+const { article } = Astro.props;
+const href = `/articles/${article.slug}/`;
+const cover = article.cover;
+---
+
+<article class="news-card">
+  {
+    cover ? (
+      <div class="news-image news-image-photo">
+        <img src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} loading="lazy" decoding="async" />
+      </div>
+    ) : (
+      <div class="news-image">📰</div>
+    )
+  }
+  <div class="news-content">
+    <div class="news-date">{article.date} · {article.author}</div>
+    <h3><a href={href}>{article.title}</a></h3>
+    <p>{article.summary}</p>
+    <a href={href} class="read-more">阅读全文 →</a>
+  </div>
+</article>

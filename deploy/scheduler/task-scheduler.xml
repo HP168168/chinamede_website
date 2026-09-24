@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<!--
+  ============================================================================
+  美迪时代教育 AI 内容工厂：Windows 任务计划导入模板
+
+  使用步骤：
+    1) 把 <Arguments> / <WorkingDirectory> 中的路径改成实际部署路径
+    2) 管理员 PowerShell 执行：
+         schtasks /Create /TN "Meidi\AI-Content-Factory" /XML "deploy\scheduler\task-scheduler.xml"
+       覆盖已有任务加 /F；查看：schtasks /Query /TN "Meidi\AI-Content-Factory" /V /FO LIST
+    3) 立即试跑一次：schtasks /Run /TN "Meidi\AI-Content-Factory"
+    4) 删除：schtasks /Delete /TN "Meidi\AI-Content-Factory" /F
+
+  默认策略：每天 10:00 处理「待处理」生成任务，本轮最多 2 篇，
+  篇数总闸门仍由 cms/.env 的 AI_DAILY_LIMIT 控制，避免重复触发耗尽额度。
+  日志：cms/.tmp/logs/ai-run-<yyyyMMdd>.log
+  ============================================================================
+-->
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Author>美迪时代教育</Author>
+    <Description>美迪时代教育官网 AI 内容工厂：批量执行后台「待处理」生成任务，产出文章草稿（不自动上线）</Description>
+    <URI>\Meidi\AI-Content-Factory</URI>
+  </RegistrationInfo>
+  <Triggers>
+    <CalendarTrigger>
+      <StartBoundary>2026-01-01T10:00:00</StartBoundary>
+      <Enabled>true</Enabled>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+    </CalendarTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <AllowStartOnDemand>true</AllowStartOnDemand>
+    <Enabled>true</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <WakeToRun>false</WakeToRun>
+    <ExecutionTimeLimit>PT1H</ExecutionTimeLimit>
+    <Priority>7</Priority>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell.exe</Command>
+      <Arguments>-NoProfile -ExecutionPolicy Bypass -File "D:\traes\meidi-website\deploy\scheduler\run-ai.ps1" -Mode run -Limit 2</Arguments>
+      <WorkingDirectory>D:\traes\meidi-website\deploy\scheduler</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>

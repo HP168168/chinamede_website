@@ -1,0 +1,91 @@
+name: AI Content Factory (scheduled)
+
+# AI 内容工厂的第三条调度入口（另外两条：Windows 任务计划 deploy/scheduler/task-scheduler.xml、
+# Linux crontab deploy/scheduler/crontab.example）。
+#
+# 前提：Strapi 后台需能被 GitHub 运行器访问（公网域名或 self-hosted runner）。
+# 仓库设置好以下 Secrets 后，Actions 才能写回草稿：
+#   STRAPI_URL         后台地址，如 https://cms.chinamede.com
+#   STRAPI_WRITE_TOKEN 写入用 API Token（Full access）
+#   AI_API_KEY         模型密钥
+# 可选 Variables：AI_BASE_URL、AI_MODEL、AI_DAILY_LIMIT
+# 另需设置仓库 Variable AI_SCHEDULE_ENABLED=true 才会按点执行（避免后台未就绪时反复失败），
+# 手动运行不受该开关限制。
+
+on:
+  schedule:
+    # 每天 02:00 UTC（北京时间 10:00）处理待处理任务
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '本轮最多生成篇数'
+        required: false
+        default: '2'
+      task:
+        description: '仅执行单个生成任务（填 documentId，留空表示批量）'
+        required: false
+        default: ''
+      dry_run:
+        description: '演练模式：调用模型与校验但不写入后台'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-content-factory
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    # 定时触发需要 AI_SCHEDULE_ENABLED=true；手动触发始终可运行
+    if: github.event_name == 'workflow_dispatch' || vars.AI_SCHEDULE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cms/package-lock.json
+
+      - name: Install dependencies
+        working-directory: cms
+        run: npm ci
+
+      - name: Run content factory
+        working-directory: cms
+        env:
+          STRAPI_URL: ${{ secrets.STRAPI_URL }}
+          STRAPI_WRITE_TOKEN: ${{ secrets.STRAPI_WRITE_TOKEN }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_BASE_URL: ${{ vars.AI_BASE_URL }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+          AI_DAILY_LIMIT: ${{ vars.AI_DAILY_LIMIT }}
+          RUN_LIMIT: ${{ inputs.limit || '2' }}
+          RUN_TASK: ${{ inputs.task }}
+          RUN_DRY: ${{ inputs.dry_run && '--dry-run' || '' }}
+        run: |
+          set -o pipefail
+          mkdir -p .tmp/logs
+          if [ -n "$RUN_TASK" ]; then
+            npm run ai:run:once -- --task "$RUN_TASK" $RUN_DRY 2>&1 | tee .tmp/logs/ai-run.log
+          else
+            npm run ai:run -- --limit "$RUN_LIMIT" $RUN_DRY 2>&1 | tee .tmp/logs/ai-run.log
+          fi
+
+      - name: Upload run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-run-log
+          path: cms/.tmp/logs/**
+          if-no-files-found: ignore
+          retention-days: 14

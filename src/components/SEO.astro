@@ -1,7 +1,8 @@
 ---
 // 全站统一 SEO 元信息组件
 // 字段与旧站 head 保持一致：canonical / favicon / manifest / OG / Twitter / robots
-import { site, absoluteUrl } from '../data/site';
+// 站点信息（名称、OG 图、作者、生成器）与基准地址全部来自后台「站点设置」
+import { absoluteUrl, getSiteConfig } from '../lib/strapi';
 
 interface Props {
   title: string;
@@ -14,13 +15,14 @@ interface Props {
 }
 
 const { title, description, keywords, route, ogImage } = Astro.props;
+const site = await getSiteConfig();
 
 const pathname = Astro.url.pathname.replace(/index\.html$/, '');
 const currentRoute = route ?? (pathname.endsWith('/') ? pathname : pathname + '/');
-const canonical = absoluteUrl(currentRoute);
+const canonical = absoluteUrl(currentRoute, site);
 const robots =
   Astro.props.robots ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
-const image = absoluteUrl(ogImage ?? site.ogImage);
+const image = absoluteUrl(ogImage ?? site.ogImage, site);
 ---
 
 <meta charset="UTF-8" />

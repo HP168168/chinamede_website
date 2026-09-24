@@ -1,0 +1,39 @@
+{
+  "exportedAt": "2026-09-23T04:32:40.351Z",
+  "source": "http://localhost:1337/api/course-categories?status=published&sort%5B0%5D=order%3Aasc&pagination%5BpageSize%5D=200",
+  "data": [
+    {
+      "id": 27,
+      "documentId": "urtp1zo9rydcejal9gg8cdl9",
+      "code": "ecommerce",
+      "name": "国内电商课程",
+      "order": 0,
+      "description": "电商课程就业",
+      "createdAt": "2026-09-22T10:01:57.499Z",
+      "updatedAt": "2026-09-22T10:03:47.408Z",
+      "publishedAt": "2026-09-22T10:03:47.412Z"
+    },
+    {
+      "id": 25,
+      "documentId": "t0wp3udzzec0ag3kx8ez3dga",
+      "code": "ai",
+      "name": "AI 就业方向",
+      "order": 1,
+      "description": "AI新媒体运营、AI视觉设计、商业短视频、AIGC全能、AI短剧漫剧等 AI 长期就业班",
+      "createdAt": "2026-09-22T04:53:28.211Z",
+      "updatedAt": "2026-09-22T09:59:49.393Z",
+      "publishedAt": "2026-09-22T09:59:49.416Z"
+    },
+    {
+      "id": 24,
+      "documentId": "y843kbepgij0djbt516ok2qe",
+      "code": "crossborder",
+      "name": "跨境电商方向",
+      "order": 2,
+      "description": "亚马逊高阶运营、TikTok 营销、海外社媒运营等跨境短期强化班",
+      "createdAt": "2026-09-22T04:53:28.278Z",
+      "updatedAt": "2026-09-22T05:52:13.477Z",
+      "publishedAt": "2026-09-22T05:52:13.481Z"
+    }
+  ]
+}

@@ -4,15 +4,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import CourseDetailCard from '../../components/CourseDetailCard.astro';
 import FaqAccordion from '../../components/FaqAccordion.astro';
 import CtaSection from '../../components/CtaSection.astro';
-import { courses } from '../../data/courses';
-import { site } from '../../data/site';
+import { getCourses, getSiteConfig } from '../../lib/strapi';
 
-export function getStaticPaths() {
-  return courses.map((course) => ({
-    params: { slug: course.slug },
-    props: { course },
-  }));
+// getStaticPaths 由 Astro 提升到独立作用域，无法读取 frontmatter 里的变量，
+// 因此这里再取一次；取数层有模块级缓存，同一次构建不会产生第二次请求。
+export async function getStaticPaths() {
+  const courses = await getCourses();
+  // slug 缺失时路径会退化成 /courses/，与列表页撞车导致整站构建失败，这里先剔除
+  return courses
+    .filter((course) => course.slug)
+    .map((course) => ({
+      params: { slug: course.slug },
+      props: { course },
+    }));
 }
+
+const [courses, site] = await Promise.all([getCourses(), getSiteConfig()]);
 
 const { course } = Astro.props;
 const route = `/courses/${course.slug}/`;

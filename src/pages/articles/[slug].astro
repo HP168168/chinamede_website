@@ -1,0 +1,226 @@
+---
+// 文章详情页：/articles/<slug>/
+// 正文为后台 HTML 片段；同时输出 GEO 答案段落、关键数据、FAQ、引用来源与结构化数据
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import { getArticles, getSiteConfig } from '../../lib/strapi';
+import { relatedArticles } from '../../lib/articles';
+
+// getStaticPaths 由 Astro 提升到独立作用域，无法读取 frontmatter 变量，这里重新取数（有模块级缓存）
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const [site, articles] = await Promise.all([getSiteConfig(), getArticles()]);
+
+const route = `/articles/${article.slug}/`;
+const base = site.url.replace(/\/+$/, '');
+const related = relatedArticles(article, articles);
+
+// FAQ 组件需要稳定 id；文章问答来自后台，按序号生成
+const faqItems = article.faq.map((item, index) => ({
+  id: `article-faq-${index + 1}`,
+  question: item.question,
+  answer: item.answer,
+}));
+
+// 结构化数据：Article + FAQPage + BreadcrumbList，通过 BaseLayout 的 schemaExtra 注入现有 @graph
+const schemaExtra = [
+  {
+    '@type': 'Article',
+    '@id': `${base}${route}#article`,
+    headline: article.title,
+    description: article.seo.description,
+    datePublished: article.date,
+    dateModified: article.updatedAt,
+    author: { '@type': 'Organization', '@id': `${base}/#organization`, name: article.author },
+    publisher: { '@id': `${base}/#organization` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${base}${route}` },
+    image: `${base}${article.cover?.src ?? '/images/og-cover.png'}`,
+    keywords: article.seo.keywords || article.targetKeywords,
+    inLanguage: 'zh-CN',
+    isPartOf: { '@id': `${base}/#website` },
+    // 与知识百科长文一致：告诉 AI/语音助手正文主体所在容器
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.article-body'] },
+  },
+  article.faq.length > 0
+    ? {
+        '@type': 'FAQPage',
+        '@id': `${base}${route}#faq`,
+        mainEntity: article.faq.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer },
+        })),
+      }
+    : null,
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${base}${route}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: `${base}/` },
+      { '@type': 'ListItem', position: 2, name: '精选文章', item: `${base}/articles/` },
+      { '@type': 'ListItem', position: 3, name: article.title, item: `${base}${route}` },
+    ],
+  },
+].filter(Boolean);
+---
+
+<BaseLayout
+  title={article.seo.title}
+  description={article.seo.description}
+  keywords={article.seo.keywords}
+  route={route}
+  schemaExtra={schemaExtra}
+>
+  <section class="page-banner">
+      <div class="container">
+        <h1>{article.title}</h1>
+        <p>{article.summary}</p>
+        <div class="breadcrumb">
+          <a href="/">首页</a>{' / '}<a href="/articles/">精选文章</a>{' / '}{article.title}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="article-body">
+          <div class="article-meta">
+            <span>📅 {article.date}</span>
+            <span>✍️ {article.author}</span>
+            {article.tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+
+          {
+            article.cover && (
+              <div class="article-cover">
+                <img
+                  src={article.cover.src}
+                  alt={article.cover.alt}
+                  width={article.cover.width}
+                  height={article.cover.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )
+          }
+
+          {
+            article.answerBlocks.length > 0 && (
+              <div class="geo-answer">
+                <div class="geo-label">核心结论</div>
+                {article.answerBlocks.map((block) => (
+                  <div class="geo-answer-item">
+                    {block.question && <h3>{block.question}</h3>}
+                    <p>{block.answer}</p>
+                  </div>
+                ))}
+              </div>
+            )
+          }
+
+          {
+            article.keyFacts.length > 0 && (
+              <div class="geo-facts">
+                <div class="geo-label">关键数据</div>
+                <ul>
+                  {article.keyFacts.map((fact) => (
+                    <li>
+                      <strong>{fact.label}</strong>
+                      <span>{fact.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+
+          <div class="article-content" set:html={article.content} />
+
+          {
+            article.sources.length > 0 && (
+              <div class="article-sources">
+                <h3>资料来源</h3>
+                <ul>
+                  {article.sources.map((source) => (
+                    <li>
+                      {source.url ? <a href={source.url} target="_blank" rel="noopener nofollow">{source.label}</a> : <span>{source.label}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    {faqItems.length > 0 && <FaqAccordion items={faqItems} title="常见问题" subtitle="关于本篇主题的高频疑问与官方解答" />}
+
+    {
+      related.length > 0 && (
+        <section class="section advantages">
+          <div class="container">
+            <div class="section-title">
+              <h2>相关阅读</h2>
+              <p>与本篇主题相关的课程与站内内容</p>
+            </div>
+            <div class="article-related">
+              {related.map((item) => (
+                <a class="advantage-card" href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener' : undefined}>
+                  <h3>{item.label}</h3>
+                  {item.summary && <p>{item.summary}</p>}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <section class="section">
+      <div class="container">
+        <div class="article-consult">
+          <div class="contact-wechat-card">
+            <div class="wechat-card-header">
+              <h2>扫码添加课程顾问</h2>
+              <p>{site.wechatScanTip}</p>
+              <span class="wechat-badge">官方微信 · 顾问直通</span>
+            </div>
+            <div class="wechat-qr-wrapper">
+              <div class="qr-img-box">
+                <img
+                  width="357"
+                  height="355"
+                  src={site.wechatQr}
+                  alt={site.wechatQrAlt}
+                  class="wechat-qr-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="wechat-phone-action">
+                <div class="phone-action-label">
+                  <span class="pulse-dot"></span>
+                  <span>{site.wechatPhoneLabel}</span>
+                </div>
+                <a href={`tel:${site.wechatPhone}`} class="phone-action-btn" title={`点击呼叫 ${site.wechatPhone} 或微信搜索添加`}>
+                  <span class="action-icon">📞</span>
+                  <span class="action-num">{site.wechatPhone}</span>
+                  <span class="action-tag">点击拨打 / 加微信</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</BaseLayout>

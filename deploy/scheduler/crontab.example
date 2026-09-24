@@ -1,0 +1,22 @@
+# ============================================================================
+# 美迪时代教育 AI 内容工厂：Linux/macOS crontab 示例
+#
+# 用法：
+#   1) 把下方内容按实际路径改好后写入 crontab -e
+#   2) 机器上需能用同一账号访问 Strapi（cms/.env 里的 STRAPI_URL / STRAPI_WRITE_TOKEN）
+#   3) 篇数上限、运行窗口由 cms/.env 的 AI_DAILY_LIMIT / AI_RUN_WINDOW 控制
+#
+# 日志：cms/.tmp/logs/ai-run-<年月>.log，可用 logrotate 或 `find ... -mtime +90 -delete` 归档
+# ============================================================================
+
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+
+# 每天 10:00 处理「待处理」生成任务，本轮最多 2 篇
+0 10 * * * cd /srv/meidi-website/cms && mkdir -p .tmp/logs && /usr/bin/npm run ai:run -- --limit 2 >> .tmp/logs/ai-run-$(date +\%Y\%m).log 2>&1
+
+# 每天 18:00 再跑一轮（内容储备不足时启用；AI_DAILY_LIMIT 会自动兜住总量）
+# 0 18 * * * cd /srv/meidi-website/cms && /usr/bin/npm run ai:run -- --limit 1 >> .tmp/logs/ai-run-$(date +\%Y\%m).log 2>&1
+
+# 每周一 09:00 环境自检，提前发现密钥或后台不可用
+0 9 * * 1 cd /srv/meidi-website/cms && /usr/bin/npm run ai:check >> .tmp/logs/ai-run-$(date +\%Y\%m).log 2>&1

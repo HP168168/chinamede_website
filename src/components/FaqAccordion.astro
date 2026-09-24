@@ -12,12 +12,15 @@ interface Props {
   items: FaqEntry[];
   title?: string;
   subtitle?: string;
+  /** 追加到外层 section 的额外 class（问答页需要 faq-section 的浅色背景） */
+  sectionClass?: string;
 }
 
-const { items, title, subtitle } = Astro.props;
+const { items, title, subtitle, sectionClass } = Astro.props;
+const sectionClassName = ['section', sectionClass].filter(Boolean).join(' ');
 ---
 
-<section class="section">
+<section class={sectionClassName}>
   <div class="container">
     {
       title && (
@@ -47,6 +50,16 @@ const { items, title, subtitle } = Astro.props;
 
 <script>
   const faqItems = document.querySelectorAll<HTMLElement>('.faq-item');
+
+  // 默认展开项（服务端渲染时带了内联 max-height）同步为 active 状态：
+  // 否则它的图标不会旋转成 ×，点它也不会收起，与手动展开的项表现不一致。
+  // 同时把写死的 200px 换成真实内容高度，避免长答案被截断。
+  faqItems.forEach((item) => {
+    const answer = item.querySelector<HTMLElement>('.faq-answer');
+    if (!answer || !answer.style.maxHeight) return;
+    item.classList.add('active');
+    answer.style.maxHeight = `${answer.scrollHeight}px`;
+  });
 
   faqItems.forEach((item) => {
     const question = item.querySelector<HTMLElement>('.faq-question');

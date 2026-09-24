@@ -1966,7 +1966,9 @@ a.course-card:focus-visible {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--bg-light), #E8ECF2);
+  /* 底层铺默认占位头像：形象照缺失或加载失败时兜底，不会露出空白 */
+  background: url('/images/teachers/default-avatar.svg') center / cover no-repeat,
+    linear-gradient(135deg, var(--bg-light), #E8ECF2);
   margin: 32px auto 20px;
   display: flex;
   align-items: center;
@@ -1975,6 +1977,17 @@ a.course-card:focus-visible {
   color: var(--primary-blue);
   border: 4px solid #fff;
   box-shadow: var(--shadow-sm);
+}
+
+/* 讲师形象照：非正方形的实拍照片按 1:1 居中裁切，铺满圆形头像位 */
+.teacher-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  /* 加载失败时不显示 alt 文字（屏幕阅读器仍可读取 alt），改为露出下层占位头像 */
+  color: transparent;
 }
 
 .teacher-info h3 {
@@ -2282,13 +2295,6 @@ a.course-card:focus-visible {
   font-size: 0.95rem;
 }
 
-.contact-form {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  box-shadow: var(--shadow-sm);
-}
-
 /* 微信扫码咨询卡片 */
 .contact-wechat-card {
   background: #fff;
@@ -2508,44 +2514,6 @@ a.course-card:focus-visible {
   color: #07C160;
   font-weight: 700;
   font-size: 1.08rem;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--deep-blue);
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-size: 0.95rem;
-  color: var(--text-dark);
-  transition: var(--transition);
-  font-family: inherit;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
-}
-
-.form-group textarea {
-  min-height: 120px;
-  resize: vertical;
 }
 
 .map-placeholder {
@@ -2890,8 +2858,7 @@ a.course-card:focus-visible {
     font-size: 1.5rem;
   }
 
-  .contact-info-card,
-  .contact-form {
+  .contact-info-card {
     padding: 24px;
   }
 
@@ -3084,6 +3051,168 @@ a.course-card:focus-visible {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   margin-top: 40px;
+}
+
+/* 文章列表：带真实封面的卡片与空状态、分页 */
+.news-image-photo {
+  padding: 0;
+  background: var(--bg-light);
+  overflow: hidden;
+}
+
+.news-image-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.list-empty {
+  padding: 60px 24px;
+  text-align: center;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-gray);
+}
+
+.pager {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pager-link {
+  padding: 10px 22px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: var(--transition);
+}
+
+.pager-link:hover {
+  border-color: var(--primary-blue);
+  box-shadow: var(--shadow-sm);
+}
+
+.pager-link.is-disabled {
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+.pager-status {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* 文章详情：封面图 */
+.article-cover {
+  margin-bottom: 28px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.article-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 文章详情：GEO 答案段落与关键数据（便于 AI 直接摘录引用） */
+.geo-label {
+  display: inline-block;
+  padding: 3px 12px;
+  margin-bottom: 14px;
+  background: rgba(0, 102, 255, 0.1);
+  color: var(--primary-blue);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.geo-answer {
+  padding: 26px 30px;
+  margin-bottom: 32px;
+  background: #F0F6FF;
+  border-left: 4px solid var(--primary-blue);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.geo-answer-item + .geo-answer-item {
+  margin-top: 18px;
+}
+
+.geo-answer-item h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  color: var(--deep-blue);
+}
+
+.geo-answer-item p {
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.geo-facts {
+  padding: 26px 30px;
+  margin-bottom: 32px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.geo-facts ul {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 24px;
+}
+
+.geo-facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.95rem;
+}
+
+.geo-facts li strong {
+  color: var(--deep-blue);
+}
+
+.geo-facts li span {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+/* 文章详情：引用来源 */
+.article-sources {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.article-sources ul {
+  margin: 0 0 0 20px;
+  color: var(--text-gray);
+  font-size: 0.92rem;
+}
+
+.article-sources li {
+  margin-bottom: 6px;
+}
+
+/* 文章详情：二维码咨询区块 */
+.article-consult {
+  max-width: 560px;
+  margin: 0 auto;
 }
 
 /* 报名页班型选择 */
@@ -3464,4 +3593,12 @@ a.campus-item {
 
 .campus-item:hover .campus-count {
   color: var(--primary-blue);
+}
+
+/* 卡片淡入动画的终态（脚本见 src/layouts/BaseLayout.astro）
+   卡片进入视口时脚本会加上 .revealed；这里用 !important 兜底，
+   防止内联的 opacity: 0 残留导致整块卡片在浏览器里看不见。
+   transform 不在这里兜底，交给脚本清理内联样式，避免压掉卡片 hover 的位移效果。 */
+.revealed {
+  opacity: 1 !important;
 }

@@ -1,9 +1,8 @@
 ---
 // 全站 JSON-LD 结构化数据组件
-// 输出结构：Organization（含校区引用） + WebSite + 当前页独有的节点（pageSchema）+ 额外节点
-import { organizationSchema, websiteSchema } from '../data/siteSchema';
-import { pageSchema } from '../data/pageSchema';
-import { campuses } from '../data/campuses';
+// 输出结构：Organization（含校区引用） + WebSite + 当前页独有的节点（后台「结构化数据」）+ 额外节点
+// 所有 @id 均由站点设置的 baseUrl 派生，避免域名硬编码
+import { getCampuses, getSchemaData, getSiteConfig } from '../lib/strapi';
 
 interface Props {
   /** 页面路由，如 /courses/n1-ai-newmedia/ */
@@ -14,10 +13,18 @@ interface Props {
 
 const { route, extra = [] } = Astro.props;
 
+const [site, { siteNodes, pageNodes }, campuses] = await Promise.all([
+  getSiteConfig(),
+  getSchemaData(),
+  getCampuses(),
+]);
+
+const base = site.url.replace(/\/+$/, '');
+
 // 校区节点：与旧站一致，作为 EducationalOrganization + LocalBusiness 挂到 @graph
 const campusNodes = campuses.map((c) => ({
   '@type': ['EducationalOrganization', 'LocalBusiness'],
-  '@id': `https://www.chinamede.com/#${c.id}`,
+  '@id': `${base}/#${c.id}`,
   name: c.name,
   telephone: c.telephone,
   address: {
@@ -28,13 +35,27 @@ const campusNodes = campuses.map((c) => ({
     addressCountry: 'CN',
   },
   areaServed: c.city,
-  parentOrganization: { '@id': 'https://www.chinamede.com/#organization' },
+  parentOrganization: { '@id': `${base}/#organization` },
   additionalProperty: c.traffic
     ? [{ '@type': 'PropertyValue', name: '交通指引', value: c.traffic }]
     : [],
 }));
 
-const graph = [organizationSchema, websiteSchema, ...(pageSchema[route] ?? []), ...campusNodes, ...extra];
+// 机构节点：运营在「站点设置 → 官方主页链接」里维护的 sameAs 会合并进来，
+// 让 AI 把官网与公众号/抖音/视频号等主页识别为同一实体（结构化数据里权重最高的信号之一）
+const sameAs = Array.isArray(site.sameAs) ? site.sameAs.filter(Boolean) : [];
+
+const isOrganizationNode = (node: unknown): node is Record<string, unknown> => {
+  const type = (node as Record<string, unknown> | null)?.['@type'];
+  const types = Array.isArray(type) ? type : [type];
+  return types.includes('Organization') || types.includes('EducationalOrganization');
+};
+
+const mergedSiteNodes = sameAs.length
+  ? siteNodes.map((node) => (isOrganizationNode(node) ? { ...node, sameAs } : node))
+  : siteNodes;
+
+const graph = [...mergedSiteNodes, ...(pageNodes[route] ?? []), ...campusNodes, ...extra];
 const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
 ---
 

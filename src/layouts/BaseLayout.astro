@@ -83,12 +83,32 @@ const currentRoute = route ?? (pathname.endsWith('/') ? pathname : pathname + '/
       );
 
       if (revealElements.length && 'IntersectionObserver' in window) {
+        /**
+         * 卡片进入视口后显形。
+         * 注意：淡入用的 opacity / transform 是内联样式，优先级高于类选择器，
+         * 所以动画播完必须把内联样式清掉，否则卡片会停在 opacity: 0（页面看着是空白），
+         * 且内联 transform 会一直盖住卡片自身的 hover 位移效果。
+         */
+        const revealCard = (el: HTMLElement) => {
+          const delay = Number.parseFloat(el.style.transitionDelay) || 0;
+          el.classList.add('revealed');
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+
+          window.setTimeout(() => {
+            el.style.removeProperty('opacity');
+            el.style.removeProperty('transform');
+            el.style.removeProperty('transition');
+            el.style.removeProperty('transition-delay');
+          }, 500 + delay * 1000 + 50);
+        };
+
         const revealObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
                 revealObserver.unobserve(entry.target);
+                revealCard(entry.target as HTMLElement);
               }
             });
           },

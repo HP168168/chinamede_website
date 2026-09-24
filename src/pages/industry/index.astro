@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { pageSeo } from '../../data/pageSeo';
+import { getSeoFor } from '../../lib/strapi';
 
-const seo = pageSeo['/industry/'];
+const seo = await getSeoFor('/industry/');
 ---
 
 <BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/industry/">

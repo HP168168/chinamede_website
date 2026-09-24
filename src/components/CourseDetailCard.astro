@@ -1,7 +1,8 @@
 ---
 // 课程详情主卡片
 // linked=true 时封面图与标题带详情页链接（课程列表页），false 时为纯展示（课程详情页）
-import type { Course } from '../data/courses';
+import type { Course } from '../types/content';
+import { getSiteConfig } from '../lib/strapi';
 
 interface Props {
   course: Course;
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const { course, linked = false } = Astro.props;
+// 卡片内的咨询入口统一取站点设置，改热线无需改代码
+const site = await getSiteConfig();
 const href = `/courses/${course.slug}/`;
 const cardId = course.code.toLowerCase();
 ---
@@ -72,7 +75,7 @@ const cardId = course.code.toLowerCase();
 
       <div class="course-action-row">
         <a href="/enroll/" class="btn btn-red btn-sm">免费预约试听 / 领课表</a>
-        <a href="tel:4008004459" class="btn btn-outline btn-sm">📞 咨询课程顾问</a>
+        <a href={site.telephoneHref} class="btn btn-outline btn-sm">📞 咨询课程顾问</a>
       </div>
     </div>
   </div>

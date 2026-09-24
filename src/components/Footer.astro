@@ -3,14 +3,27 @@
 // variant:
 //   default - 品牌区 + 链接组 + 联系方式 + 备案信息（普通页面）
 //   simple  - 仅备案信息（404 页面沿用旧站结构）
-import { site } from '../data/site';
-import { footerGroups } from '../data/navigation';
+import { getNavigation, getSiteConfig } from '../lib/strapi';
 
 interface Props {
   variant?: 'default' | 'simple';
 }
 
 const { variant = 'default' } = Astro.props;
+
+const [site, navigation] = await Promise.all([getSiteConfig(), getNavigation()]);
+const { footerGroups, footerIntro, footerContacts, footerBottom } = navigation;
+
+/**
+ * 页脚底部的备案信息：文案由后台维护，若其中出现备案号，则自动把该段渲染成工信部链接。
+ * 号码与链接地址同样来自后台「站点设置」，改号无需改代码。
+ */
+const bottomLines = footerBottom.map((line) => {
+  const index = site.icp ? line.indexOf(site.icp) : -1;
+  return index === -1
+    ? { before: line, icp: '', after: '' }
+    : { before: line.slice(0, index), icp: site.icp, after: line.slice(index + site.icp.length) };
+});
 ---
 
 <footer class="footer">
@@ -23,7 +36,7 @@ const { variant = 'default' } = Astro.props;
               <a href="/" class="logo">
                 <img width="2125" height="505" src={site.logo} alt={site.logoAlt} class="logo-img" />
               </a>
-              <p>美迪时代教育隶属于广州美迪教育科技有限公司，专注成人职业技能就业培训，让职业就业更简单。</p>
+              <p>{footerIntro}</p>
             </div>
             {footerGroups.map((group) => (
               <div class="footer-links">
@@ -39,27 +52,36 @@ const { variant = 'default' } = Astro.props;
             ))}
             <div class="footer-contact">
               <h4 class="footer-title">联系我们</h4>
-              <p>📞 {site.telephone}</p>
-              <p>🌐 <a href="https://www.chinamede.com/" class="footer-link">www.chinamede.com</a></p>
-              <p>📧 {site.legalName}</p>
-              <p>🏢 {site.campusDisplay}就近服务</p>
+              {footerContacts.map((line) => <p>{line}</p>)}
             </div>
           </div>
           <div class="footer-bottom">
-            <p>
-              {site.copyright} | {site.legalName} |{' '}
-              <a href={site.icpUrl} class="beian" target="_blank" rel="noopener">{site.icp}</a>
-            </p>
-            <p>{site.slogan}</p>
+            {bottomLines.map((line) => (
+              <p>
+                {line.before}
+                {line.icp !== '' && (
+                  <a href={site.icpUrl} class="beian" target="_blank" rel="noopener">
+                    {line.icp}
+                  </a>
+                )}
+                {line.after}
+              </p>
+            ))}
           </div>
         </>
       ) : (
         <div class="footer-bottom" style="border:none;padding-top:0;">
-          <p>
-            {site.copyright} | {site.legalName} |{' '}
-            <a href={site.icpUrl} class="beian" target="_blank" rel="noopener">{site.icp}</a>
-          </p>
-          <p>{site.slogan}</p>
+          {bottomLines.map((line) => (
+            <p>
+              {line.before}
+              {line.icp !== '' && (
+                <a href={site.icpUrl} class="beian" target="_blank" rel="noopener">
+                  {line.icp}
+                </a>
+              )}
+              {line.after}
+            </p>
+          ))}
         </div>
       )
     }

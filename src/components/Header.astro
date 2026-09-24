@@ -3,14 +3,15 @@
 // variant:
 //   default - 全量导航 + 电话区 + 移动端菜单按钮（普通页面）
 //   simple  - 精简导航，无电话区（404 页面沿用旧站结构）
-import { site } from '../data/site';
-import { nav } from '../data/navigation';
+import { getNavigation, getSiteConfig } from '../lib/strapi';
 
 interface Props {
   variant?: 'default' | 'simple';
 }
 
 const { variant = 'default' } = Astro.props;
+
+const [site, navigation] = await Promise.all([getSiteConfig(), getNavigation()]);
 
 const simpleNav = [
   { label: '品牌介绍', href: '/brand/' },
@@ -20,7 +21,7 @@ const simpleNav = [
   { label: '联系我们', href: '/contact/' },
 ];
 
-const links = variant === 'simple' ? simpleNav : nav;
+const links = variant === 'simple' ? simpleNav : navigation.nav;
 ---
 
 <header class="header">

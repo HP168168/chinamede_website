@@ -1,0 +1,73 @@
+{
+  "_comment": "官网构建期取数的唯一清单：scripts/export-snapshot.mjs 按此导出快照，src/lib/strapi.ts 按此拉取。注意：可重复字符串字段（tags/aliases/meta/cities 等）不能 populate，否则会报 400。",
+  "siteConfig": {
+    "kind": "single",
+    "path": "site-config",
+    "query": "populate[logo]=true&populate[ogImage]=true&populate[wechatQr]=true"
+  },
+  "navigation": {
+    "kind": "single",
+    "path": "navigation",
+    "query": "populate[nav]=true&populate[footerGroups][populate][0]=links"
+  },
+  "pageSeo": {
+    "kind": "single",
+    "path": "page-seo",
+    "query": "populate[entries][populate][0]=seo"
+  },
+  "schemaData": {
+    "kind": "single",
+    "path": "schema-data",
+    "query": ""
+  },
+  "courseCategories": {
+    "kind": "collection",
+    "path": "course-categories",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200"
+  },
+  "courses": {
+    "kind": "collection",
+    "path": "courses",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200&populate[category][fields][0]=code&populate[cover]=true&populate[metaTags]=true&populate[price]=true&populate[stats]=true&populate[curriculum][populate][0]=modules&populate[practice]=true&populate[outcomes]=true&populate[faq]=true&populate[seo]=true"
+  },
+  "teacherLevels": {
+    "kind": "collection",
+    "path": "teacher-levels",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200"
+  },
+  "teachers": {
+    "kind": "collection",
+    "path": "teachers",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200&populate[photo]=true&populate[level]=true"
+  },
+  "showcaseSections": {
+    "kind": "collection",
+    "path": "showcase-sections",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200&populate[items]=true"
+  },
+  "campuses": {
+    "kind": "collection",
+    "path": "campuses",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200&populate[cover]=true"
+  },
+  "newsItems": {
+    "kind": "collection",
+    "path": "news-items",
+    "query": "sort[0]=order:asc&pagination[pageSize]=500"
+  },
+  "faqs": {
+    "kind": "collection",
+    "path": "faqs",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200"
+  },
+  "guides": {
+    "kind": "collection",
+    "path": "guides",
+    "query": "sort[0]=order:asc&pagination[pageSize]=200&populate[seo]=true"
+  },
+  "articles": {
+    "kind": "collection",
+    "path": "articles",
+    "query": "sort[0]=publishedAt:desc&pagination[pageSize]=500&populate[cover]=true&populate[seo]=true&populate[answerBlocks]=true&populate[keyFacts]=true&populate[faq]=true&populate[sources]=true&populate[relatedLinks]=true"
+  }
+}

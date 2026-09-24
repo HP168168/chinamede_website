@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { pageSeo } from '../../data/pageSeo';
+import { getGuides, getSeoFor } from '../../lib/strapi';
 
-const seo = pageSeo['/knowledge/'];
+const [seo, guides] = await Promise.all([getSeoFor('/knowledge/'), getGuides()]);
 ---
 
 <BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/knowledge/">
@@ -31,33 +31,17 @@ const seo = pageSeo['/knowledge/'];
           <span class="knowledge-cat">AI与AIGC</span>
         </div>
         <div class="news-grid">
-          <article class="news-card">
-            <div class="news-image">📱</div>
-            <div class="news-content">
-              <div class="news-date">转行攻略 · 新媒体运营</div>
-              <h3><a href="/knowledge/guide-newmedia/">零基础转行新媒体运营全攻略</a></h3>
-              <p>从月薪3千到月薪过万的完整路径：岗位认知、技能清单、作品集准备、求职面试、入职后前90天怎么干，一篇讲透。</p>
-              <a href="/knowledge/guide-newmedia/" class="read-more">阅读全文 →</a>
-            </div>
-          </article>
-          <article class="news-card">
-            <div class="news-image">🤖</div>
-            <div class="news-content">
-              <div class="news-date">AI 与 AIGC · 获客</div>
-              <h3><a href="/knowledge/guide-geo/">什么是GEO？AI搜索时代的获客新打法</a></h3>
-              <p>当用户开始在豆包、DeepSeek、ChatGPT里问"哪家培训机构好"，SEO正在被GEO取代。企业如何让AI推荐你？个人如何抓住GEO岗位红利？</p>
-              <a href="/knowledge/guide-geo/" class="read-more">阅读全文 →</a>
-            </div>
-          </article>
-          <article class="news-card">
-            <div class="news-image">🎬</div>
-            <div class="news-content">
-              <div class="news-date">短视频 · 短剧 · 就业前景</div>
-              <h3><a href="/knowledge/guide-shortvideo/">2026短视频与短剧行业就业前景分析</a></h3>
-              <p>短视频用户超10亿、短剧市场规模破500亿，剪辑、运营、投流、编剧岗位缺口持续扩大。普通人入行还有机会吗？薪资多少？</p>
-              <a href="/knowledge/guide-shortvideo/" class="read-more">阅读全文 →</a>
-            </div>
-          </article>
+          {guides.map((guide) => (
+            <article class="news-card">
+              <div class="news-image">{guide.emoji}</div>
+              <div class="news-content">
+                <div class="news-date">{guide.categoryLabel}</div>
+                <h3><a href={`/knowledge/${guide.slug}/`}>{guide.title}</a></h3>
+                <p>{guide.summary}</p>
+                <a href={`/knowledge/${guide.slug}/`} class="read-more">阅读全文 →</a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

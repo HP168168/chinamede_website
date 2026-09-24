@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="默认讲师头像">
+  <defs>
+    <linearGradient id="avatarBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EEF2F8" />
+      <stop offset="1" stop-color="#DEE5EF" />
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="60" fill="url(#avatarBg)" />
+  <circle cx="60" cy="45" r="20" fill="#C3CCDA" />
+  <path
+    d="M60 71c-18.5 0-33.5 11.6-36.6 27.2A59.8 59.8 0 0 0 60 120a59.8 59.8 0 0 0 36.6-21.8C93.5 82.6 78.5 71 60 71Z"
+    fill="#C3CCDA"
+  />
+</svg>

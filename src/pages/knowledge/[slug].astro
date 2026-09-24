@@ -1,16 +1,13 @@
 ---
 // 知识百科指南动态路由：/knowledge/<slug>/
-// 正文以 HTML 片段存放在 src/content/knowledge/<slug>.html，构建时按 raw 读取
+// 正文为后台维护的 HTML 片段（含表格与引用块），构建期直接取出渲染，保证与迁移前逐字一致
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { guides } from '../../data/guides';
+import { getGuides } from '../../lib/strapi';
 
-const bodies = import.meta.glob<string>('../../content/knowledge/*.html', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-});
-
-export function getStaticPaths() {
+// getStaticPaths 由 Astro 提升到独立作用域，无法读取 frontmatter 里的变量，
+// 因此这里再取一次；取数层有模块级缓存，同一次构建不会产生第二次请求。
+export async function getStaticPaths() {
+  const guides = await getGuides();
   return guides.map((guide) => ({
     params: { slug: guide.slug },
     props: { guide },
@@ -19,7 +16,7 @@ export function getStaticPaths() {
 
 const { guide } = Astro.props;
 const route = `/knowledge/${guide.slug}/`;
-const body = bodies[`../../content/knowledge/${guide.slug}.html`] ?? '';
+const body = guide.content;
 ---
 
 <BaseLayout title={guide.seo.title} description={guide.seo.description} keywords={guide.seo.keywords} route={route}>

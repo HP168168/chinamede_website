@@ -1,8 +1,28 @@
 ---
+import type { Teacher } from '../../types/content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { pageSeo } from '../../data/pageSeo';
+import {
+  DEFAULT_TEACHER_PHOTO,
+  getSeoFor,
+  getTeacherLevels,
+  getTeachers,
+  groupTeachersByLevel,
+} from '../../lib/strapi';
 
-const seo = pageSeo['/teachers/'];
+const [seo, teachers, teacherLevels] = await Promise.all([
+  getSeoFor('/teachers/'),
+  getTeachers(),
+  getTeacherLevels(),
+]);
+
+// 展示顺序：按后台「师资层级」的先后聚合讲师，同一层级内保持后台 order 升序
+const teachersOrdered = groupTeachersByLevel(teachers, teacherLevels).flatMap((group) => group.teachers);
+
+/**
+ * 层级标签：直接取关联关系带来的层级名称（「师资层级」主表的 name），
+ * 关系缺失时退回历史编码，两者都没有则不渲染标签
+ */
+const levelLabel = (teacher: Teacher) => teacher.levelName || teacher.levelCode;
 ---
 
 <BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/teachers/">
@@ -50,72 +70,42 @@ const seo = pageSeo['/teachers/'];
           <h2>核心讲师团队</h2>
           <p>每位讲师都具备丰富的企业项目经验与教学沉淀</p>
         </div>
-        <div class="teacher-grid">
-          <div class="teacher-card">
-            <div class="teacher-avatar">👨‍💼</div>
-            <div class="teacher-info">
-              <h3>张明远</h3>
-              <div class="title">AI新媒体运营学科带头人</div>
-              <p>10年新媒体运营与获客经验，曾操盘多个百万级账号，擅长抖音、小红书、视频号全平台运营与企业GEO获客实战。</p>
-            </div>
+        {teachersOrdered.length > 0 ? (
+          <div class="teacher-grid">
+            {teachersOrdered.map((teacher) => (
+              <div class="teacher-card">
+                <div class="teacher-avatar">
+                  <img
+                    src={teacher.photo}
+                    alt={
+                      teacher.photo === DEFAULT_TEACHER_PHOTO
+                        ? `${teacher.name}（暂无形象照）`
+                        : `${teacher.name}形象照`
+                    }
+                    width="120"
+                    height="120"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="teacher-info">
+                  <h3>{teacher.name}</h3>
+                  <div class="title">{teacher.title}</div>
+                  {levelLabel(teacher) && (
+                    <div class="course-meta" style="justify-content: center; margin-bottom: 8px;">
+                      <span class="tag">{levelLabel(teacher)}</span>
+                    </div>
+                  )}
+                  <p>{teacher.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div class="teacher-card">
-            <div class="teacher-avatar">👩‍🎨</div>
-            <div class="teacher-info">
-              <h3>李思琪</h3>
-              <div class="title">AI视觉设计金牌讲师</div>
-              <p>8年电商视觉设计经验，服务过多个知名电商品牌，精通C4D、PS精修、AIGC商业出图与品牌IP延展设计。</p>
-            </div>
-          </div>
-          <div class="teacher-card">
-            <div class="teacher-avatar">👨‍🎬</div>
-            <div class="teacher-info">
-              <h3>王浩然</h3>
-              <div class="title">商业短视频创作负责人</div>
-              <p>前MCN内容总监，主导过数百条商业短视频项目，擅长拍摄剪辑、特效合成、信息流广告与商单履约全流程。</p>
-            </div>
-          </div>
-          <div class="teacher-card">
-            <div class="teacher-avatar">👩‍💻</div>
-            <div class="teacher-info">
-              <h3>陈雨桐</h3>
-              <div class="title">AIGC全能班主讲</div>
-              <p>深耕AI工具应用与智能体开发，熟悉Coze、Dify等平台，擅长将AI能力落地到运营、设计、视频等真实工作场景。</p>
-            </div>
-          </div>
-          <div class="teacher-card">
-            <div class="teacher-avatar">👨‍🎭</div>
-            <div class="teacher-info">
-              <h3>刘子轩</h3>
-              <div class="title">AI短剧漫剧创作导师</div>
-              <p>参与多部短剧/漫剧项目制作，熟悉AI漫剧、AI真人剧全流程，掌握短剧备案合规、投流分账与平台征稿通道。</p>
-            </div>
-          </div>
-          <div class="teacher-card">
-            <div class="teacher-avatar">👩‍🌐</div>
-            <div class="teacher-info">
-              <h3>赵雅琳</h3>
-              <div class="title">跨境电商实战讲师</div>
-              <p>10年跨境电商运营经验，操盘过亚马逊、TikTok、独立站等多平台项目，擅长海外社媒运营与Facebook高阶投流。</p>
-            </div>
-          </div>
-          <div class="teacher-card">
-            <div class="teacher-avatar">👨‍💼</div>
-            <div class="teacher-info">
-              <h3>周建国</h3>
-              <div class="title">就业指导总监</div>
-              <p>负责学员就业服务体系建设，对接全国合作企业资源，擅长简历诊断、模拟面试、岗位匹配与职场发展规划。</p>
-            </div>
-          </div>
-          <div class="teacher-card">
-            <div class="teacher-avatar">👩‍🏫</div>
-            <div class="teacher-info">
-              <h3>吴文静</h3>
-              <div class="title">教学督导负责人</div>
-              <p>负责教学质量监控与讲师评级，通过随堂听课、学员期评、模块通过率等数据，持续优化教学标准与服务体验。</p>
-            </div>
-          </div>
-        </div>
+        ) : (
+          <p style="text-align: center; color: var(--text-gray);">
+            讲师档案正在整理中，可先了解各课程对应的授课师资安排。
+          </p>
+        )}
       </div>
     </section>
 
@@ -126,50 +116,18 @@ const seo = pageSeo['/teachers/'];
           <p>分级考核、数据驱动，确保教学质量稳定可控</p>
         </div>
         <div class="course-grid">
-          <div class="course-card">
-            <div class="course-image" style="background: linear-gradient(135deg, #0066FF, #5B9AFF);">L1</div>
-            <div class="course-info">
-              <h3>L1 助理讲师</h3>
-              <p>通过模块知识笔试与助教实习，承担答疑、批改、助教课等基础教学工作。</p>
-              <div class="course-meta">
-                <span>📝 模块笔试</span>
-                <span>👨‍🏫 助教实习</span>
+          {teacherLevels.map((level) => (
+            <div class="course-card">
+              <div class="course-image" style={level.gradient}>{level.code}</div>
+              <div class="course-info">
+                <h3>{level.name}</h3>
+                <p>{level.desc}</p>
+                <div class="course-meta">
+                  {level.meta.map((item) => <span>{item}</span>)}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="course-card">
-            <div class="course-image" style="background: linear-gradient(135deg, #7B2FF7, #B07CFF);">L2</div>
-            <div class="course-info">
-              <h3>L2 认证讲师</h3>
-              <p>试讲双评≥80分，项目实操考核通过，可独立承担单模块授课与标准课时。</p>
-              <div class="course-meta">
-                <span>🎤 试讲考核</span>
-                <span>🛠️ 项目实操</span>
-              </div>
-            </div>
-          </div>
-          <div class="course-card">
-            <div class="course-image" style="background: linear-gradient(135deg, #E60012, #FF4D5A);">L3</div>
-            <div class="course-info">
-              <h3>L3 资深讲师</h3>
-              <p>满两年且学员期评≥4.5，主导课纲迭代，享受学科分红与讲师带教职责。</p>
-              <div class="course-meta">
-                <span>⭐ 期评≥4.5</span>
-                <span>📚 课纲迭代</span>
-              </div>
-            </div>
-          </div>
-          <div class="course-card">
-            <div class="course-image" style="background: linear-gradient(135deg, #006D77, #83C5BE);">M</div>
-            <div class="course-info">
-              <h3>M 企业导师</h3>
-              <p>行业在职专家，参与商业项目点评、前沿模块教学与岗位标准输入。</p>
-              <div class="course-meta">
-                <span>💼 一线在职</span>
-                <span>🎯 项目点评</span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

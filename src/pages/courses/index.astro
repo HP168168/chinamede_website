@@ -3,10 +3,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CourseDetailCard from '../../components/CourseDetailCard.astro';
 import CourseFilter from '../../components/CourseFilter.astro';
-import { courses } from '../../data/courses';
-import { pageSeo } from '../../data/pageSeo';
+import { getCourses, getSeoFor } from '../../lib/strapi';
 
-const seo = pageSeo['/courses/'];
+const [seo, courses] = await Promise.all([getSeoFor('/courses/'), getCourses()]);
 
 const features = [
   { icon: '🎯', title: '对标企业岗位', desc: '全程对标企业真实岗位工作场景与用人标准，帮助学员从零起步系统掌握岗位必备实操能力。' },

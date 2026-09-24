@@ -1,0 +1,72 @@
+{
+  "exportedAt": "2026-09-23T04:32:40.484Z",
+  "source": "http://localhost:1337/api/guides?status=published&sort%5B0%5D=order%3Aasc&pagination%5BpageSize%5D=200&populate%5Bseo%5D=true",
+  "data": [
+    {
+      "id": 35,
+      "documentId": "fflsl6e3aq5q9q1o3n19384p",
+      "slug": "guide-newmedia",
+      "title": "零基础转行新媒体运营全攻略",
+      "subtitle": "从月薪3千到月薪过万的完整路径",
+      "content": "<section class=\"section\">\n    <div class=\"container\">\n      <div class=\"article-body\">\n        <div class=\"article-meta\">\n          <span class=\"tag\">转行攻略</span>\n          <span>📅 2026-09-02</span>\n          <span>⏱️ 阅读约12分钟</span>\n          <span>✍️ 美迪时代教育教研团队</span>\n        </div>\n\n        <p>\n          <strong>摘要：</strong>新媒体运营是过去五年需求增长最快的岗位之一，入行门槛相对友好、薪资天花板高。本文系统讲清：新媒体运营到底做什么、零基础需要学哪些技能、作品集怎么准备、简历面试怎么过、入职后前90天怎么站稳脚跟，以及自学和系统学习两条路径的成本对比。\n        </p>\n\n        <h2>一、新媒体运营到底是做什么的？</h2>\n        <p>很多转行者对新媒体运营的理解停留在\"发朋友圈、发微博\"。实际上，企业招聘的新媒体运营是<strong>以流量增长和商业转化为目标的岗位</strong>，核心工作包括：</p>\n        <ul>\n          <li><strong>内容策划与生产：</strong>围绕抖音、小红书、视频号、公众号制定选题，撰写文案、拍摄剪辑视频；</li>\n          <li><strong>账号运营：</strong>粉丝增长、评论区维护、数据复盘、账号定位迭代；</li>\n          <li><strong>流量获取：</strong>自然流运营（SEO/GEO关键词布局）与付费投流（千川、聚光、信息流广告）；</li>\n          <li><strong>转化承接：</strong>私域引流、社群运营、直播带货、线索转化，直接对获客结果负责。</li>\n        </ul>\n        <p>一句话总结：<strong>新媒体运营 = 用内容为企业获得客户</strong>。这也是为什么它越老越值钱——做的是增长，拿的是结果。</p>\n\n        <h2>二、2026年这个岗位还值得入行吗？</h2>\n        <p>值得，但要求变了。三个趋势需要注意：</p>\n        <ol>\n          <li><strong>AI成为标配：</strong>会用AI工具（文案生成、AI绘图、AI剪辑、智能体）的运营，人效是不用AI者的3-5倍，企业招聘时已把AIGC能力写进JD；</li>\n          <li><strong>视频化不可逆：</strong>图文岗位萎缩，短视频+直播能力成为核心竞争项；</li>\n          <li><strong>GEO能力是新的差异化：</strong>越来越多用户在AI大模型里问\"XX哪家好\"，懂得让品牌被AI推荐（生成式引擎优化）的运营极为稀缺。</li>\n        </ol>\n        <blockquote>一线城市1-3年经验的新媒体运营，薪资普遍在8K-15K；具备\"短视频+AI+GEO\"复合能力的运营，起薪即可过万。</blockquote>\n\n        <h2>三、零基础必备技能清单（90天版）</h2>\n        <table>\n          <tr>\n            <th>阶段</th>\n            <th>时间</th>\n            <th>核心技能</th>\n            <th>产出物</th>\n          </tr>\n          <tr>\n            <td>基础期</td>\n            <td>第1-3周</td>\n            <td>平台规则、账号定位、选题方法、爆款文案结构</td>\n            <td>1份账号定位方案</td>\n          </tr>\n          <tr>\n            <td>工具期</td>\n            <td>第4-6周</td>\n            <td>手机拍摄、剪映专业剪辑、AI工具（文案/图片/数字人）</td>\n            <td>10条完整短视频</td>\n          </tr>\n          <tr>\n            <td>进阶期</td>\n            <td>第7-10周</td>\n            <td>数据分析、投流基础、私域转化、GEO关键词布局</td>\n            <td>1份完整运营复盘报告</td>\n          </tr>\n          <tr>\n            <td>实战期</td>\n            <td>第11-13周</td>\n            <td>企业真实项目实训、面试模拟</td>\n            <td>作品集+offer</td>\n          </tr>\n        </table>\n\n        <h2>四、作品集怎么准备？</h2>\n        <p>企业不看你学过什么，只看你<strong>做出过什么</strong>。一份合格的作品集包含：</p>\n        <ul>\n          <li>1个从0到1运营的真实账号（哪怕只有几千粉，只要有数据增长曲线）；</li>\n          <li>3-5条数据最好的短视频，附投放/选题思路复盘；</li>\n          <li>1份用AI工具提效的对比案例（人工3天的活，AI+人工半天完成）；</li>\n          <li>1份完整的活动策划或转化方案。</li>\n        </ul>\n\n        <h2>五、自学 vs 系统学习：怎么选？</h2>\n        <p><strong>适合自学的人：</strong>执行力极强、有行业人脉、不着急就业。预计周期6-12个月，主要成本是时间。</p>\n        <p>\n          <strong>适合系统学习的人：</strong>想尽快转行就业、需要真实项目练手、希望有人带少走弯路。以美迪时代教育《AI新媒体运营师就业班》为例：50天系统课+22天带薪实习，课程内嵌真实商业项目实训，实习期间即可积累作品集——相当于把自学一年的试错成本压缩到三个月内。\n        </p>\n\n        <h2>六、入职前90天生存指南</h2>\n        <ol>\n          <li><strong>第1个月：</strong>吃透自家产品与用户，别急着改账号，先做数据诊断报告；</li>\n          <li><strong>第2个月：</strong>小步快跑测试内容方向，每周复盘迭代；</li>\n          <li><strong>第3个月：</strong>拿下一个可量化的结果（涨粉、爆款、转化线索），站稳脚跟。</li>\n        </ol>\n\n        <div class=\"article-cta\">\n          <h3>想系统学习新媒体运营？</h3>\n          <p>美迪时代教育《AI新媒体运营师就业班》50天+22天带薪实习，6城13个直营校区就近上课</p>\n          <a href=\"/enroll/\" class=\"btn btn-red\">免费预约试听</a>\n        </div>\n\n        <div class=\"article-related\">\n          <article class=\"news-card\">\n            <div class=\"news-image\">🔍</div>\n            <div class=\"news-content\">\n              <div class=\"news-date\">相关阅读</div>\n              <h3><a href=\"/knowledge/guide-geo/\">什么是GEO？AI搜索时代的获客新打法</a></h3>\n            </div>\n          </article>\n          <article class=\"news-card\">\n            <div class=\"news-image\">🎬</div>\n            <div class=\"news-content\">\n              <div class=\"news-date\">相关阅读</div>\n              <h3><a href=\"/knowledge/guide-shortvideo/\">2026短视频与短剧行业就业前景分析</a></h3>\n            </div>\n          </article>\n        </div>\n      </div>\n    </div>\n  </section>\n",
+      "order": 1,
+      "createdAt": "2026-09-22T04:53:37.087Z",
+      "updatedAt": "2026-09-22T05:52:18.115Z",
+      "publishedAt": "2026-09-22T05:52:18.119Z",
+      "emoji": "📱",
+      "categoryLabel": "转行攻略 · 新媒体运营",
+      "summary": "从月薪3千到月薪过万的完整路径：岗位认知、技能清单、作品集准备、求职面试、入职后前90天怎么干，一篇讲透。",
+      "seo": {
+        "id": 504,
+        "title": "零基础转行新媒体运营全攻略：从月薪3千到月薪过万的完整路径",
+        "description": "零基础转行新媒体运营完整攻略：岗位认知、必备技能清单、作品集怎么准备、简历面试技巧、入职前90天规划，以及自学vs报班的成本对比，美迪时代教育教研团队实操整理。",
+        "keywords": "新媒体运营转行攻略,零基础转行,新媒体运营学什么,新媒体运营薪资,作品集准备,转行互联网行业",
+        "canonical": null
+      }
+    },
+    {
+      "id": 34,
+      "documentId": "ll98ctnqemvkn84f6ttacu2t",
+      "slug": "guide-geo",
+      "title": "什么是GEO？",
+      "subtitle": "AI搜索时代企业与个人必须掌握的获客新打法",
+      "content": "<section class=\"section\">\n    <div class=\"container\">\n      <div class=\"article-body\">\n        <div class=\"article-meta\">\n          <span class=\"tag\">AI 与 AIGC</span>\n          <span>📅 2026-09-02</span>\n          <span>⏱️ 阅读约10分钟</span>\n          <span>✍️ 美迪时代教育教研团队</span>\n        </div>\n\n        <p>\n          <strong>摘要：</strong>当越来越多用户开始问AI\"广州哪家新媒体培训机构靠谱\"，而不是打开百度搜索，一个新战场出现了：谁能让AI在回答里推荐自己，谁就拿到了下一个十年的流量入口。这就是GEO（Generative\n          Engine Optimization，生成式引擎优化）。\n        </p>\n\n        <h2>一、GEO 是什么？一句话讲清</h2>\n        <p>\n          GEO（生成式引擎优化）是指<strong>通过结构化、可验证、高权威的内容布局，让品牌信息更容易被AI大模型（DeepSeek、豆包、Kimi、ChatGPT、文心一言等）检索、采信并在回答中推荐</strong>的一整套优化方法。\n        </p>\n        <blockquote>如果说SEO的目标是\"排在搜索结果第一页\"，那GEO的目标就是\"被AI写进答案里\"。</blockquote>\n\n        <h2>二、GEO 和 SEO 的核心区别</h2>\n        <table>\n          <tr>\n            <th>维度</th>\n            <th>SEO（搜索引擎优化）</th>\n            <th>GEO（生成式引擎优化）</th>\n          </tr>\n          <tr>\n            <td>优化对象</td>\n            <td>百度、Google 等搜索排序算法</td>\n            <td>DeepSeek、豆包、ChatGPT 等大模型</td>\n          </tr>\n          <tr>\n            <td>呈现形式</td>\n            <td>链接列表，用户自己点</td>\n            <td>AI直接生成答案，用户直接采信</td>\n          </tr>\n          <tr>\n            <td>关键因素</td>\n            <td>关键词密度、外链、点击率</td>\n            <td>内容结构化、事实可验证、多平台一致性、权威引用</td>\n          </tr>\n          <tr>\n            <td>竞争逻辑</td>\n            <td>排名位置之争</td>\n            <td>是否进入AI的\"认知\"</td>\n          </tr>\n          <tr>\n            <td>见效周期</td>\n            <td>3-6个月</td>\n            <td>内容全网布局后逐步累积</td>\n          </tr>\n        </table>\n\n        <h2>三、AI 是如何决定\"推荐谁\"的？</h2>\n        <p>大模型生成回答时，通常会检索（联网搜索）+综合多个来源。影响它推荐谁的因素包括：</p>\n        <ol>\n          <li><strong>全网信息一致性：</strong>品牌名称、业务、地址、电话在官网、百科、新闻、社交媒体上的描述是否统一；</li>\n          <li><strong>内容结构化程度：</strong>官网是否有清晰的FAQ、标准化的Schema结构化数据、明确的定义式内容；</li>\n          <li><strong>可验证的事实与数据：</strong>具体数字、年份、资质证书、案例，比形容词更有说服力；</li>\n          <li><strong>第三方权威背书：</strong>新闻媒体报道、行业榜单、用户评价；</li>\n          <li><strong>内容新鲜度：</strong>持续更新的网站比三年不更新的更被信任。</li>\n        </ol>\n\n        <h2>四、企业布局 GEO 的 5 个动作</h2>\n        <ul>\n          <li><strong>建好\"事实中枢\"：</strong>官网集中呈现品牌全量事实（Who we are / 课程 / 数据 / 资质），并配置机器可读的JSON-LD结构化数据与面向AI的llms.txt文件；\n          </li>\n          <li><strong>内容定义化：</strong>用\"什么是XX\"\"XX怎么做\"的定义式、问答式内容占据AI认知；</li>\n          <li><strong>全平台信息一致：</strong>统一NAP（名称、地址、电话），覆盖百科、地图、点评、社媒；</li>\n          <li><strong>持续生产可引用的内容：</strong>行业数据、白皮书、案例复盘，让AI\"有据可引\"；</li>\n          <li><strong>积累真实口碑：</strong>用户在公开平台的真实评价，是AI判断信任度的重要依据。</li>\n        </ul>\n\n        <h2>五、GEO 给个人带来的新岗位机会</h2>\n        <p>企业普遍开始招聘\"懂GEO的运营\"：新媒体运营、内容运营、AI营销岗位的JD里，\"GEO/生成式引擎优化\"出现的频率快速上升。具备<strong>内容能力 + AI工具能力 +\n            GEO方法论</strong>的复合型人才，正在成为就业市场的新稀缺。</p>\n\n        <div class=\"article-cta\">\n          <h3>想学习 GEO 获客实战？</h3>\n          <p>美迪《AI新媒体运营师就业班》《AIGC全能就业班》均内嵌企业AI获客GEO实战模块</p>\n          <a href=\"/courses/\" class=\"btn btn-red\">查看相关课程</a>\n        </div>\n\n        <div class=\"article-related\">\n          <article class=\"news-card\">\n            <div class=\"news-image\">📱</div>\n            <div class=\"news-content\">\n              <div class=\"news-date\">相关阅读</div>\n              <h3><a href=\"/knowledge/guide-newmedia/\">零基础转行新媒体运营全攻略</a></h3>\n            </div>\n          </article>\n          <article class=\"news-card\">\n            <div class=\"news-image\">🎬</div>\n            <div class=\"news-content\">\n              <div class=\"news-date\">相关阅读</div>\n              <h3><a href=\"/knowledge/guide-shortvideo/\">2026短视频与短剧行业就业前景分析</a></h3>\n            </div>\n          </article>\n        </div>\n      </div>\n    </div>\n  </section>\n",
+      "order": 2,
+      "createdAt": "2026-09-22T04:53:37.039Z",
+      "updatedAt": "2026-09-22T05:52:18.065Z",
+      "publishedAt": "2026-09-22T05:52:18.069Z",
+      "emoji": "🤖",
+      "categoryLabel": "AI 与 AIGC · 获客",
+      "summary": "当用户开始在豆包、DeepSeek、ChatGPT里问\"哪家培训机构好\"，SEO正在被GEO取代。企业如何让AI推荐你？个人如何抓住GEO岗位红利？",
+      "seo": {
+        "id": 501,
+        "title": "什么是GEO？AI搜索时代企业与个人必须掌握的获客新打法",
+        "description": "GEO（生成式引擎优化）详解：GEO和SEO的区别、AI大模型如何决定推荐谁、企业如何布局GEO让DeepSeek/豆包/ChatGPT推荐自己的品牌、GEO相关新岗位与薪资机会。",
+        "keywords": "GEO是什么,生成式引擎优化,GEO和SEO区别,AI搜索优化,AI获客,企业GEO布局,GEO岗位",
+        "canonical": null
+      }
+    },
+    {
+      "id": 36,
+      "documentId": "wlg4qb9g81c74w7t9a7jm3ko",
+      "slug": "guide-shortvideo",
+      "title": "2026短视频与短剧行业就业前景分析",
+      "subtitle": "普通人还有机会吗？",
+      "content": "<section class=\"section\">\n    <div class=\"container\">\n      <div class=\"article-body\">\n        <div class=\"article-meta\">\n          <span class=\"tag\">行业前景</span>\n          <span>📅 2026-09-02</span>\n          <span>⏱️ 阅读约10分钟</span>\n          <span>✍️ 美迪时代教育教研团队</span>\n        </div>\n\n        <p>\n          <strong>摘要：</strong>短视频用户规模已超10亿，微短剧市场规模突破500亿元并保持高速增长。行业从\"野蛮生长\"进入\"精品化+工业化\"阶段，对<strong>会用AI、懂内容、能投流</strong>的成手需求持续扩大。本文用数据回答：普通人现在入行还有没有机会，以及机会在哪些岗位上。\n        </p>\n\n        <h2>一、行业基本面：还在增长吗？</h2>\n        <ul>\n          <li><strong>用户端：</strong>短视频已成国民级应用，人均单日使用时长超过2.5小时；</li>\n          <li><strong>商业端：</strong>直播电商、本地生活、品牌营销预算持续向视频内容迁移；</li>\n          <li><strong>短剧爆发：</strong>微短剧从2023年约370亿市场规模快速迈向500亿+，备案剧集数量连年翻倍，平台（抖音、快手、微信小程序）全面入局；</li>\n          <li><strong>AI重塑生产：</strong>AI剪辑、AI剧本、数字人演员大幅降低制作成本，\"一人团队\"成为可能。</li>\n        </ul>\n\n        <h2>二、哪些岗位在抢人？</h2>\n        <table>\n          <tr>\n            <th>岗位方向</th>\n            <th>典型职责</th>\n            <th>参考薪资（一线城市1-3年）</th>\n          </tr>\n          <tr>\n            <td>短视频剪辑</td>\n            <td>电商/剧情/口播视频剪辑、包装</td>\n            <td>7K-13K</td>\n          </tr>\n          <tr>\n            <td>账号运营</td>\n            <td>内容策划、数据复盘、粉丝增长</td>\n            <td>8K-15K</td>\n          </tr>\n          <tr>\n            <td>短剧剪辑/后期</td>\n            <td>竖屏短剧精剪、卡点、字幕包装</td>\n            <td>9K-16K</td>\n          </tr>\n          <tr>\n            <td>投流优化师</td>\n            <td>千川/聚光投放、ROI优化</td>\n            <td>10K-20K（含提成）</td>\n          </tr>\n          <tr>\n            <td>短剧编剧/策划</td>\n            <td>剧本撰写、爆款结构拆解</td>\n            <td>8K-18K（含分账）</td>\n          </tr>\n          <tr>\n            <td>AI视频创作</td>\n            <td>AI生成内容、数字人、智能体工作流</td>\n            <td>10K-18K</td>\n          </tr>\n        </table>\n\n        <h2>三、普通人还有机会吗？</h2>\n        <p><strong>有机会，但\"随便拍拍\"的时代结束了。</strong>三个判断：</p>\n        <ol>\n          <li><strong>门槛在\"成手\"而非\"入门\"：</strong>会用剪映只是起点，企业要的是能独立负责账号结果的人。系统学习+真实项目实训是普通人最快的成手路径；</li>\n          <li><strong>AI能力是分水岭：</strong>同样一个剪辑岗，会AI工具的候选人产能是3倍，企业明显优先；</li>\n          <li><strong>短剧是普通人的新窗口：</strong>相比饱和的传统影视，短剧行业年轻、缺人、晋升快，大量岗位不要求科班背景。</li>\n        </ol>\n        <blockquote>美迪时代教育《商业短视频创作师就业班》与《AI短剧漫剧创作师就业班》学员中，相当比例来自工厂、文员、销售等零基础岗位，经过48天/27天系统学习+带薪实习后进入短视频与短剧行业。\n        </blockquote>\n\n        <h2>四、入行路径建议</h2>\n        <ol>\n          <li><strong>第1步：</strong>选定主攻方向（剪辑/运营/投流/编剧），不要贪多；</li>\n          <li><strong>第2步：</strong>系统学习拍摄、剪辑、AI工具与平台运营方法；</li>\n          <li><strong>第3步：</strong>用真实项目攒作品集（商业单、实习项目均可）；</li>\n          <li><strong>第4步：</strong>带着作品集和数据面试，入职后深耕一个垂类。</li>\n        </ol>\n\n        <div class=\"article-cta\">\n          <h3>想入行短视频/短剧行业？</h3>\n          <p>美迪《商业短视频创作师》《AI短剧漫剧创作师》就业班，真实项目实训+带薪实习</p>\n          <a href=\"/courses/\" class=\"btn btn-red\">查看课程详情</a>\n        </div>\n\n        <div class=\"article-related\">\n          <article class=\"news-card\">\n            <div class=\"news-image\">📱</div>\n            <div class=\"news-content\">\n              <div class=\"news-date\">相关阅读</div>\n              <h3><a href=\"/knowledge/guide-newmedia/\">零基础转行新媒体运营全攻略</a></h3>\n            </div>\n          </article>\n          <article class=\"news-card\">\n            <div class=\"news-image\">🔍</div>\n            <div class=\"news-content\">\n              <div class=\"news-date\">相关阅读</div>\n              <h3><a href=\"/knowledge/guide-geo/\">什么是GEO？AI搜索时代的获客新打法</a></h3>\n            </div>\n          </article>\n        </div>\n      </div>\n    </div>\n  </section>\n",
+      "order": 3,
+      "createdAt": "2026-09-22T04:53:37.138Z",
+      "updatedAt": "2026-09-22T05:52:18.165Z",
+      "publishedAt": "2026-09-22T05:52:18.168Z",
+      "emoji": "🎬",
+      "categoryLabel": "短视频 · 短剧 · 就业前景",
+      "summary": "短视频用户超10亿、短剧市场规模破500亿，剪辑、运营、投流、编剧岗位缺口持续扩大。普通人入行还有机会吗？薪资多少？",
+      "seo": {
+        "id": 507,
+        "title": "2026短视频与短剧行业就业前景分析：普通人还有机会吗？",
+        "description": "2026短视频短剧行业就业前景：市场规模、岗位缺口、剪辑/运营/投流/编剧各岗位薪资水平、入行门槛与学习路径，普通人转行短视频行业的可行性分析。",
+        "keywords": "短视频行业前景,短剧行业分析,短视频剪辑薪资,短剧岗位,视频剪辑培训,转行短视频",
+        "canonical": null
+      }
+    }
+  ]
+}

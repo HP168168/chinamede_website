@@ -1,0 +1,64 @@
+---
+// 文章列表（第一页）：/articles/
+// 内容来自后台「文章」，AI 生成与人工撰写两类稿件发布后都会出现在这里
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticles, getSeoFor, getSiteConfig } from '../../lib/strapi';
+import { ARTICLES_PAGE_SIZE, sliceArticles, totalArticlePages } from '../../lib/articles';
+
+const [seo, site, articles] = await Promise.all([getSeoFor('/articles/'), getSiteConfig(), getArticles()]);
+
+const items = sliceArticles(articles, 1);
+const totalPages = totalArticlePages(articles.length);
+---
+
+<BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/articles/">
+  <section class="page-banner">
+      <div class="container">
+        <h1>精选文章</h1>
+        <p>行业洞察 · 岗位解析 · 学习路径，由美迪教研团队与你一起读懂职业方向</p>
+        <div class="breadcrumb">
+          <a href="/">首页</a> / 精选文章
+        </div>
+      </div>
+    </section>
+
+    <section class="section news-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>最新文章</h2>
+          <p>共 {articles.length} 篇，涵盖{site.cities.slice(0, 3).join('、')}等地就业与岗位趋势</p>
+        </div>
+
+        {
+          items.length > 0 ? (
+            <div class="news-grid">
+              {items.map((article) => (
+                <ArticleCard article={article} />
+              ))}
+            </div>
+          ) : (
+            <div class="list-empty">文章正在筹备中，敬请期待。</div>
+          )
+        }
+
+        {
+          totalPages > 1 && (
+            <nav class="pager" aria-label="文章分页">
+              <span class="pager-status">第 1 / {totalPages} 页</span>
+              <a class="pager-link" href="/articles/page/2/">下一页 →</a>
+            </nav>
+          )
+        }
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>想系统学习，而不只是看文章？</h2>
+        <p>预约免费试听，由课程顾问为你做职业能力诊断与学习路径规划。咨询热线{site.telephone}（每天{site.serviceHours}）</p>
+        <a href="/enroll/" class="btn btn-red">免费预约试听</a>
+      </div>
+    </section>
+
+</BaseLayout>

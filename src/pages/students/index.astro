@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { pageSeo } from '../../data/pageSeo';
+import { getSeoFor, getShowcaseSections } from '../../lib/strapi';
 
-const seo = pageSeo['/students/'];
+const [seo, sections] = await Promise.all([getSeoFor('/students/'), getShowcaseSections()]);
+
+// 三个展示区块在后台「学员风采区块」中维护，新增/调整条目无需改代码
+const sectionOf = (id: string) => sections.find((section) => section.id === id)?.items ?? [];
 ---
 
 <BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/students/">
@@ -28,48 +31,15 @@ const seo = pageSeo['/students/'];
           <a href="#works">学生作品</a>
         </div>
         <div class="showcase-grid">
-          <div class="showcase-card">
-            <div class="showcase-image">👩‍💼</div>
-            <div class="showcase-content">
-              <h3>小林 · 行政转AI新媒体运营</h3>
-              <p>入职某美妆品牌新媒体运营岗，月薪9.5K。通过N1班系统学习AI获客与多平台运营，22天带薪实习期间即产出3个爆款账号数据。</p>
+          {sectionOf('employment').map((item) => (
+            <div class="showcase-card">
+              <div class="showcase-image">{item.emoji}</div>
+              <div class="showcase-content">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
             </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">👨‍🎨</div>
-            <div class="showcase-content">
-              <h3>阿杰 · 销售转AI视觉设计</h3>
-              <p>入职跨境电商公司视觉设计岗，月薪11K。结业作品集6件套对标企业JD，AI商单与C4D场景作品获得多家企业认可。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">👩‍🎬</div>
-            <div class="showcase-content">
-              <h3>晓雯 · 客服转商业短视频</h3>
-              <p>入职本地MCN短视频剪辑师，月薪10K+绩效。N3班72课时岗前实战+派单池积累5条商用视频作品，入职首月即独立负责账号。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">👨‍💻</div>
-            <div class="showcase-content">
-              <h3>伟强 · 工厂技工转AIGC全能</h3>
-              <p>入职科技公司AI运营岗，月薪13K。N4班五线交叉能力+企业级智能体作品，让他成功实现从工厂到互联网岗位的跨越。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">👩‍🎭</div>
-            <div class="showcase-content">
-              <h3>思思 · 幼师转AI短剧漫剧</h3>
-              <p>签约短剧制作公司担任AI漫剧创作师，底薪8K+项目提成。N5班备案合规与投流分账模块让她快速适应正规军工作模式。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">👨‍🌐</div>
-            <div class="showcase-content">
-              <h3>浩然 · 转行跨境电商运营</h3>
-              <p>入职深圳跨境企业亚马逊运营岗，月薪9K。N6班真实店铺实操经历成为面试核心优势，入职两周即独立管理店铺。</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -86,48 +56,15 @@ const seo = pageSeo['/students/'];
           <a href="#works">学生作品</a>
         </div>
         <div class="showcase-grid">
-          <div class="showcase-card">
-            <div class="showcase-image">🎯</div>
-            <div class="showcase-content">
-              <h3>项目实战周</h3>
-              <p>每期班型设置专项项目实战周，学员分组承接真实商业需求，从方案策划到执行落地全流程参与。</p>
+          {sectionOf('activities').map((item) => (
+            <div class="showcase-card">
+              <div class="showcase-image">{item.emoji}</div>
+              <div class="showcase-content">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
             </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🏢</div>
-            <div class="showcase-content">
-              <h3>企业参访日</h3>
-              <p>定期组织学员走进合作企业，了解真实工作环境、岗位要求与团队氛围，提前建立职场认知。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🎤</div>
-            <div class="showcase-content">
-              <h3>模拟面试大赛</h3>
-              <p>就业老师与企业HR联合举办模拟面试，帮助学员打磨简历、熟悉面试流程、提升表达能力。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🏆</div>
-            <div class="showcase-content">
-              <h3>作品评比与路演</h3>
-              <p>定期举办学员作品评比与项目路演，优秀作品有机会直接进入机构派单池或推荐给合作企业。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🤝</div>
-            <div class="showcase-content">
-              <h3>校友分享会</h3>
-              <p>已就业学长学姐回校分享转行经验、岗位心得与避坑指南，为在读学员提供真实可参考的成长路径。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🎓</div>
-            <div class="showcase-content">
-              <h3>结业典礼</h3>
-              <p>每期学员结业举办典礼，颁发结业证书、表彰优秀作品与优秀学员，见证学习成果。</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -144,48 +81,15 @@ const seo = pageSeo['/students/'];
           <a href="#works" class="active">学生作品</a>
         </div>
         <div class="showcase-grid">
-          <div class="showcase-card">
-            <div class="showcase-image">📱</div>
-            <div class="showcase-content">
-              <h3>AI新媒体运营方案</h3>
-              <p>包含账号定位、内容选题、GEO获客策略、数据复盘与爆款内容拆解的完整运营方案。</p>
+          {sectionOf('works').map((item) => (
+            <div class="showcase-card">
+              <div class="showcase-image">{item.emoji}</div>
+              <div class="showcase-content">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
             </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🖼️</div>
-            <div class="showcase-content">
-              <h3>电商视觉设计作品集</h3>
-              <p>主图、详情页、精修图、C4D场景图、AI商单图、AI动效视频等6件套完整作品集。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🎬</div>
-            <div class="showcase-content">
-              <h3>商业短视频作品集</h3>
-              <p>带货视频、探店视频、IP视频、信息流广告、AI视频等5条商用视频作品集。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🤖</div>
-            <div class="showcase-content">
-              <h3>企业级智能体作品</h3>
-              <p>基于Coze/Dify平台搭建的企业客服、内容生成、数据分析等智能体应用作品。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🎭</div>
-            <div class="showcase-content">
-              <h3>AI短剧漫剧成片</h3>
-              <p>包含分镜脚本、AI生成画面、配音音效、后期剪辑、合规标注的完整短剧/漫剧成片。</p>
-            </div>
-          </div>
-          <div class="showcase-card">
-            <div class="showcase-image">🌐</div>
-            <div class="showcase-content">
-              <h3>跨境电商运营方案</h3>
-              <p>涵盖选品分析、Listing优化、广告投放、独立站搭建与海外社媒运营的完整方案。</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

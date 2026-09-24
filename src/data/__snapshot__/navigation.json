@@ -1,0 +1,150 @@
+{
+  "exportedAt": "2026-09-23T04:32:40.318Z",
+  "source": "http://localhost:1337/api/navigation?populate%5Bnav%5D=true&populate%5BfooterGroups%5D%5Bpopulate%5D%5B0%5D=links",
+  "data": {
+    "id": 1,
+    "documentId": "tfmc6ixtvh7n6yv23hx66zty",
+    "footerIntro": "美迪时代教育隶属于广州美迪教育科技有限公司，专注成人职业技能就业培训，让职业就业更简单。",
+    "footerContacts": "[\"📞 400-800-4459\",\"🌐 www.chinamede.com\",\"📧 广州美迪教育科技有限公司\",\"🏢 6城13个直营校区就近服务\"]",
+    "footerBottom": "[\"© 2026 美迪时代教育 版权所有 | 广州美迪教育科技有限公司 | 粤ICP备15034320号-7\",\"让职业就业更简单\"]",
+    "createdAt": "2026-09-22T04:53:38.251Z",
+    "updatedAt": "2026-09-22T05:52:18.244Z",
+    "publishedAt": "2026-09-22T05:52:18.222Z",
+    "nav": [
+      {
+        "id": 205,
+        "label": "品牌介绍",
+        "href": "/brand/",
+        "external": false
+      },
+      {
+        "id": 206,
+        "label": "培训课程",
+        "href": "/courses/",
+        "external": false
+      },
+      {
+        "id": 207,
+        "label": "产教融合",
+        "href": "/industry/",
+        "external": false
+      },
+      {
+        "id": 208,
+        "label": "师资团队",
+        "href": "/teachers/",
+        "external": false
+      },
+      {
+        "id": 209,
+        "label": "学员风采",
+        "href": "/students/",
+        "external": false
+      },
+      {
+        "id": 210,
+        "label": "知识百科",
+        "href": "/knowledge/",
+        "external": false
+      },
+      {
+        "id": 211,
+        "label": "美迪问答",
+        "href": "/faq/",
+        "external": false
+      },
+      {
+        "id": 212,
+        "label": "机构动态",
+        "href": "/news/",
+        "external": false
+      },
+      {
+        "id": 213,
+        "label": "商业资讯",
+        "href": "/business/",
+        "external": false
+      },
+      {
+        "id": 214,
+        "label": "联系我们",
+        "href": "/contact/",
+        "external": false
+      }
+    ],
+    "footerGroups": [
+      {
+        "id": 21,
+        "title": "快速导航",
+        "links": [
+          {
+            "id": 215,
+            "label": "品牌介绍",
+            "href": "/brand/",
+            "external": false
+          },
+          {
+            "id": 216,
+            "label": "培训课程",
+            "href": "/courses/",
+            "external": false
+          },
+          {
+            "id": 217,
+            "label": "师资团队",
+            "href": "/teachers/",
+            "external": false
+          },
+          {
+            "id": 218,
+            "label": "学员风采",
+            "href": "/students/",
+            "external": false
+          },
+          {
+            "id": 219,
+            "label": "知识百科",
+            "href": "/knowledge/",
+            "external": false
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "服务体系",
+        "links": [
+          {
+            "id": 220,
+            "label": "产教融合",
+            "href": "/industry/",
+            "external": false
+          },
+          {
+            "id": 221,
+            "label": "免费试听",
+            "href": "/enroll/",
+            "external": false
+          },
+          {
+            "id": 222,
+            "label": "美迪问答",
+            "href": "/faq/",
+            "external": false
+          },
+          {
+            "id": 223,
+            "label": "机构动态",
+            "href": "/news/",
+            "external": false
+          },
+          {
+            "id": 224,
+            "label": "商业资讯",
+            "href": "/business/",
+            "external": false
+          }
+        ]
+      }
+    ]
+  }
+}

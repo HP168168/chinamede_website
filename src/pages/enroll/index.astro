@@ -1,8 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { pageSeo } from '../../data/pageSeo';
+import { getSeoFor, getSiteConfig } from '../../lib/strapi';
 
-const seo = pageSeo['/enroll/'];
+// 二维码、客服手机号、报名热线、服务时间、校区规模全部来自后台站点设置
+const [seo, site] = await Promise.all([getSeoFor('/enroll/'), getSiteConfig()]);
+
+/** 服务时间紧凑写法：8:00-23:00（与页面既有文案格式一致） */
+const serviceHoursCompact = site.serviceHours.replace(/\s/g, '');
 ---
 
 <BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/enroll/">
@@ -26,7 +30,7 @@ const seo = pageSeo['/enroll/'];
           <div class="flow-item">
             <div class="flow-num">01</div>
             <h3>提交意向</h3>
-            <p>填写右侧表单或拨打400-800-4459，说明你的学习目标与所在城市。</p>
+            <p>扫码添加右侧课程顾问微信，或拨打{site.telephone}，说明你的学习目标与所在城市。</p>
           </div>
           <div class="flow-item">
             <div class="flow-num">02</div>
@@ -109,22 +113,22 @@ const seo = pageSeo['/enroll/'];
           <div class="contact-wechat-card">
             <div class="wechat-card-header">
               <h2>扫码添加课程顾问</h2>
-              <p>微信扫一扫二维码，一对一专属顾问在线对接报名</p>
+              <p>{site.wechatScanTip}</p>
               <span class="wechat-badge">官方微信 · 顾问直通</span>
             </div>
             <div class="wechat-qr-wrapper">
               <div class="qr-img-box">
-                <img width="357" height="355" src="/images/wechat_qrcode.png" alt="美迪时代教育课程顾问微信二维码" class="wechat-qr-img" loading="lazy" decoding="async" />
+                <img width="357" height="355" src={site.wechatQr} alt={site.wechatQrAlt} class="wechat-qr-img" loading="lazy" decoding="async" />
               </div>
 
               <div class="wechat-phone-action">
                 <div class="phone-action-label">
                   <span class="pulse-dot"></span>
-                  <span>手机 / 微信同号（支持一键拨打与微信搜索）</span>
+                  <span>{site.wechatPhoneLabel}</span>
                 </div>
-                <a href="tel:18922386984" class="phone-action-btn" title="点击呼叫 18922386984 或微信搜索添加">
+                <a href={`tel:${site.wechatPhone}`} class="phone-action-btn" title={`点击呼叫 ${site.wechatPhone} 或微信搜索添加`}>
                   <span class="action-icon">📞</span>
-                  <span class="action-num">18922386984</span>
+                  <span class="action-num">{site.wechatPhone}</span>
                   <span class="action-tag">点击拨打 / 加微信</span>
                 </a>
               </div>
@@ -132,7 +136,7 @@ const seo = pageSeo['/enroll/'];
               <div class="qr-scan-tips">
                 <div class="scan-tip-item">
                   <span class="tip-icon">💬</span>
-                  <span>微信搜索手机号 <strong>18922386984</strong> 添加好友</span>
+                  <span>微信搜索手机号 <strong>{site.wechatPhone}</strong> 添加好友</span>
                 </div>
                 <div class="scan-tip-item">
                   <span class="tip-icon">🎁</span>
@@ -151,13 +155,13 @@ const seo = pageSeo['/enroll/'];
               <div class="contact-item">
                 <div class="icon">📞</div>
                 <div><strong>报名热线</strong>
-                  <p>400-800-4459（周一至周日 8:00-21:00）</p>
+                  <p>{site.telephone}（周一至周日 {serviceHoursCompact}）</p>
                 </div>
               </div>
               <div class="contact-item">
                 <div class="icon">🏢</div>
                 <div><strong>到校咨询</strong>
-                  <p>广州、深圳、佛山、东莞、中山、江门6城13个直营校区</p>
+                  <p>{site.cities.join('、')}{site.campusDisplay}</p>
                 </div>
               </div>
               <div class="contact-item">
@@ -182,7 +186,7 @@ const seo = pageSeo['/enroll/'];
       <div class="container">
         <h2>拿不准学什么？让顾问帮你分析</h2>
         <p>一个电话，免费获得一对一职业方向分析与学习规划建议</p>
-        <a href="tel:4008004459" class="btn btn-red">拨打 400-800-4459</a>
+        <a href={site.telephoneHref} class="btn btn-red">拨打 {site.telephone}</a>
       </div>
     </section>
 </BaseLayout>

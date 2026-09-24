@@ -1,8 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { pageSeo } from '../data/pageSeo';
+import { getCampuses, getCourses, getSeoFor, getSiteConfig, groupCampusesByCity } from '../lib/strapi';
 
-const seo = pageSeo['/'];
+const [seo, site, campuses, courses] = await Promise.all([
+  getSeoFor('/'),
+  getSiteConfig(),
+  getCampuses(),
+  getCourses(),
+]);
+
+// 全国直营校区布局：按城市聚合，点进去跳到联系页对应城市筛选
+const campusCityGroups = groupCampusesByCity(campuses, site.cities);
+
+/**
+ * 首页精品卡片跳课程详情页的链接。
+ * 详情页路由标识取课程的 slug（后台没填 slug 时回退到 code，见 lib/strapi 的 getCourses），
+ * 这里从数据里取而不是写死，避免后台改了标识后整批卡片变成 404。
+ */
+const courseHref = (code: string) => {
+  const matched = courses.find((course) => course.code === code);
+  if (!matched?.slug) {
+    console.warn(`[index] 首页卡片 ${code} 未匹配到课程数据，链接回退为 code`);
+  }
+  return `/courses/${matched?.slug ?? code}/`;
+};
 ---
 
 <BaseLayout title={seo.title} description={seo.description} keywords={seo.keywords} route="/">
@@ -51,7 +72,7 @@ const seo = pageSeo['/'];
           <p>紧跟AI时代岗位需求，覆盖新媒体、设计、视频、短剧、跨境电商等高薪赛道，理论+项目实操+就业实训闭环培养</p>
         </div>
         <div class="course-grid">
-          <a class="course-card" href="/courses/n1-ai-newmedia/">
+          <a class="course-card" href={courseHref('N1')}>
             <div class="course-image">
               <img width="805" height="604" src="/images/courses/xmtyysjyb.webp" alt="AI新媒体运营师" class="course-thumb-img" loading="lazy" decoding="async" />
             </div>
@@ -65,7 +86,7 @@ const seo = pageSeo['/'];
               </div>
             </div>
           </a>
-          <a class="course-card" href="/courses/n2-ai-visual-design/">
+          <a class="course-card" href={courseHref('N2')}>
             <div class="course-image">
               <img width="803" height="602" src="/images/courses/sjsjsjyb.webp" alt="AI视觉设计师" class="course-thumb-img" loading="lazy" decoding="async" />
             </div>
@@ -79,7 +100,7 @@ const seo = pageSeo['/'];
               </div>
             </div>
           </a>
-          <a class="course-card" href="/courses/n3-short-video/">
+          <a class="course-card" href={courseHref('N3')}>
             <div class="course-image">
               <img width="805" height="605" src="/images/courses/sydspjyb.webp" alt="商业短视频创作师" class="course-thumb-img" loading="lazy" decoding="async" />
             </div>
@@ -93,7 +114,7 @@ const seo = pageSeo['/'];
               </div>
             </div>
           </a>
-          <a class="course-card" href="/courses/n6-amazon/">
+          <a class="course-card" href={courseHref('N6')}>
             <div class="course-image">
               <img width="800" height="602" src="/images/courses/ymxjyb.webp" alt="跨境电商实战班" class="course-thumb-img" loading="lazy" decoding="async" />
             </div>
@@ -107,7 +128,7 @@ const seo = pageSeo['/'];
               </div>
             </div>
           </a>
-          <a class="course-card" href="/courses/n5-ai-drama/">
+          <a class="course-card" href={courseHref('N5')}>
             <div class="course-image">
               <img width="806" height="605" src="/images/courses/djmjjyb.webp" alt="AI短剧漫剧创作师" class="course-thumb-img" loading="lazy" decoding="async" />
             </div>
@@ -121,7 +142,7 @@ const seo = pageSeo['/'];
               </div>
             </div>
           </a>
-          <a class="course-card" href="/courses/n4-aigc/">
+          <a class="course-card" href={courseHref('N4')}>
             <div class="course-image">
               <img width="804" height="602" src="/images/courses/aigcqnszb.webp" alt="AIGC全能就业班" class="course-thumb-img" loading="lazy" decoding="async" />
             </div>
@@ -241,24 +262,11 @@ const seo = pageSeo['/'];
           <p>深耕线下实景实训，线上精品课程辅助，就近为学员提供学习与就业服务</p>
         </div>
         <div class="campus-grid">
-          <a class="campus-item" href="/contact/#city-gz">
-            <i>📍</i><span>广州校区</span><span class="campus-count">4 个校区</span>
-          </a>
-          <a class="campus-item" href="/contact/#city-sz">
-            <i>📍</i><span>深圳校区</span><span class="campus-count">3 个校区</span>
-          </a>
-          <a class="campus-item" href="/contact/#city-fs">
-            <i>📍</i><span>佛山校区</span><span class="campus-count">2 个校区</span>
-          </a>
-          <a class="campus-item" href="/contact/#city-dg">
-            <i>📍</i><span>东莞校区</span><span class="campus-count">2 个校区</span>
-          </a>
-          <a class="campus-item" href="/contact/#city-zs">
-            <i>📍</i><span>中山校区</span><span class="campus-count">1 个校区</span>
-          </a>
-          <a class="campus-item" href="/contact/#city-jm">
-            <i>📍</i><span>江门校区</span><span class="campus-count">1 个校区</span>
-          </a>
+          {campusCityGroups.map((group) => (
+            <a class="campus-item" href={`/contact/#city-${group.cityCode}`}>
+              <i>📍</i><span>{group.city}校区</span><span class="campus-count">{group.campuses.length} 个校区</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

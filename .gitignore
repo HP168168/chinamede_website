@@ -11,3 +11,30 @@ Thumbs.db
 .astro-dev.log
 .astro-dev.err
 .codebuddy/
+
+# Strapi 后台（cms）本地敏感与临时文件；仓库只提交 cms/.env.example
+cms/.env
+cms/.tmp/
+cms/.cache/
+cms/build/
+# strapi build 的产物目录（strapi develop 启动时会尝试清空，不入库）
+cms/dist/
+cms/backup/
+cms/public/uploads/
+cms/node_modules/
+
+# 媒体同步的中间产物
+public/images/*.download
+
+# 本地开发与验证产物：临时日志、npm 缓存、playwright-cli 页面快照
+.tmp/
+logs/
+.npm-cache/
+login.yaml
+admin.yaml
+kw-state.yaml
+
+# Strapi 编译/构建产物与更新检查状态（cms/src 下的 TS 会编译到这些目录）
+cms/dist-old-*/
+cms/.strapi/
+cms/.strapi-updater.json

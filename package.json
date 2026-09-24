@@ -5,9 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/sync-media.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cms:dev": "npm --prefix cms run develop",
+    "cms:snapshot": "node scripts/export-snapshot.mjs",
+    "cms:sync-media": "node scripts/sync-media.mjs",
+    "cms:ai:run": "npm --prefix cms run ai:run",
+    "cms:ai:once": "npm --prefix cms run ai:run:once --",
+    "cms:ai:check": "npm --prefix cms run ai:check",
+    "cms:kb:index": "npm --prefix cms run kb:index",
+    "cms:kb:status": "npm --prefix cms run kb:status",
+    "cms:kb:clear": "npm --prefix cms run kb:clear",
+    "cms:ai:preview": "npm --prefix cms run ai:preview --"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

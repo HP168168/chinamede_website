@@ -9,6 +9,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Strapi 后台发布内容后由 Webhook 触发（POST /repos/{owner}/{repo}/dispatches，event_type = cms-publish）
+  repository_dispatch:
+    types: [cms-publish]
 
 permissions:
   contents: read
@@ -36,6 +39,13 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          # 后台地址与只读 API Token：在仓库 Secrets 中配置；
+          # 未配置时取数层自动降级读 src/data/__snapshot__ 快照，本地与云端都能构建。
+          STRAPI_URL: ${{ secrets.STRAPI_URL }}
+          STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
+          # 需要覆盖站点基准地址（canonical / OG / JSON-LD / llms.txt）时设置
+          SITE_URL: ${{ vars.SITE_URL }}
         run: npm run build
 
       - name: Setup Pages
