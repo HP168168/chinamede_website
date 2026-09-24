@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_kb_points",
+  "info": {
+    "displayName": "知识要点",
+    "icon": "bullet-list"
+  },
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true,
+      "description": "一条可独立成立的知识要点"
+    }
+  }
+}

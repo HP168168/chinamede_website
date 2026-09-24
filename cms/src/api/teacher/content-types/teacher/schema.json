@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teachers",
+  "info": {
+    "singularName": "teacher",
+    "pluralName": "teachers",
+    "displayName": "师资"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "avatar": {
+      "type": "string",
+      "description": "头像（emoji 或图片地址）"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "description": "形象照（真实头像）。上传后官网构建时会同步到 /images/teachers/ 下同名文件；未上传则前台显示默认占位头像"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "description": "职务/学科头衔"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "levelCode": {
+      "type": "string",
+      "description": "层级编码（历史字段）：仅作数据迁移留档与关系缺失时的兜底，页面显示与查询请以「所属层级」关系为准"
+    },
+    "level": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::teacher-level.teacher-level",
+      "inversedBy": "teachers",
+      "description": "所属师资层级（关联「师资层级」主表；未选则前台不显示层级标签）"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

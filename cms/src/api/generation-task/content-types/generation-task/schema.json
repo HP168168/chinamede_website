@@ -1,0 +1,154 @@
+{
+  "kind": "collectionType",
+  "collectionName": "generation_tasks",
+  "info": {
+    "singularName": "generation-task",
+    "pluralName": "generation-tasks",
+    "displayName": "任务计划",
+    "description": "内容工厂任务单：选择模式与素材后由脚本执行，产出文章草稿"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "任务名称，如 2026-09 GEO 选题第一批"
+    },
+    "mode": {
+      "type": "customField",
+      "customField": "global::radio-enum",
+      "enum": [
+        "ai",
+        "manual"
+      ],
+      "default": "ai",
+      "required": true,
+      "description": "AI 生成 = 调用大模型产出成稿；人工撰写 = 只生成字段模板空草稿"
+    },
+    "trigger": {
+      "type": "enumeration",
+      "enum": [
+        "now",
+        "queue",
+        "schedule"
+      ],
+      "default": "queue",
+      "required": true,
+      "description": "手动生成 = 后台点「立即生成」立刻出稿；自动生成 = 排队，由调度器按限额批量消费；定时自动生成 = 按下面的 cron 表达式到点执行"
+    },
+    "scheduleCron": {
+      "type": "customField",
+      "customField": "global::cron-schedule",
+      "description": "仅「定时自动生成」需要填：选周期与时间即可（按电脑默认时区计算），如每周一 10:00；执行后会自动排下一次。表达不了的频率选「自定义表达式」手写 5 段 cron（分 时 日 月 周）"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Asia/Shanghai",
+      "description": "系统按电脑默认时区自动写入，无需填写（编辑页已隐藏）"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "关掉后调度器不再自动执行（手动点「立即生成」仍可用）"
+    },
+    "nextRunAt": {
+      "type": "datetime",
+      "description": "系统按 cron 自动算出的「下一次执行时刻」，到点自动执行；无需手填"
+    },
+    "lastRunAt": {
+      "type": "datetime",
+      "description": "系统记录的上次执行时刻，仅用于排错；无需手填"
+    },
+    "entries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::kb-entry.kb-entry",
+      "description": "关联知识条目，AI 生成时的事实来源（不选则由选题自动匹配）"
+    },
+    "topic": {
+      "type": "string",
+      "description": "选题/标题方向，留空则由知识条目自动推导"
+    },
+    "wordCount": {
+      "type": "integer",
+      "default": 1200,
+      "description": "目标字数"
+    },
+    "audience": {
+      "type": "string",
+      "default": "零基础想转行就业的求职者",
+      "description": "写给谁看，会影响文章角度"
+    },
+    "tone": {
+      "type": "string",
+      "default": "专业、务实、口语化",
+      "description": "行文风格要求"
+    },
+    "targetKeywords": {
+      "type": "string",
+      "description": "目标关键词，英文逗号分隔（用于 SEO 校验）"
+    },
+    "keywordCategory": {
+      "type": "enumeration",
+      "enum": [
+        "core",
+        "brand",
+        "scene",
+        "region",
+        "longtail"
+      ],
+      "description": "关键词分类：选定类后可再从该类里挑一个具体词。不填则不使用关键词库，只用下面的「目标关键词」"
+    },
+    "keyword": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::keyword.keyword",
+      "description": "本次使用的具体关键词。留空则由系统按上面的分类自动随机取一个（优先取用得最少的，结果写进执行日志）"
+    },
+    "promptTemplate": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::prompt-template.prompt-template",
+      "description": "本次使用的提示词：它的 Markdown 正文会作为「本次写作要求」叠加进提示词，只影响写作侧重点"
+    },
+    "plannedDate": {
+      "type": "date",
+      "description": "只影响排队先后：日期越早的任务越先被「自动生成」消费（留空按创建时间）。它不是执行时间——具体什么时候跑请看「下次执行时间」"
+    },
+    "runStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "running",
+        "done",
+        "failed",
+        "cancelled"
+      ],
+      "default": "pending",
+      "required": true,
+      "description": "系统维护：待处理 / 生成中 / 已完成 / 失败 / 已取消。调度器自动更新，编辑页已隐藏，列表页仍可查看"
+    },
+    "retries": {
+      "type": "integer",
+      "default": 0,
+      "description": "系统记录的已重试次数：连续失败到上限会自动停用任务，需人工检查后恢复"
+    },
+    "result": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "description": "生成的最后一篇文章"
+    },
+    "log": {
+      "type": "text",
+      "description": "系统回写的执行日志，仅供查看，不需要手填"
+    },
+    "requestedBy": {
+      "type": "string",
+      "description": "申请人"
+    }
+  }
+}

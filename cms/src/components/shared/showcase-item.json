@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_shared_showcase_items",
+  "info": {
+    "displayName": "展示条目",
+    "icon": "grid"
+  },
+  "attributes": {
+    "emoji": {
+      "type": "string",
+      "description": "图标（emoji）"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "text"
+    }
+  }
+}

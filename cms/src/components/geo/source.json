@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_geo_sources",
+  "info": {
+    "displayName": "引用来源",
+    "icon": "link"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

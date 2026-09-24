@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guides",
+  "info": {
+    "singularName": "guide",
+    "pluralName": "guides",
+    "displayName": "知识百科",
+    "description": "长文教程，正文为 HTML（支持表格、引用块）"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "emoji": {
+      "type": "string",
+      "default": "📘",
+      "description": "列表页卡片左上角的图标，如 📱"
+    },
+    "categoryLabel": {
+      "type": "string",
+      "description": "列表页卡片的分类标签，如「转行攻略 · 新媒体运营」"
+    },
+    "summary": {
+      "type": "text",
+      "description": "列表页卡片摘要，可在此提炼比副标题更具体的看点"
+    },
+    "content": {
+      "type": "text",
+      "description": "正文 HTML，可用表格与引用块"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

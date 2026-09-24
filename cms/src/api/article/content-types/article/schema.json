@@ -1,0 +1,106 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "文章",
+    "description": "AI 生成或人工撰写的内容文章，发布后进入 /articles/"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "summary": {
+      "type": "text"
+    },
+    "content": {
+      "type": "text"
+    },
+    "cover": {
+      "type": "component",
+      "component": "shared.cover",
+      "repeatable": false
+    },
+    "tags": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string",
+      "default": "美迪时代教育"
+    },
+    "source": {
+      "type": "enumeration",
+      "required": true,
+      "default": "manual",
+      "enum": [
+        "ai",
+        "manual"
+      ]
+    },
+    "targetKeywords": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "answerBlocks": {
+      "type": "component",
+      "component": "geo.answer-block",
+      "repeatable": true
+    },
+    "keyFacts": {
+      "type": "component",
+      "component": "geo.key-fact",
+      "repeatable": true
+    },
+    "faq": {
+      "type": "component",
+      "component": "shared.faq-item",
+      "repeatable": true
+    },
+    "sources": {
+      "type": "component",
+      "component": "geo.source",
+      "repeatable": true
+    },
+    "relatedLinks": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    },
+    "kbEntries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::kb-entry.kb-entry",
+      "description": "成稿所依据的知识条目"
+    },
+    "keyword": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::keyword.keyword",
+      "description": "本次生成所用的关键词，便于追溯选题来源（由生成器回写）"
+    },
+    "promptTemplate": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::prompt-template.prompt-template",
+      "description": "本次生成所用的提示词，便于复现同类型的写法（由生成器回写）"
+    },
+    "geoScore": {
+      "type": "integer"
+    }
+  }
+}

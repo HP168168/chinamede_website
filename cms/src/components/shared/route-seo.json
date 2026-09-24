@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_route_seos",
+  "info": {
+    "displayName": "路由 SEO",
+    "icon": "globe"
+  },
+  "attributes": {
+    "route": {
+      "type": "string",
+      "required": true,
+      "description": "路由路径，如 /courses/ 或 /contact/"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

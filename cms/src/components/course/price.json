@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_course_prices",
+  "info": {
+    "displayName": "课程价格",
+    "icon": "shopping-cart"
+  },
+  "attributes": {
+    "amount": {
+      "type": "string",
+      "description": "现价（含千分位，如 13,800）"
+    },
+    "currency": {
+      "type": "string",
+      "default": "¥"
+    },
+    "origin": {
+      "type": "string",
+      "description": "原价说明"
+    },
+    "save": {
+      "type": "string",
+      "description": "优惠说明"
+    }
+  }
+}

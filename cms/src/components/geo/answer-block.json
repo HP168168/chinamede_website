@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_geo_answer_blocks",
+  "info": {
+    "displayName": "答案段落",
+    "icon": "message"
+  },
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true,
+      "description": "用户会问的问题"
+    },
+    "answer": {
+      "type": "text",
+      "required": true,
+      "description": "可直接被引用的答案，2-4 句说清结论"
+    }
+  }
+}

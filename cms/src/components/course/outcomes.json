@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_course_outcomess",
+  "info": {
+    "displayName": "就业方向",
+    "icon": "briefcase"
+  },
+  "attributes": {
+    "jobs": {
+      "type": "string",
+      "repeatable": true,
+      "description": "可从事岗位"
+    },
+    "targets": {
+      "type": "string",
+      "repeatable": true,
+      "description": "适合人群"
+    }
+  }
+}

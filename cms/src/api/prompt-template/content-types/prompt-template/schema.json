@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prompt_templates",
+  "info": {
+    "singularName": "prompt-template",
+    "pluralName": "prompt-templates",
+    "displayName": "提示词",
+    "description": "提示词库：用 Markdown 编写写作要求，生成文章时选用一套作为本次的写作侧重点"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "提示词名称，如「招生转化长文」「科普问答型」，任务下拉里按它辨认"
+    },
+    "description": {
+      "type": "text",
+      "description": "一句话说明：这套提示词适合什么选题、什么目的"
+    },
+    "content": {
+      "type": "customField",
+      "customField": "global::markdown",
+      "description": "正文：Markdown 格式的写作要求。它作为「本次写作要求」叠加到系统提示里，不会改变输出必须是 JSON 的约定，因此这里写意图与规范即可，不必声明输出格式"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "关掉后不再出现在任务的提示词下拉里"
+    }
+  }
+}

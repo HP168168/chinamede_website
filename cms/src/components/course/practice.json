@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_course_practices",
+  "info": {
+    "displayName": "实训说明",
+    "icon": "cog"
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

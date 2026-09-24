@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_meta_tags",
+  "info": {
+    "displayName": "标签",
+    "icon": "price-tag"
+  },
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "cls": {
+      "type": "string",
+      "description": "样式类名，如 tag-blue"
+    }
+  }
+}

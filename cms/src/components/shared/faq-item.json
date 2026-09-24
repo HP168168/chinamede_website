@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_faq_items",
+  "info": {
+    "displayName": "问答项",
+    "icon": "question"
+  },
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true,
+      "description": "问题"
+    },
+    "answer": {
+      "type": "text",
+      "required": true,
+      "description": "答案"
+    }
+  }
+}

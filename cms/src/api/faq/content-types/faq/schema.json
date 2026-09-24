@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faqs",
+  "info": {
+    "singularName": "faq",
+    "pluralName": "faqs",
+    "displayName": "美迪问答"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "faqId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "问答标识，如 faq-1"
+    },
+    "question": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "text",
+      "required": true
+    },
+    "defaultOpen": {
+      "type": "boolean",
+      "default": false,
+      "description": "页面是否默认展开"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

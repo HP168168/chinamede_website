@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_course_stages",
+  "info": {
+    "displayName": "课程阶段",
+    "icon": "layer"
+  },
+  "attributes": {
+    "badge": {
+      "type": "string",
+      "description": "阶段编号，如 01"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "modules": {
+      "type": "component",
+      "component": "course.module",
+      "repeatable": true
+    }
+  }
+}

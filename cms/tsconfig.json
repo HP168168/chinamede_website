@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "lib": ["ES2020", "DOM"],
+    "jsx": "react-jsx",
+    "types": ["node"],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "rootDir": "."
+  },
+  "include": ["src/index.ts", "src/api", "src/components", "src/admin", "src/extensions", "src/middlewares", "config", "src/**/*.json"],
+  "watchOptions": {
+    "excludeDirectories": ["node_modules", "dist", ".cache", "build", ".tmp"]
+  },
+  "exclude": ["node_modules", "dist", ".cache", "build", ".tmp"]
+}

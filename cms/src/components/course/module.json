@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_course_modules",
+  "info": {
+    "displayName": "课程模块",
+    "icon": "book"
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "模块名称，如 AI工具应用"
+    },
+    "hour": {
+      "type": "string",
+      "description": "课时，如 18课时"
+    },
+    "highlight": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否重点模块"
+    }
+  }
+}

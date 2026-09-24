@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_items",
+  "info": {
+    "singularName": "news-item",
+    "pluralName": "news-items",
+    "displayName": "动态与资讯",
+    "description": "机构动态与商业资讯，列表展示的短条目"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "channel": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "business"
+      ],
+      "default": "news",
+      "required": true,
+      "description": "所属栏目：news = 机构动态（/news/）；business = 商业资讯（/business/）"
+    },
+    "dateText": {
+      "type": "string",
+      "description": "机构动态填日期（2026-09-01）；商业资讯填分类名（如 行业趋势）"
+    },
+    "emoji": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

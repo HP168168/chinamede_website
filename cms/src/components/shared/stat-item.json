@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_stat_items",
+  "info": {
+    "displayName": "数据项",
+    "icon": "chart-bubble"
+  },
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true,
+      "description": "如：💼 22天带薪实习闭环独有"
+    },
+    "highlight": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否高亮显示"
+    }
+  }
+}

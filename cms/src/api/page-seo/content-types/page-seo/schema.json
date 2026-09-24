@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_seos",
+  "info": {
+    "singularName": "page-seo",
+    "pluralName": "page-seos",
+    "displayName": "页面 SEO"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "settings": {
+        "mainField": "id"
+      }
+    }
+  },
+  "attributes": {
+    "entries": {
+      "type": "component",
+      "component": "shared.route-seo",
+      "repeatable": true,
+      "description": "按路由维护各页面元信息"
+    }
+  }
+}

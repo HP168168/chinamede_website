@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_footer_groups",
+  "info": {
+    "displayName": "页脚分组",
+    "icon": "layer-group"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    }
+  }
+}

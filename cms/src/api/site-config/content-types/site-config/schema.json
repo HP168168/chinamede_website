@@ -1,0 +1,157 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_configs",
+  "info": {
+    "singularName": "site-config",
+    "pluralName": "site-configs",
+    "displayName": "站点设置",
+    "description": "官网基础信息、联系方式与 llms 文案"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "legalName": {
+      "type": "string"
+    },
+    "slogan": {
+      "type": "string"
+    },
+    "baseUrl": {
+      "type": "string",
+      "required": true,
+      "description": "站点基准地址，canonical/OG/JSON-LD/llms.txt 统一使用"
+    },
+    "telephone": {
+      "type": "string",
+      "description": "全国热线展示文本，如 400-800-4459"
+    },
+    "telephoneHref": {
+      "type": "string",
+      "description": "拨号链接，如 tel:4008004459"
+    },
+    "serviceHours": {
+      "type": "string"
+    },
+    "foundedYear": {
+      "type": "string"
+    },
+    "cities": {
+      "type": "string",
+      "repeatable": true
+    },
+    "campusCount": {
+      "type": "integer"
+    },
+    "campusDisplay": {
+      "type": "string",
+      "description": "如 6城13个直营校区"
+    },
+    "address": {
+      "type": "string"
+    },
+    "icp": {
+      "type": "string"
+    },
+    "icpUrl": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logoPath": {
+      "type": "string",
+      "description": "静态回退路径，如 /images/logo_3.png"
+    },
+    "logoAlt": {
+      "type": "string"
+    },
+    "ogImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "ogImagePath": {
+      "type": "string"
+    },
+    "ogImageWidth": {
+      "type": "integer"
+    },
+    "ogImageHeight": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "text"
+    },
+    "generator": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "copyright": {
+      "type": "string"
+    },
+    "knowsAbout": {
+      "type": "string",
+      "repeatable": true,
+      "description": "品牌专长领域：写入结构化数据的 knowsAbout，提升 AI 对机构专业的识别"
+    },
+    "sameAs": {
+      "type": "string",
+      "repeatable": true,
+      "description": "官方主页链接：微信公众号文章页、抖音、视频号、B站、小红书等真实可访问的主页地址，用于让 AI 确认「同一实体」"
+    },
+    "wechatQr": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "description": "客服微信二维码，官网联系/报名页展示"
+    },
+    "wechatQrPath": {
+      "type": "string",
+      "description": "静态回退路径，默认 /images/wechat_qrcode.png"
+    },
+    "wechatQrAlt": {
+      "type": "string"
+    },
+    "wechatPhone": {
+      "type": "string",
+      "description": "客服手机号（微信同号）"
+    },
+    "wechatPhoneLabel": {
+      "type": "string",
+      "description": "如 手机/微信同号"
+    },
+    "wechatScanTip": {
+      "type": "text",
+      "description": "扫码提示文案"
+    },
+    "llmsIntro": {
+      "type": "text",
+      "description": "llms.txt 品牌介绍段"
+    },
+    "llmsFacts": {
+      "type": "string",
+      "repeatable": true,
+      "description": "llms.txt 品牌事实条目"
+    },
+    "llmsCitation": {
+      "type": "text",
+      "description": "llms.txt 引用规范"
+    }
+  }
+}

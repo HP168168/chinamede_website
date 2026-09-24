@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "navigations",
+  "info": {
+    "singularName": "navigation",
+    "pluralName": "navigations",
+    "displayName": "导航与页脚"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "settings": {
+        "mainField": "id"
+      }
+    }
+  },
+  "attributes": {
+    "nav": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true,
+      "description": "顶部主导航"
+    },
+    "footerGroups": {
+      "type": "component",
+      "component": "shared.footer-group",
+      "repeatable": true
+    },
+    "footerIntro": {
+      "type": "text"
+    },
+    "footerContacts": {
+      "type": "string",
+      "repeatable": true
+    },
+    "footerBottom": {
+      "type": "string",
+      "repeatable": true
+    }
+  }
+}

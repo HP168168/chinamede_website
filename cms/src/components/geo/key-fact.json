@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_geo_key_facts",
+  "info": {
+    "displayName": "关键数据",
+    "icon": "database"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "keywords",
+  "info": {
+    "singularName": "keyword",
+    "pluralName": "keywords",
+    "displayName": "关键词库",
+    "description": "关键词库：按核心词 / 品牌词 / 场景词 / 区域词 / 长尾词五类结构化存储，供定时任务选题时取用"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "word": {
+      "type": "string",
+      "required": true,
+      "description": "关键词本身，如「口腔修复工艺」；同一分类下不重复"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "core",
+        "brand",
+        "scene",
+        "region",
+        "longtail"
+      ],
+      "default": "core",
+      "required": true,
+      "description": "分类：core = 核心词，业务主干；brand = 品牌词，含品牌名或常见叫法；scene = 场景词，人群/阶段/意图的组合；region = 区域词，带城市或地区限定；longtail = 长尾词，六字以上的具体问法"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "关掉后不参与自动随机取词，也不出现在任务的可选列表里"
+    },
+    "usageCount": {
+      "type": "integer",
+      "default": 0,
+      "description": "系统回写：被选中生成文章的次数，取词时优先挑用得少的"
+    },
+    "lastUsedAt": {
+      "type": "datetime",
+      "description": "系统回写：最近一次被选中生成文章的时刻"
+    },
+    "seedWord": {
+      "type": "string",
+      "description": "批量扩词时的核心种子词，用于追溯这批词的来源"
+    },
+    "note": {
+      "type": "text",
+      "description": "备注：如搜索意图、适用栏目，可留空"
+    }
+  }
+}

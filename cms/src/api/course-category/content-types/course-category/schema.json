@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_categories",
+  "info": {
+    "singularName": "course-category",
+    "pluralName": "course-categories",
+    "displayName": "课程分类",
+    "description": "课程所属方向，如 AI、跨境电商"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "分类标识，如 ai"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "分类名称，如 AI 就业方向"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

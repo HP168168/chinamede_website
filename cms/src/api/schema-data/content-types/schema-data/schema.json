@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "schema_datas",
+  "info": {
+    "singularName": "schema-data",
+    "pluralName": "schema-datas",
+    "displayName": "结构化数据",
+    "description": "JSON-LD 节点：站点级节点与按路由的页面级节点"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "settings": {
+        "mainField": "id"
+      }
+    }
+  },
+  "attributes": {
+    "siteNodes": {
+      "type": "json",
+      "description": "站点级节点数组（Organization / WebSite）"
+    },
+    "pageNodes": {
+      "type": "json",
+      "description": "以路由为键的页面级节点字典"
+    }
+  }
+}

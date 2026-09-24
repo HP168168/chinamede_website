@@ -1,0 +1,92 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "课程",
+    "description": "就业班课程，含大纲、价格、问答与 SEO"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "code": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "mainTitle": {
+      "type": "string"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course-category.course-category"
+    },
+    "cover": {
+      "type": "component",
+      "component": "shared.cover",
+      "repeatable": false
+    },
+    "badge": {
+      "type": "string"
+    },
+    "metaTags": {
+      "type": "component",
+      "component": "shared.meta-tag",
+      "repeatable": true
+    },
+    "price": {
+      "type": "component",
+      "component": "course.price",
+      "repeatable": false
+    },
+    "stats": {
+      "type": "component",
+      "component": "shared.stat-item",
+      "repeatable": true
+    },
+    "descHighlight": {
+      "type": "text"
+    },
+    "curriculum": {
+      "type": "component",
+      "component": "course.stage",
+      "repeatable": true
+    },
+    "practice": {
+      "type": "component",
+      "component": "course.practice",
+      "repeatable": false
+    },
+    "outcomes": {
+      "type": "component",
+      "component": "course.outcomes",
+      "repeatable": false
+    },
+    "tags": {
+      "type": "string"
+    },
+    "faq": {
+      "type": "component",
+      "component": "shared.faq-item",
+      "repeatable": true
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_covers",
+  "info": {
+    "displayName": "封面",
+    "icon": "picture"
+  },
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "description": "封面图，从媒体库选择"
+    },
+    "fallbackPath": {
+      "type": "string",
+      "description": "静态回退路径，如 /images/xxx.webp（迁移期兼容用）"
+    },
+    "alt": {
+      "type": "string",
+      "description": "图片替代文本（无障碍与 SEO 必填）"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    }
+  }
+}

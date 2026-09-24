@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "campuses",
+  "info": {
+    "singularName": "campus",
+    "pluralName": "campuses",
+    "displayName": "校区"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "campusId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "校区标识，如 campus-gz-sanyuanli"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "机构全称式名称，用于结构化数据与页面展示"
+    },
+    "displayTitle": {
+      "type": "string",
+      "description": "联系我们页校区卡片标题，如 广州（总校）· 越秀区 · 三元里校区"
+    },
+    "cityCode": {
+      "type": "string",
+      "description": "城市筛选代码，如 gz / sz / fs / dg / zs / jm"
+    },
+    "telephone": {
+      "type": "string",
+      "description": "校区电话"
+    },
+    "streetAddress": {
+      "type": "string"
+    },
+    "locality": {
+      "type": "string",
+      "description": "带“市”，如 广州市"
+    },
+    "region": {
+      "type": "string",
+      "description": "如 广东省"
+    },
+    "city": {
+      "type": "string",
+      "description": "不带“市”，如 广州"
+    },
+    "traffic": {
+      "type": "text",
+      "description": "交通指引（结构化数据用）"
+    },
+    "trafficDisplay": {
+      "type": "text",
+      "description": "交通指引（联系我们页展示用）"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "description": "校区实景照片，联系我们页卡片封面"
+    },
+    "coverPath": {
+      "type": "string",
+      "description": "封面站内路径，如 /images/campuscover/gz_syl.webp（构建期取数使用）"
+    },
+    "coverAlt": {
+      "type": "string",
+      "description": "封面图的替代文本（无障碍与 SEO 必填）"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

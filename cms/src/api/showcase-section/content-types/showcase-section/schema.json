@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "showcase_sections",
+  "info": {
+    "singularName": "showcase-section",
+    "pluralName": "showcase-sections",
+    "displayName": "展示区块",
+    "description": "学员风采等分组展示，如就业学员 / 学生活动 / 学生作品"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "区块标识，如 employment"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "component": "shared.showcase-item",
+      "repeatable": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

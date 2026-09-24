@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_kb_sources",
+  "info": {
+    "displayName": "来源出处",
+    "icon": "external-link"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "note": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kb_entries",
+  "info": {
+    "singularName": "kb-entry",
+    "pluralName": "kb-entries",
+    "displayName": "知识条目",
+    "description": "知识库：文章生成的事实基准，含要点、数据、问答与来源"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "aliases": {
+      "type": "string",
+      "repeatable": true,
+      "description": "同义词/别名，用于检索匹配"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "course",
+        "industry",
+        "role",
+        "policy",
+        "data",
+        "faq",
+        "other"
+      ],
+      "default": "course",
+      "required": true,
+      "description": "知识分类：course = 课程信息；industry = 行业趋势；role = 岗位认知；policy = 政策法规；data = 数据统计；faq = 常见问题；other = 其他"
+    },
+    "topic": {
+      "type": "text",
+      "description": "主题一句话说明，供选题与推送"
+    },
+    "points": {
+      "type": "component",
+      "component": "kb.point",
+      "repeatable": true,
+      "description": "关键要点"
+    },
+    "facts": {
+      "type": "component",
+      "component": "kb.fact",
+      "repeatable": true,
+      "description": "数据点（含年份与来源）"
+    },
+    "qa": {
+      "type": "component",
+      "component": "shared.faq-item",
+      "repeatable": true,
+      "description": "常见问答"
+    },
+    "citation": {
+      "type": "text",
+      "description": "希望被引用时的标准表述"
+    },
+    "sources": {
+      "type": "component",
+      "component": "kb.source",
+      "repeatable": true
+    },
+    "relatedCourses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course.course"
+    },
+    "tags": {
+      "type": "string",
+      "repeatable": true
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "description": "原始文档归档（PDF/Word 等），供后续 RAG 接入"
+    },
+    "credibility": {
+      "type": "text",
+      "description": "可信度说明：口径、适用范围与免责"
+    },
+    "lastVerified": {
+      "type": "date",
+      "description": "最后核实日期"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teacher_levels",
+  "info": {
+    "singularName": "teacher-level",
+    "pluralName": "teacher-levels",
+    "displayName": "师资层级"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "levelCode": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "gradient": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "meta": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "teachers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::teacher.teacher",
+      "mappedBy": "level"
+    }
+  }
+}
